@@ -1,0 +1,328 @@
+:root{
+  --blue:#0c3b66;
+  --blue-active:#2563eb;
+  --panel:#ffffff;
+  --border:rgba(15,23,42,.10);
+  --shadow:0 18px 36px rgba(0,0,0,.22);
+}
+
+/* RESET */
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Poppins, sans-serif;
+  background:#f3f6f9;
+}
+
+/* ================= HEADER ================= */
+.topbar{
+  background:#d9ecfb;
+  border-bottom:1px solid var(--border);
+}
+
+.topbar-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 28px;
+}
+
+.cc{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.cc-logo{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.cc-logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.cc-title{
+  font-size:26px;
+  font-weight:700;
+  color:var(--blue);
+}
+
+/* ================= FLOORS ================= */
+.floors-wrap{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.floors-label{
+  font-size:16px;
+  font-weight:700;
+  color:var(--blue);
+}
+
+.floors-select{
+  font-size:15px;
+  font-weight:700;
+  padding:8px 14px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#fff;
+  color:var(--blue);
+  cursor:pointer;
+}
+
+.floors-select option:checked{
+  background-color:var(--blue-active);
+  color:#fff;
+}
+
+/* ================= LAYOUT ================= */
+.page{
+  padding:22px 28px;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:380px 1fr;
+  gap:22px;
+  align-items:start;
+}
+
+.sidebar{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+/* ================= CARD ================= */
+.card{
+  background:var(--panel);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+}
+
+.card-head{
+  padding:14px;
+}
+
+.card-title{
+  margin:0;
+  text-align:center;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:1.6px;
+  color:var(--blue);
+}
+
+.card-body{
+  padding:18px;
+}
+
+/* ================= DESCRIPTION ================= */
+.description-box{
+  height:120px;
+  border-radius:12px;
+  background:#ffffff;
+}
+
+/* =================================================
+   MAP LEGEND — ICON MOVE/RESIZE PER ITEM (SAME FORMAT)
+   ================================================= */
+
+.legend-card{
+  background:#ffffff;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  padding:18px 20px 22px;
+  overflow:hidden;
+}
+
+/* TITLE */
+.legend-titlebar{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  margin-bottom:16px;
+}
+
+.legend-titleline{
+  flex:1;
+  height:2px;
+  background:var(--blue);
+  opacity:.6;
+}
+
+.legend-titletext{
+  margin:0;
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:3px;
+  color:var(--blue);
+}
+
+/* 2 columns x 4 rows */
+.legend-rows{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap:6px;
+  row-gap:10px;
+  align-items:center;
+  justify-items:start;
+}
+
+/* each cell: fixed icon column + text */
+.legend-cell{
+  display:grid;
+  grid-template-columns: 45px 1fr;
+  align-items:center;
+  column-gap:8px;
+  min-width:0;
+}
+
+.legend-cell.is-empty{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* TEXT */
+.legend-label{
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  color:#0f172a;
+  white-space:nowrap;
+  line-height:1.15;
+}
+
+/* ICONS (default) */
+.legend-ico{
+  width:35px;
+  height:35px;
+  object-fit:contain;
+  display:block;
+  justify-self:start;
+}
+
+.legend-ico.arrow{
+  width:40px;
+  height:25px;
+  justify-self:center;
+}
+
+/* ===============================
+
+/* 1) STAIRS */
+.legend-rows .legend-cell:nth-child(1) .legend-ico{
+  transform: translateX(-30px) translateY(0px) scale(3) !important;
+  transform-origin: left center;
+}
+
+/* 2) YOUR LOCATION (blue GPS) */
+.legend-rows .legend-cell:nth-child(2) .legend-ico{
+  transform: translateX(4px) translateY(0px) scale(1) !important;
+  transform-origin: left center;
+}
+
+/* 3) RESTROOM */
+.legend-rows .legend-cell:nth-child(3) .legend-ico{
+  transform: translateX(-40px) translateY(0px) scale(4) !important;
+  transform-origin: left center;
+}
+
+/* 4) ENTRANCE (blue arrow) */
+.legend-rows .legend-cell:nth-child(4) .legend-ico{
+  transform: translateX(0px) translateY(0px) scale(1) !important;
+  transform-origin: center;
+}
+
+/* 5) DESTINATION (yellow GPS) */
+.legend-rows .legend-cell:nth-child(5) .legend-ico{
+  transform: translateX(-55px) translateY(0px) scale(4) !important;
+  transform-origin: left center;
+}
+
+/* 6) EXIT (red arrow) */
+.legend-rows .legend-cell:nth-child(6) .legend-ico{
+  transform: translateX(0px) translateY(0px) scale(1) !important;
+  transform-origin: center;
+}
+
+/* 8) PWD RESTROOM (wheelchair) */
+.legend-rows .legend-cell:nth-child(8) .legend-ico{
+  transform: translateX(0px) translateY(0px) scale(1.1) !important;
+  transform-origin: left center;
+}
+
+/* ================= BOT ================= */
+.bot-greet{
+  font-weight:600;
+  margin-bottom:12px;
+}
+
+.bot-btn{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#eef2ff;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.bot-input{
+  display:flex;
+  gap:10px;
+}
+
+.bot-input input{
+  flex:1;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid var(--border);
+}
+
+.send-btn{
+  width:44px;
+  border:none;
+  border-radius:10px;
+  background:var(--blue-active);
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* ================= MAP PLACEHOLDER ================= */
+.map-placeholder{
+  height:650px;
+  background:#fff;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  position:relative;
+  overflow:hidden;
+}
+
+.map-grid{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(#e5e7eb 1px, transparent 1px),
+    linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+  background-size:28px 28px;
+}
