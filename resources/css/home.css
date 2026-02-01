@@ -268,48 +268,9 @@ body{
   transform-origin: left center;
 }
 
-/* ================= BOT ================= */
-.bot-greet{
-  font-weight:600;
-  margin-bottom:12px;
-}
-
-.bot-btn{
-  width:100%;
-  padding:12px;
-  margin-bottom:10px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:#eef2ff;
-  font-weight:600;
-  cursor:pointer;
-}
-
-.bot-input{
-  display:flex;
-  gap:10px;
-}
-
-.bot-input input{
-  flex:1;
-  padding:10px;
-  border-radius:10px;
-  border:1px solid var(--border);
-}
-
-.send-btn{
-  width:44px;
-  border:none;
-  border-radius:10px;
-  background:var(--blue-active);
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
-}
-
 /* ================= MAP PLACEHOLDER ================= */
 .map-placeholder{
-  height:650px;
+  height:810px;
   background:#fff;
   border-radius:22px;
   box-shadow:var(--shadow);
