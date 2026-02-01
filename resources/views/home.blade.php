@@ -56,39 +56,40 @@
                 </div>
             </section>
 
-<!-- MAP LEGEND -->
-<!-- MAP LEGEND -->
-<section class="legend-card">
 
-  <div class="legend-titlebar">
-    <span class="legend-titleline"></span>
-    <h2 class="legend-titletext">MAP LEGEND</h2>
-    <span class="legend-titleline"></span>
-  </div>
+<!-- MAP LEGEND -->
+        <section class="legend-card">
+            <div class="legend-titlebar">
+             <span class="legend-titleline"></span>
+                 <h2 class="legend-titletext">MAP LEGEND</h2>
+            <span class="legend-titleline"></span>
+        </div>
 
-  <div class="legend-rows">
+         <div class="legend-rows">
 
     <!-- Row 1 -->
-    <div class="legend-cell">
-      <img class="legend-ico big" src="{{ Vite::asset('resources/images/stairs.png') }}" alt="stairs">
-      <span class="legend-label">STAIRS</span>
-    </div>
-    <div class="legend-cell">
-      <img class="legend-ico" src="{{ Vite::asset('resources/images/GPSblue.png') }}" alt="your location">
-      <span class="legend-label">YOUR LOCATION</span>
-    </div>
+        <div class="legend-cell">
+                <img class="legend-ico big" src="{{ Vite::asset('resources/images/stairs.png') }}" alt="stairs">
+                  <span class="legend-label">STAIRS</span>
+        </div>
+
+        <div class="legend-cell">
+                 <img class="legend-ico" src="{{ Vite::asset('resources/images/GPSblue.png') }}" alt="your location">
+                    <span class="legend-label">YOUR LOCATION</span>
+        </div>
 
     <!-- Row 2 -->
-    <div class="legend-cell">
-      <img class="legend-ico big" src="{{ Vite::asset('resources/images/MenWomen.png') }}" alt="restroom">
-      <span class="legend-label">RESTROOM</span>
-    </div>
-    <div class="legend-cell">
-      <img class="legend-ico arrow" src="{{ Vite::asset('resources/images/BlueArrow.png') }}" alt="entrance">
-      <span class="legend-label">ENTRANCE</span>
-    </div>
+        <div class="legend-cell">
+                <img class="legend-ico big" src="{{ Vite::asset('resources/images/MenWomen.png') }}" alt="restroom">
+                    <span class="legend-label">RESTROOM</span>
+        </div>
 
-    <!-- Row 3 -->
+         <div class="legend-cell">
+                <img class="legend-ico arrow" src="{{ Vite::asset('resources/images/BlueArrow.png') }}" alt="entrance">
+                    <span class="legend-label">ENTRANCE</span>
+        </div>
+        
+        <!-- Row 3 -->
     <div class="legend-cell">
       <img class="legend-ico big" src="{{ Vite::asset('resources/images/GPSyellow.png') }}" alt="destination">
       <span class="legend-label">DESTINATION</span>
@@ -110,29 +111,7 @@
 </section>
 
 
-</section>
-
-            <!-- BOT -->
-            <section class="card bot-card">
-                <div class="card-head">
-                    <h2 class="card-title">BOT - CHAT ASSISTANT</h2>
-                </div>
-                <div class="card-body">
-
-                    <p class="bot-greet">How can I assist you today?</p>
-
-                    <button class="bot-btn">Take me to the Canteen</button>
-                    <button class="bot-btn">Take me to the Comfort Room</button>
-                    <button class="bot-btn">Take me to the B102</button>
-
-                    <div class="bot-input">
-                        <input type="text" placeholder="Type your message...">
-                        <button class="send-btn">➤</button>
-                    </div>
-
-                </div>
-            </section>
-
+    </section>
         </aside>
 
         <!-- MAP PLACEHOLDER -->
