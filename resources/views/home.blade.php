@@ -90,25 +90,26 @@
         </div>
         
         <!-- Row 3 -->
-    <div class="legend-cell">
-      <img class="legend-ico big" src="{{ Vite::asset('resources/images/GPSyellow.png') }}" alt="destination">
-      <span class="legend-label">DESTINATION</span>
-    </div>
-    <div class="legend-cell">
-      <img class="legend-ico arrow" src="{{ Vite::asset('resources/images/RedArrow.png') }}" alt="exit">
-      <span class="legend-label">EXIT</span>
-    </div>
+        <div class="legend-cell">
+                <img class="legend-ico big" src="{{ Vite::asset('resources/images/GPSyellow.png') }}" alt="destination">
+                    <span class="legend-label">DESTINATION</span>
+        </div>
+
+        <div class="legend-cell">
+                 <img class="legend-ico arrow" src="{{ Vite::asset('resources/images/RedArrow.png') }}" alt="exit">
+                    <span class="legend-label">EXIT</span>
+        </div>
 
     <!-- Row 4 (left is empty spacer, right is PWD) -->
-    <div class="legend-cell is-empty"></div>
-    <div class="legend-cell">
-      <img class="legend-ico" src="{{ Vite::asset('resources/images/PWD.png') }}" alt="pwd restroom">
-      <span class="legend-label">PWD RESTROOM</span>
-    </div>
+        <div class="legend-cell is-empty"></div>
+                <div class="legend-cell">
+                    <img class="legend-ico" src="{{ Vite::asset('resources/images/PWD.png') }}" alt="pwd restroom">
+                         <span class="legend-label">PWD RESTROOM</span>
+         </div>
 
-  </div>
+            </div>
 
-</section>
+        </section>
 
 
     </section>
