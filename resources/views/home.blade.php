@@ -69,6 +69,7 @@
             <div class="map-zoom-layer" id="zoomLayer">
               <div class="map-builder" id="mapBuilder">
 
+                <!-- LEFT STACK -->
                 <div class="stairs" style="grid-column: 4 / 11; grid-row: 4 / 10; margin: 1.5px;"></div>
                 <div class="room"   style="grid-column: 1 / 11; grid-row: 10 / 16; margin: 1.5px;"></div>
                 <div class="room"   style="grid-column: 4 / 11; grid-row: 16 / 22; margin: 1.5px;"></div>
@@ -84,18 +85,40 @@
                 <div class="stairs" style="grid-column: 4 / 11; grid-row: 76 / 82; margin: 1.5px;"></div>
                 <div class="room"   style="grid-column: 4 / 11; grid-row: 82 / 88; margin: 1.5px;"></div>
 
-                <div class="room"   style="grid-column: 18 / 26; grid-row: 7 / 14; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 22 / 31; grid-row: 14 / 23; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 31 / 47; grid-row: 13 / 21; margin: 1.5px;"></div>
-                <div class="stairs" style="grid-column: 47 / 51; grid-row: 14 / 20; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 51 / 55; grid-row: 14 / 20; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 55 / 59; grid-row: 14 / 20; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 65 / 73; grid-row: 14 / 20; margin: 1.5px;"></div>
-                <div class="stairs" style="grid-column: 73 / 77; grid-row: 14 / 20; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 77 / 83; grid-row: 12 / 21; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 83 / 90; grid-row: 10 / 22; margin: 1.5px;"></div> 
-                <div class="room"   style="grid-column: 90 / 96; grid-row: 18 / 30; margin: 1.5px;"></div> 
+               <!-- ===== TOP STRIP (MOVED DOWN +3 ROWS) ===== -->
 
+<!-- ===== TOP STRIP (MOVED DOWN +6 ROWS, CONNECTOR THICKER) ===== -->
+
+<!-- LEFT L-SHAPE -->
+<div class="room" style="grid-column: 23 / 32; grid-row: 6 / 13;  margin: 1.5px;"></div>   <!-- top horizontal -->
+<div class="room" style="grid-column: 23 / 27; grid-row: 13 / 24; margin: 1.5px;"></div>  <!-- left vertical -->
+<div class="room" style="grid-column: 27 / 35; grid-row: 17 / 24; margin: 1.5px;"></div>  <!-- bottom-right -->
+
+<!-- BIG LONG BLOCK -->
+<div class="room" style="grid-column: 35 / 55; grid-row: 15 / 24; margin: 1.5px;"></div>
+
+<!-- STAIRS + 2 SMALL ROOMS -->
+<div class="stairs" style="grid-column: 55 / 59; grid-row: 16 / 24; margin: 1.5px;"></div>
+<div class="room"   style="grid-column: 59 / 63; grid-row: 16 / 24; margin: 1.5px;"></div>
+<div class="room"   style="grid-column: 63 / 67; grid-row: 16 / 24; margin: 1.5px;"></div>
+
+<!-- CONNECTOR LINE (THICKER: 2 rows tall now) -->
+<div class="room"   style="grid-column: 67 / 73; grid-row: 16 / 18; margin: 1.5px;"></div>
+
+<!-- RIGHT MID LONG BLOCK -->
+<div class="room"   style="grid-column: 73 / 87; grid-row: 16 / 24; margin: 1.5px;"></div>
+
+<!-- STAIRS + RIGHT TALL BLOCKS -->
+<div class="stairs" style="grid-column: 87 / 91; grid-row: 16 / 24; margin: 1.5px;"></div>
+<div class="room"   style="grid-column: 91 / 97; grid-row: 15 / 24; margin: 1.5px;"></div>
+<div class="room"   style="grid-column: 97 / 104; grid-row: 14 / 25; margin: 1.5px;"></div>
+
+<!-- FAR RIGHT DROP -->
+<div class="room"   style="grid-column: 104 / 109; grid-row: 20 / 30; margin: 1.5px;"></div>
+
+<!-- ===== END TOP STRIP ===== -->
+
+                <!-- RIGHT CLUSTER -->
                 <div class="room"   style="grid-column: 83 / 90; grid-row: 30 / 38; margin: 1.5px;"></div>
                 <div class="room"   style="grid-column: 83 / 90; grid-row: 38 / 46; margin: 1.5px;"></div>
                 <div class="room"   style="grid-column: 83 / 90; grid-row: 46 / 54; margin: 1.5px;"></div>
@@ -103,7 +126,16 @@
                 <div class="stairs" style="grid-column: 90 / 94; grid-row: 64 / 74; margin: 1.5px;"></div>
                 <div class="room"   style="grid-column: 94 / 102; grid-row: 74 / 90; margin: 1.5px;"></div>
 
-                <div class="room"   style="grid-column: 25 / 33; grid-row: 38 / 68; margin: 1.5px;"></div> <div class="room"   style="grid-column: 68 / 74; grid-row: 32 / 48; margin: 1.5px;"></div> <div class="room"   style="grid-column: 74 / 77; grid-row: 38 / 50; margin: 1.5px;"></div> <div class="room"   style="grid-column: 68 / 74; grid-row: 48 / 62; margin: 1.5px;"></div> <div class="room"   style="grid-column: 68 / 74; grid-row: 62 / 76; margin: 1.5px;"></div> <div class="room"   style="grid-column: 74 / 77; grid-row: 72 / 82; margin: 1.5px;"></div> <div class="room"   style="grid-column: 51 / 64; grid-row: 74 / 82; margin: 1.5px;"></div> <div class="room" style="grid-column: 8 / 15;   grid-row: 88 / 96; margin: 1.5px;"></div>
+                <!-- MIDDLE + BOTTOM (UNCHANGED) -->
+                <div class="room" style="grid-column: 25 / 33; grid-row: 38 / 68; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 68 / 74; grid-row: 32 / 48; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 74 / 77; grid-row: 38 / 50; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 68 / 74; grid-row: 48 / 62; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 68 / 74; grid-row: 62 / 76; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 74 / 77; grid-row: 72 / 82; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 51 / 64; grid-row: 74 / 82; margin: 1.5px;"></div>
+
+                <div class="room" style="grid-column: 8 / 15;   grid-row: 88 / 96; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 15 / 22;  grid-row: 88 / 96; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 22 / 29;  grid-row: 88 / 96; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 29 / 38;  grid-row: 91 / 99; margin: 1.5px;"></div>

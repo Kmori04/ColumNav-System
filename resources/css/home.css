@@ -132,7 +132,7 @@ html, body {
 .card-body { padding: 18px; }
 .description-box { height: 120px; border-radius: 12px; }
 
-/* ================= LEGEND (UNCHANGED) ================= */
+/* ================= LEGEND ================= */
 .legend-card {
   background: #fff;
   border-radius: 18px;
@@ -180,7 +180,7 @@ html, body {
 .legend-rows .legend-cell:nth-child(6) .legend-ico{ transform: scale(1) !important; transform-origin:center; }
 .legend-rows .legend-cell:nth-child(8) .legend-ico{ transform: scale(1.1) !important; transform-origin:left center; }
 
-/* ================= MAP (FIXED ARRANGEMENT) ================= */
+/* ================= MAP ================= */
 .map-wrapper {
   background: #ffffff;
   border-radius: 28px;
@@ -227,25 +227,23 @@ html, body {
   height: 100%;
   display: grid;
   grid-template-columns: repeat(120, 1fr);
-  grid-auto-rows: minmax(5px, 1fr);
+  grid-auto-rows: 1fr;
+  aspect-ratio: 120 / 100;
   gap: 3px;
   align-content: start;
 }
 
-/* Rooms / stairs fill their cell perfectly */
 .room,
 .stairs {
   width: 100%;
   height: 100%;
-  margin: 0 !important; /* important because your HTML has margin: 1.5px inline */
+  margin: 0 !important;
   box-sizing: border-box;
-
   background: #ffffff;
   border: 2px solid #2b6f93;
   border-radius: 6px;
 }
 
-/* Room content */
 .room {
   cursor: pointer;
   font-size: 11px;
@@ -262,7 +260,6 @@ html, body {
   outline: 3px solid rgba(37,99,235,.25);
 }
 
-/* Stairs design */
 .stairs {
   position: relative;
   overflow: hidden;
@@ -289,7 +286,6 @@ html, body {
   background: rgba(12,59,102,.15);
 }
 
-/* Controls */
 .zoom-controls {
   position: absolute;
   top: 14px;
