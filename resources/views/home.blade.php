@@ -87,68 +87,92 @@
 
                <!-- ===== TOP STRIP (MOVED DOWN +3 ROWS) ===== -->
 
-<!-- ===== TOP STRIP (MOVED DOWN +6 ROWS, CONNECTOR THICKER) ===== -->
+              <!-- ===== TOP SIDE -->
 
-<!-- LEFT L-SHAPE -->
-<div class="room" style="grid-column: 23 / 32; grid-row: 6 / 13;  margin: 1.5px;"></div>   <!-- top horizontal -->
-<div class="room" style="grid-column: 23 / 27; grid-row: 13 / 24; margin: 1.5px;"></div>  <!-- left vertical -->
-<div class="room" style="grid-column: 27 / 35; grid-row: 17 / 24; margin: 1.5px;"></div>  <!-- bottom-right -->
+                <!-- TOP LEFT L-SHAPE -->
+                <div class="room" style="grid-column: 19 / 28; grid-row: 6 / 13;  margin: 1.5px;"></div>   <!-- top horizontal -->
+                <div class="room" style="grid-column: 19 / 24; grid-row: 13 / 24; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 24 / 32; grid-row: 15 / 24; margin: 1.5px;"></div>
 
-<!-- BIG LONG BLOCK -->
-<div class="room" style="grid-column: 35 / 55; grid-row: 15 / 24; margin: 1.5px;"></div>
+                <!-- CANTEEN -->
+                <div class="room" style="grid-column: 32 / 52; grid-row: 15 / 24; margin: 1.5px;"></div>
 
-<!-- STAIRS + 2 SMALL ROOMS -->
-<div class="stairs" style="grid-column: 55 / 59; grid-row: 16 / 24; margin: 1.5px;"></div>
-<div class="room"   style="grid-column: 59 / 63; grid-row: 16 / 24; margin: 1.5px;"></div>
-<div class="room"   style="grid-column: 63 / 67; grid-row: 16 / 24; margin: 1.5px;"></div>
+                <!-- STAIRS PAYMENT AND INFORMATION -->
+                <div class="stairs" style="grid-column: 52 / 56; grid-row: 16 / 24; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 56 / 63; grid-row: 16 / 24; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 63 / 70; grid-row: 16 / 24; margin: 1.5px;"></div>
 
-<!-- CONNECTOR LINE (THICKER: 2 rows tall now) -->
-<div class="room"   style="grid-column: 67 / 73; grid-row: 16 / 18; margin: 1.5px;"></div>
+                <!-- GATE TOP -->
+                <div class="room" style="grid-column: 70 / 76; grid-row: 16 / 18; margin: 1.5px;"></div>
 
-<!-- RIGHT MID LONG BLOCK -->
-<div class="room"   style="grid-column: 73 / 87; grid-row: 16 / 24; margin: 1.5px;"></div>
+                <!-- Jubilee -->
+                <div class="room" style="grid-column: 76 / 86; grid-row: 16 / 24; margin: 1.5px;"></div>
 
-<!-- STAIRS + RIGHT TALL BLOCKS -->
-<div class="stairs" style="grid-column: 87 / 91; grid-row: 16 / 24; margin: 1.5px;"></div>
-<div class="room"   style="grid-column: 91 / 97; grid-row: 15 / 24; margin: 1.5px;"></div>
-<div class="room"   style="grid-column: 97 / 104; grid-row: 14 / 25; margin: 1.5px;"></div>
+                <!-- STAIRS + RIGHT TALL BLOCKS -->
+                <div class="stairs" style="grid-column: 86 / 90; grid-row: 16 / 24; margin: 1.5px;"></div>
+                <div class="room"   style="grid-column: 90 / 96; grid-row: 15 / 24; margin: 1.5px;"></div>
+                <div class="room"   style="grid-column: 96 / 104; grid-row: 14 / 24; margin: 1.5px;"></div>
 
-<!-- FAR RIGHT DROP -->
-<div class="room"   style="grid-column: 104 / 109; grid-row: 20 / 30; margin: 1.5px;"></div>
+                <!--TOP RIGHT ROOM -->
+                <div class="room"   style="grid-column: 104 / 110; grid-row: 20 / 32; margin: 1.5px;"></div>
 
-<!-- ===== END TOP STRIP ===== -->
+                <!-- ===== END TOP STRIP ===== -->
 
-                <!-- RIGHT CLUSTER -->
-                <div class="room"   style="grid-column: 83 / 90; grid-row: 30 / 38; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 83 / 90; grid-row: 38 / 46; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 83 / 90; grid-row: 46 / 54; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 83 / 93; grid-row: 54 / 62; margin: 1.5px;"></div>
-                <div class="stairs" style="grid-column: 90 / 94; grid-row: 64 / 74; margin: 1.5px;"></div>
-                <div class="room"   style="grid-column: 94 / 102; grid-row: 74 / 90; margin: 1.5px;"></div>
 
-                <!-- MIDDLE + BOTTOM (UNCHANGED) -->
-                <div class="room" style="grid-column: 25 / 33; grid-row: 38 / 68; margin: 1.5px;"></div>
-                <div class="room" style="grid-column: 68 / 74; grid-row: 32 / 48; margin: 1.5px;"></div>
-                <div class="room" style="grid-column: 74 / 77; grid-row: 38 / 50; margin: 1.5px;"></div>
-                <div class="room" style="grid-column: 68 / 74; grid-row: 48 / 62; margin: 1.5px;"></div>
-                <div class="room" style="grid-column: 68 / 74; grid-row: 62 / 76; margin: 1.5px;"></div>
-                <div class="room" style="grid-column: 74 / 77; grid-row: 72 / 82; margin: 1.5px;"></div>
-                <div class="room" style="grid-column: 51 / 64; grid-row: 74 / 82; margin: 1.5px;"></div>
 
+                <!-- LIKOD NG CCS BUILDING -->
+                <div class="room"   style="grid-column: 97 / 104; grid-row: 30 / 38; margin: 1.5px;"></div>
+                <div class="room"   style="grid-column: 97 / 104; grid-row: 38 / 46; margin: 1.5px;"></div>
+                <div class="room"   style="grid-column: 97 / 104; grid-row: 46 / 54; margin: 1.5px;"></div>
+                <div class="room"   style="grid-column: 97 / 107; grid-row: 54 / 62; margin: 1.5px;"></div>
+
+                <!-- ADDED (missing 2 rooms) -->
+                <div class="room" style="grid-column: 97 / 105; grid-row: 62 / 69; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 97 / 105; grid-row: 69 / 76; margin: 1.5px;"></div>
+
+                <div class="stairs" style="grid-column: 105 / 110; grid-row: 72 / 84; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 110 / 118; grid-row: 78 / 94; margin: 1.5px;"></div>
+
+                <!-- CCS -->
+                <div class="room" style="grid-column: 80 / 86; grid-row: 32 / 48; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 80 / 86; grid-row: 48 / 62; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 80 / 86; grid-row: 62 / 76; margin: 1.5px;"></div>
+
+                <!-- STAGE -->
+                <div class="room" style="grid-column: 29 / 37; grid-row: 38 / 68; margin: 1.5px;"></div>
+
+                <!-- COMFORT ROOM BEHIND THE CCS MEN -->
+                <div class="room" style="grid-column: 86 / 90; grid-row: 32 / 40; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 86 / 90; grid-row: 40 / 48; margin: 1.5px;"></div>
+                
+                <!-- COMFORT ROOM BEHIND THE CCS WOMEN -->
+                <div class="room" style="grid-column: 86 / 90; grid-row: 60 / 68; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 86 / 90; grid-row: 68 / 76; margin: 1.5px;"></div>
+
+
+                <!-- STUDY CENTER -->
+                <div class="room" style="grid-column: 60 / 75; grid-row: 74 / 82; margin: 1.5px;"></div>
+
+                <!-- Building CASED AND OFFICES BELOW -->
                 <div class="room" style="grid-column: 8 / 15;   grid-row: 88 / 96; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 15 / 22;  grid-row: 88 / 96; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 22 / 29;  grid-row: 88 / 96; margin: 1.5px;"></div>
-                <div class="room" style="grid-column: 29 / 38;  grid-row: 91 / 99; margin: 1.5px;"></div>
+                <div class="room" style="grid-column: 29 / 38; grid-row: 93 / 101; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 38 / 45;  grid-row: 88 / 96; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 45 / 52;  grid-row: 88 / 96; margin: 1.5px;"></div>
-                <div class="room" style="grid-column: 52 / 58;  grid-row: 94 / 97; margin: 1.5px;"></div>
+                
+                <!-- MAIN GATE -->
+                <div class="room" style="grid-column: 52 / 58; grid-row: 94 / 96; margin: 1.5px;"></div>
+
+
+                <!--GATE RIGHT SIDE -->
                 <div class="room" style="grid-column: 58 / 65;  grid-row: 90 / 98; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 65 / 74;  grid-row: 90 / 98; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 74 / 83;  grid-row: 90 / 98; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 83 / 92;  grid-row: 90 / 98; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 92 / 101; grid-row: 90 / 98; margin: 1.5px;"></div>
                 <div class="room" style="grid-column: 101 / 110; grid-row: 90 / 98; margin: 1.5px;"></div>
-                <div class="room" style="grid-column: 110 / 120; grid-row: 91 / 101; margin: 1.5px;"></div>
+                
 
               </div>
             </div>
