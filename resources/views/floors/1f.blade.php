@@ -51,8 +51,7 @@
 <div class="room"   style="grid-column: 97 / 107; grid-row: 54 / 62; margin: 1.5px;"></div>
 <div class="room" style="grid-column: 97 / 105; grid-row: 62 / 69; margin: 1.5px;"></div>
 <div class="room" style="grid-column: 97 / 105; grid-row: 69 / 76; margin: 1.5px;"></div>
-<div class="stairs" style="grid-column: 105 / 110; grid-row: 72 / 84; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 110 / 118; grid-row: 78 / 94; margin: 1.5px;"></div>
+<div class="stairs" style="grid-column: 105 / 110; grid-row: 71 / 83; margin: 1.5px;"></div><div class="room" style="grid-column: 110 / 118; grid-row: 80 / 96; margin: 1.5px;"></div>
 
 <!-- CCS -->
 <div class="room" style="grid-column: 80 / 86; grid-row: 32 / 48; margin: 1.5px;"></div>
@@ -85,7 +84,7 @@
 <div class="room" style="grid-column: 45 / 52;  grid-row: 90 / 98; margin: 1.5px;"></div>
 
 <!-- MAIN GATE -->
-<div class="room" style="grid-column: 52 / 58; grid-row: 94 / 96; margin: 1.5px;"></div>
+<div class="room" style="grid-column: 52 / 58; grid-row: 96 / 98; margin: 1.5px;"></div>
 
 <!-- GATE RIGHT SIDE -->
 <div class="room" style="grid-column: 58 / 65;  grid-row: 90 / 98; margin: 1.5px;"></div>
@@ -103,3 +102,41 @@
 
 <!-- Small Patch -->
 <div class="floor-bg floor1-bg-rightpatch"></div>
+
+<!-- GREY "LONG" CONTAINER LINE -->
+<div class="path-container" style="grid-column: 55 / 56; grid-row: 85 / 94;"></div>
+<div class="asd" style="grid-column: 11 / 110; grid-row: 85 / 88;"></div>
+<div class="path-container" style="grid-column: 27 / 1; grid-row: 5 / 86;"></div>
+<div class="path-container" style="grid-column: 77 / 78; grid-row: 24 / 86;"></div>
+<!-- GREY "SHORT" CONTAINER LINE -->
+<div class="path-container" style="grid-column: 61 / 62; grid-row: 85 / 90 ;"></div>
+<div class="path-container" style="grid-column: 69 / 70; grid-row: 85 / 90;"></div>
+<div class="path-container" style="grid-column: 77 / 78; grid-row: 85 / 90;"></div>
+<div class="path-container" style="grid-column: 87 / 88; grid-row: 85 / 90;"></div>
+<div class="path-container" style="grid-column: 96 / 97; grid-row: 85 / 90;"></div>
+<div class="path-container" style="grid-column: 105 / 106; grid-row: 85 / 90;"></div>
+<div class="path-container" style="grid-column: 107 / 108; grid-row: 83 / 86;"></div>
+<div class="path-container" style="grid-column: 48 / 49; grid-row: 85 / 90;"></div>
+<div class="path-container" style="grid-column: 41 / 42; grid-row: 85 / 90;"></div>
+<div class="path-container" style="grid-column: 33 / 34; grid-row: 85 / 93;"></div>
+<div class="path-container" style="grid-column: 25 / 26; grid-row: 85 / 90;"></div>
+<div class="path-container" style="grid-column: 18 / 19; grid-row: 85 / 90;"></div>
+<div class="path-container" style="grid-column: 13 / 14; grid-row: 85 / 90;"></div>
+<!-- ===(GREY CONTAINER LINE) ""CBA""=== -->
+<div class="asd" style="grid-column: 11 / 15; grid-row: 80 / 83;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 74 / 77;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 68 / 71;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 62 / 65;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 56 / 59;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 50 / 53;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 44 / 47;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 38 / 41;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 32 / 35;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 25 / 28;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 18 / 21;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 12 / 15;"></div>
+<div class="asd" style="grid-column: 11 / 15; grid-row: 6 / 9;"></div>
+<!-- ===(GREY CONTAINER LINE) ""CCS""=== -->
+<div class="asd" style="grid-column: 77 / 80; grid-row: 38 / 41;"></div>
+<div class="asd" style="grid-column: 77 / 80; grid-row: 53 / 56;"></div>
+<div class="asd" style="grid-column: 77 / 80; grid-row: 67 / 70;"></div>
