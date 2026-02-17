@@ -326,3 +326,46 @@ html, body {
   font-weight: 700;
   cursor: pointer;
 }
+
+/* stairs sa (CCS) */
+.stairs-right::before {
+  background: repeating-linear-gradient(to right, rgba(12,59,102,.60) 0 2px, transparent 2px 9px);
+}
+
+.stairs-right::after {
+  left: auto;
+  right: 18%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right: 0;
+  border-left: 16px solid rgba(12,59,102,.55);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+/* PARA DI MAG  */
+.no-hover:hover {
+  background-color: inherit !important;
+  outline: none !important;
+  cursor: default !important;
+}
+.no-hover {
+  pointer-events: none;
+}
+
+
+
+
+
+/* 1. The Hallways (Background) now Light Blue */
+.map-bg-box {
+    grid-column: 1 / -1;
+    grid-row: 4 / -1; /* Starts 5 units down */
+    background-color: #c1d8ee;
+    z-index: 1;
+    border-radius: 15px;
+}
+
+.map-builder {
+    background-color: transparent; /* Makes sure the builder doesn't interfere */
+}
