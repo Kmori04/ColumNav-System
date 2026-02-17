@@ -63,11 +63,13 @@
 <!-- STAGE -->
 <div class="room" style="grid-column: 29 / 37; grid-row: 38 / 68; margin: 1.5px;"></div>
 
-<!-- COMFORT ROOMS -->
+<!-- COMFORT ROOMS Men -->
 <div class="room" style="grid-column: 86 / 90; grid-row: 32 / 40; margin: 1.5px;"></div>
 <div class="room" style="grid-column: 86 / 90; grid-row: 40 / 48; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 86 / 90; grid-row: 60 / 68; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 86 / 90; grid-row: 68 / 76; margin: 1.5px;"></div>
+
+<!-- COMFORT ROOMS Women -->
+<div class="room" style="grid-column: 86 / 90; grid-row: 66 / 74; margin: 1.5px;"></div>
+<div class="room" style="grid-column: 86 / 90; grid-row: 74 / 82; margin: 1.5px;"></div>
 
 <!-- STUDY CENTER -->
 <div class="room" style="grid-column: 60 / 75; grid-row: 74 / 82; margin: 1.5px;"></div>

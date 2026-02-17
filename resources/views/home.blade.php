@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  {{-- ✅ Only load assets once via Vite --}}
   @vite(['resources/css/home.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -74,7 +73,6 @@
 
           <div class="map-zoom-viewport" id="zoomViewport">
             <div class="map-zoom-layer" id="zoomLayer">
-              <!--  mapBuilder holds the current floor blocks -->
               <div class="map-builder floor-1" id="mapBuilder">
                 {{-- Default floor shown on load --}}
                 @includeIf('floors.1f')
