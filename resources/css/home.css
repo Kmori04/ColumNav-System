@@ -1,3 +1,4 @@
+/* resources/css/home.css */
 :root {
   --blue: #0c3b66;
   --blue-soft: #e6f0fa;
@@ -6,12 +7,9 @@
   --border: rgba(15, 23, 42, .10);
   --shadow-soft: 0 10px 24px rgba(0, 0, 0, .10);
   --shadow-strong: 0 18px 36px rgba(0, 0, 0, .22);
-
-  /* keep your formal gap */
   --cell-gap: 4px;
 }
 
-/* ================= GLOBAL ================= */
 html, body {
   height: 100%;
   overflow: hidden;
@@ -23,7 +21,6 @@ html, body {
 
 *, *::before, *::after { box-sizing: border-box; }
 
-/* ================= HEADER ================= */
 .topbar {
   background: linear-gradient(180deg, #eaf3ff, #d9ecfb);
   border-bottom: 1px solid var(--border);
@@ -74,25 +71,18 @@ html, body {
   cursor: pointer;
 }
 
-/* ================= PAGE LAYOUT ================= */
 .page {
-  /* CHANGED: less padding so map gets more space (bigger rooms) */
-  padding: 10px 14px;              /* was 22px 28px */
+  padding: 10px 14px;
   height: calc(100vh - 101px);
 }
 
 .layout {
   display: grid;
-
-  /* CHANGED: give more width to the map (bigger rooms) */
-  grid-template-columns: 360px 1fr; /* was 380px 1fr */
-
-  /* CHANGED: smaller gap between sidebar and map = more map space */
-  gap: 12px;                        /* was 22px */
+  grid-template-columns: 360px 1fr;
+  gap: 12px;
   height: 100%;
 }
 
-/* ================= SIDEBAR ================= */
 .sidebar-wrapper {
   background: linear-gradient(180deg, #edf5ff, #e6f0ff);
   border-radius: 26px;
@@ -105,7 +95,6 @@ html, body {
   box-shadow: var(--shadow-strong);
 }
 
-/* ================= CARD ================= */
 .card {
   background: #fff;
   border-radius: 18px;
@@ -126,7 +115,6 @@ html, body {
 .card-body { padding: 18px; }
 .description-box { height: 120px; border-radius: 12px; }
 
-/* ================= LEGEND ================= */
 .legend-card {
   background: #fff;
   border-radius: 18px;
@@ -165,8 +153,7 @@ html, body {
 .legend-ico { width: 32px; height: 32px; object-fit: contain; }
 .legend-ico.arrow { width: 38px; height: 22px; }
 
-/* Legend Transform Overrides */
-.legend-rows .legend-cell:nth-child(1) .legend-ico{ transform: translateX(-30px) scale(3) !important; transform-origin:left center; }
+.legend-rows .legend-cell:nth-child(1) .legend-ico{ transform: translateX(-18px) scale(2.1) !important; transform-origin:left center; }
 .legend-rows .legend-cell:nth-child(2) .legend-ico{ transform: translateX(4px) scale(1) !important; transform-origin:left center; }
 .legend-rows .legend-cell:nth-child(3) .legend-ico{ transform: translateX(-32px) scale(3.5) !important; transform-origin:left center; }
 .legend-rows .legend-cell:nth-child(4) .legend-ico{ transform: scale(1) !important; transform-origin:center; }
@@ -174,14 +161,10 @@ html, body {
 .legend-rows .legend-cell:nth-child(6) .legend-ico{ transform: scale(1) !important; transform-origin:center; }
 .legend-rows .legend-cell:nth-child(8) .legend-ico{ transform: scale(1.1) !important; transform-origin:left center; }
 
-/* ================= MAP ================= */
 .map-wrapper {
   background: #ffffff;
   border-radius: 28px;
-
-  /* CHANGED: less padding = bigger visible map */
-  padding: 4px; /* was 8px */
-
+  padding: 4px;
   height: 100%;
   box-shadow: var(--shadow-strong);
 }
@@ -191,11 +174,9 @@ html, body {
   width: 100%;
   height: 100%;
   border-radius: 22px;
-  border: 0;
   overflow: hidden;
 }
 
-/* Background grid */
 .map-grid {
   position: absolute;
   inset: 0;
@@ -207,6 +188,7 @@ html, body {
   background-size: 26px 26px;
 }
 
+/* ✅ viewport centers the map, clips zoomed content */
 .map-zoom-viewport {
   position: absolute;
   inset: 0;
@@ -217,28 +199,31 @@ html, body {
   justify-content: center;
 }
 
+/* ✅ layer is what JS transforms */
 .map-zoom-layer {
   width: 100%;
   height: 100%;
+  transform-origin: top left;
+  will-change: transform;
 }
 
-/* builder layout unchanged (structure stays) */
+/* ✅ Base grid style (default = 1F) */
 .map-builder {
   display: grid;
-  grid-template-columns: repeat(120, 1fr);
-  grid-template-rows: repeat(100, 1fr);
-
-  /* keep your gap */
   gap: var(--cell-gap);
-
-  aspect-ratio: 120 / 100;
   width: min(100%, 2200px);
   height: auto;
   max-width: 100%;
   max-height: 100%;
+  position: relative;
 }
 
-/* Boxes */
+/* ✅ Per-floor grid sizes (edit if your floors need different counts) */
+.map-builder.floor-1 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
+.map-builder.floor-2 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
+.map-builder.floor-3 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
+.map-builder.floor-4 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
+
 .room,
 .stairs {
   width: 100%;
@@ -247,9 +232,10 @@ html, body {
   background: #ffffff;
   border: 2px solid #2b6f93;
   border-radius: 6px;
+  position: relative;
+  z-index: 2;
 }
 
-/* Text-ready rooms */
 .room {
   cursor: pointer;
   font-size: 11px;
@@ -260,7 +246,6 @@ html, body {
   justify-content: center;
   text-align: center;
   padding: 3px;
-  white-space: normal;
   word-break: break-word;
   overflow: hidden;
   transition: all .18s ease;
@@ -271,30 +256,57 @@ html, body {
   outline: 3px solid rgba(37,99,235,.25);
 }
 
-.stairs {
+.stairs{
   position: relative;
   overflow: hidden;
+  background: #fff;
+  border: 2px solid #2b6f93;
+  border-radius: 6px;
 }
 
-.stairs::before {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(12,59,102,.35) 0 2px,
-    transparent 2px 6px
-  );
+.stairs::before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(12,59,102,.60) 0 2px,
+      transparent 2px 9px
+    );
 }
 
-.stairs::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 6px;
-  bottom: 6px;
-  width: 1px;
-  background: rgba(12,59,102,.15);
+.stairs::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:18%;
+  width:0;
+  height:0;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 16px solid rgba(12,59,102,.55);
+  filter: drop-shadow(0 2px 0 rgba(12,59,102,.15));
+}
+
+.stairs.stairs-left::before{
+  background:
+    repeating-linear-gradient(
+      to right,
+      rgba(12,59,102,.60) 0 2px,
+      transparent 2px 9px
+    );
+}
+
+.stairs.stairs-left::after{
+  left: 18%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 0;
+  border-right: 16px solid rgba(12,59,102,.55);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
 }
 
 .zoom-controls {

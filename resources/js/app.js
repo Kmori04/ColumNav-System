@@ -1,9 +1,11 @@
+/* resources/js/app.js */
 document.addEventListener("DOMContentLoaded", () => {
   const viewport = document.getElementById("zoomViewport");
   const layer = document.getElementById("zoomLayer");
   const resetBtn = document.getElementById("zoomReset");
   const grid = document.getElementById("mapGrid");
   const builder = document.getElementById("mapBuilder");
+  const floorSelect = document.getElementById("floorSelect");
 
   if (!viewport || !layer || !builder) return;
 
@@ -17,10 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const GRID_BASE = 26;
   const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
-  // extra zoom-out beyond reset
   const EXTRA_UNZOOM = 0.12;
+  let MIN = 0.2;
 
-  // ✅ how much empty space you allow around the map (set 0 for strict)
   const PAN_MARGIN = 12;
 
   const updateGrid = () => {
@@ -35,54 +36,78 @@ document.addEventListener("DOMContentLoaded", () => {
     updateGrid();
   };
 
-  // ✅ HARD LIMIT: prevent going outside the map
   const clampPan = () => {
     const vW = viewport.clientWidth;
     const vH = viewport.clientHeight;
 
-    // offsetWidth/height are NOT affected by transforms (good!)
-    const mapW = builder.offsetWidth * scale;
-    const mapH = builder.offsetHeight * scale;
+    const bRect = builder.getBoundingClientRect();
+    const vRect = viewport.getBoundingClientRect();
 
-    // If map is smaller than viewport, keep it centered
+    const mapW = bRect.width;
+    const mapH = bRect.height;
+
     if (mapW <= vW - PAN_MARGIN * 2) {
-      originX = (vW - mapW) / 2;
+      originX += (vRect.left + vW / 2) - (bRect.left + mapW / 2);
     } else {
-      const minX = vW - mapW - PAN_MARGIN; // far left
-      const maxX = PAN_MARGIN;             // far right
-      originX = clamp(originX, minX, maxX);
+      const leftLimit = vRect.left + PAN_MARGIN;
+      const rightLimit = vRect.right - PAN_MARGIN;
+
+      if (bRect.left > leftLimit) originX -= (bRect.left - leftLimit);
+      if (bRect.right < rightLimit) originX += (rightLimit - bRect.right);
     }
 
     if (mapH <= vH - PAN_MARGIN * 2) {
-      originY = (vH - mapH) / 2;
+      originY += (vRect.top + vH / 2) - (bRect.top + mapH / 2);
     } else {
-      const minY = vH - mapH - PAN_MARGIN;
-      const maxY = PAN_MARGIN;
-      originY = clamp(originY, minY, maxY);
+      const topLimit = vRect.top + PAN_MARGIN;
+      const bottomLimit = vRect.bottom - PAN_MARGIN;
+
+      if (bRect.top > topLimit) originY -= (bRect.top - topLimit);
+      if (bRect.bottom < bottomLimit) originY += (bottomLimit - bRect.bottom);
     }
   };
 
   const applyAndClamp = () => {
+    apply();
     clampPan();
     apply();
   };
 
   const getFitScale = () => {
     const padding = 10;
-
     const vW = viewport.clientWidth - padding;
     const vH = viewport.clientHeight - padding;
 
-    const bW = builder.offsetWidth;  // untransformed
-    const bH = builder.offsetHeight; // untransformed
+    const prevScale = scale;
+    const prevX = originX;
+    const prevY = originY;
 
-    return Math.min(vW / bW, vH / bH);
+    scale = 1;
+    originX = 0;
+    originY = 0;
+    apply();
+
+    const bRect = builder.getBoundingClientRect();
+
+    if (bRect.width === 0 || bRect.height === 0) {
+      scale = prevScale;
+      originX = prevX;
+      originY = prevY;
+      apply();
+      return 1;
+    }
+
+    const fit = Math.min(vW / bRect.width, vH / bRect.height);
+
+    scale = prevScale;
+    originX = prevX;
+    originY = prevY;
+    apply();
+
+    return fit;
   };
 
-  let MIN = 0.2;
-
   const resetView = () => {
-    // reset transform
     scale = 1;
     originX = 0;
     originY = 0;
@@ -90,44 +115,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
     requestAnimationFrame(() => {
       const fitScale = getFitScale();
-
-      // allow a little unzoom below reset
       MIN = fitScale * (1 - EXTRA_UNZOOM);
-
-      // reset uses FIT scale
       scale = clamp(fitScale, MIN, MAX);
-
-      // center (clampPan will center properly too)
       applyAndClamp();
     });
   };
 
-  // Zoom wheel
-  viewport.addEventListener("wheel", (e) => {
-    e.preventDefault();
+  // ✅ Render floor using <template> contents
+  const renderFloor = (floor) => {
+    const tpl = document.getElementById(`tpl-${floor}`);
+    if (!tpl) return;
 
-    const rect = viewport.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    // swap blocks
+    builder.innerHTML = tpl.innerHTML;
 
-    const zoomDelta = -e.deltaY * ZOOM_SPEED;
+    // swap per-floor grid class
+    builder.classList.remove("floor-1", "floor-2", "floor-3", "floor-4");
+    builder.classList.add(`floor-${floor.replace("F", "")}`);
 
-    // keep MIN synced
-    const fitScale = getFitScale();
-    MIN = fitScale * (1 - EXTRA_UNZOOM);
+    requestAnimationFrame(resetView);
+  };
 
-    const newScale = clamp(scale * (1 + zoomDelta), MIN, MAX);
+  if (floorSelect) {
+    floorSelect.addEventListener("change", (e) => renderFloor(e.target.value));
+    renderFloor(floorSelect.value); // initial
+  } else {
+    resetView();
+  }
 
-    // zoom around mouse
-    originX -= (mouseX - originX) * (newScale / scale - 1);
-    originY -= (mouseY - originY) * (newScale / scale - 1);
+  viewport.addEventListener(
+    "wheel",
+    (e) => {
+      e.preventDefault();
 
-    scale = newScale;
+      const rect = viewport.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
 
-    applyAndClamp();
-  }, { passive: false });
+      const zoomDelta = -e.deltaY * ZOOM_SPEED;
 
-  // Drag to pan
+      const fitScale = getFitScale();
+      MIN = fitScale * (1 - EXTRA_UNZOOM);
+
+      const newScale = clamp(scale * (1 + zoomDelta), MIN, MAX);
+
+      const worldX = (mouseX - originX) / scale;
+      const worldY = (mouseY - originY) / scale;
+
+      scale = newScale;
+
+      originX = mouseX - worldX * scale;
+      originY = mouseY - worldY * scale;
+
+      applyAndClamp();
+    },
+    { passive: false }
+  );
+
   let isDragging = false;
   let startX = 0, startY = 0;
 
@@ -154,5 +198,4 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", resetView);
 
   viewport.style.cursor = "grab";
-  resetView();
 });
