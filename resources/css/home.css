@@ -355,17 +355,4 @@ html, body {
 
 
 
-
-
 /* 1. The Hallways (Background) now Light Blue */
-.map-bg-box {
-    grid-column: 1 / -1;
-    grid-row: 4 / -1; /* Starts 5 units down */
-    background-color: #c1d8ee;
-    z-index: 1;
-    border-radius: 15px;
-}
-
-.map-builder {
-    background-color: transparent; /* Makes sure the builder doesn't interfere */
-}
