@@ -59,7 +59,7 @@
 <div class="room" style="grid-column: 80 / 86; grid-row: 32 / 48; margin: 1.5px;"></div>
 <div class="room" style="grid-column: 80 / 86; grid-row: 48 / 62; margin: 1.5px;"></div>
 <div class="room" style="grid-column: 80 / 86; grid-row: 62 / 76; margin: 1.5px;"></div>
-<div class="stairs stairs-right" style="grid-column: 82 / 86; grid-row: 76 / 84;"></div>
+<div class="stairs stairs-right" style="grid-column: 80 / 86; grid-row: 76 / 83; margin: 1.5px;"></div>
 
 <!-- STAGE -->
 <div class="room no-hover" style="grid-column: 29 / 37; grid-row: 38 / 68; margin: 1.5px;"></div>
@@ -96,5 +96,9 @@
 
 
 
+<div class="floor-bg floor1-bg"></div>
+<div class="floor-bg floor1-bg-mid"></div>
+<div class="floor-bg floor1-bg-bottom"></div>
 
-
+<!-- Small Patch -->
+<div class="floor-bg floor1-bg-rightpatch"></div>
