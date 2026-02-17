@@ -96,5 +96,5 @@
 
 
 
-<div class="map-bg-box"></div>
+
 
