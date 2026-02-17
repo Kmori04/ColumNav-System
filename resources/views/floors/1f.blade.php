@@ -59,20 +59,21 @@
 <div class="room" style="grid-column: 80 / 86; grid-row: 32 / 48; margin: 1.5px;"></div>
 <div class="room" style="grid-column: 80 / 86; grid-row: 48 / 62; margin: 1.5px;"></div>
 <div class="room" style="grid-column: 80 / 86; grid-row: 62 / 76; margin: 1.5px;"></div>
+<div class="stairs stairs-right" style="grid-column: 82 / 86; grid-row: 76 / 84;"></div>
 
 <!-- STAGE -->
-<div class="room" style="grid-column: 29 / 37; grid-row: 38 / 68; margin: 1.5px;"></div>
+<div class="room no-hover" style="grid-column: 29 / 37; grid-row: 38 / 68; margin: 1.5px;"></div>
 
 <!-- COMFORT ROOMS Men -->
 <div class="room" style="grid-column: 86 / 90; grid-row: 32 / 40; margin: 1.5px;"></div>
 <div class="room" style="grid-column: 86 / 90; grid-row: 40 / 48; margin: 1.5px;"></div>
 
 <!-- COMFORT ROOMS Women -->
-<div class="room" style="grid-column: 86 / 90; grid-row: 66 / 74; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 86 / 90; grid-row: 74 / 82; margin: 1.5px;"></div>
+<div class="room" style="grid-column: 86 / 90; grid-row: 68 / 76; margin: 1.5px;"></div>
+<div class="room" style="grid-column: 86 / 90; grid-row: 76 / 84; margin: 1.5px;"></div>
 
 <!-- STUDY CENTER -->
-<div class="room" style="grid-column: 60 / 75; grid-row: 74 / 82; margin: 1.5px;"></div>
+<div class="room no-hover" style="grid-column: 60 / 75; grid-row: 74 / 82; margin: 1.5px;"></div>
 
 <!-- CASED AND OFFICES BELOW -->
 <div class="room" style="grid-column: 8 / 15;   grid-row: 88 / 96; margin: 1.5px;"></div>
@@ -92,3 +93,8 @@
 <div class="room" style="grid-column: 83 / 92;  grid-row: 90 / 98; margin: 1.5px;"></div>
 <div class="room" style="grid-column: 92 / 101; grid-row: 90 / 98; margin: 1.5px;"></div>
 <div class="room" style="grid-column: 101 / 110; grid-row: 90 / 98; margin: 1.5px;"></div>
+
+
+
+<div class="map-bg-box"></div>
+
