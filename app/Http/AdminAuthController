@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\AdminUser;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+class AdminAuthController extends Controller
+{
+    public function showLogin()
+    {
+        return view('admin.login');
+    }
+
+    public function login(Request $request)
+    {
+        $data = $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $user = AdminUser::where('username', $data['username'])
+            ->where('is_active', 1)
+            ->first();
+
+        if (!$user) {
+            return back()->withErrors(['username' => 'Account not found or inactive.'])->withInput();
+        }
+
+        // if your password is HASHED in DB (recommended)
+        if (!Hash::check($data['password'], $user->password)) {
+            return back()->withErrors(['password' => 'Wrong password.'])->withInput();
+        }
+
+        // Save admin session
+        session([
+            'admin_id' => $user->id,
+            'admin_username' => $user->username,
+            'admin_role' => $user->role,
+        ]);
+
+        return redirect()->route('admin.dashboard');
+    }
+
+    public function logout()
+    {
+        session()->forget(['admin_id', 'admin_username', 'admin_role']);
+        return redirect()->route('admin.login');
+    }
+}

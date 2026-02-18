@@ -7,22 +7,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const builder = document.getElementById("mapBuilder");
   const floorSelect = document.getElementById("floorSelect");
 
+  // ✅ DESCRIPTION elements (make sure these IDs exist in home.blade.php)
+  const descNameEl = document.getElementById("roomDescName"); // optional
+  const descTextEl = document.getElementById("roomDescText"); // required
+
   if (!viewport || !layer || !builder) return;
 
+  // ✅ Helper to set description UI
+  const setDescription = (name, desc) => {
+    if (descNameEl) descNameEl.textContent = name || "";
+    if (descTextEl) descTextEl.textContent = (desc || "").trim(); // never show "No description yet"
+  };
+
+  // Default description text
+  setDescription("", "Tap any room box on the map to see its description here.");
+
+  // ✅ Zoom/Pan values
   let scale = 1;
   let originX = 0;
   let originY = 0;
 
   const MAX = 3.0;
   const ZOOM_SPEED = 0.0015;
-
   const GRID_BASE = 26;
-  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
-
   const EXTRA_UNZOOM = 0.12;
   let MIN = 0.2;
-
   const PAN_MARGIN = 12;
+
+  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
   const updateGrid = () => {
     if (!grid) return;
@@ -133,6 +145,10 @@ document.addEventListener("DOMContentLoaded", () => {
     builder.classList.remove("floor-1", "floor-2", "floor-3", "floor-4");
     builder.classList.add(`floor-${floor.replace("F", "")}`);
 
+    // clear selection + reset description
+    document.querySelectorAll(".room.is-selected").forEach((el) => el.classList.remove("is-selected"));
+    setDescription("", "Tap any room box on the map to see its description here.");
+
     requestAnimationFrame(resetView);
   };
 
@@ -143,6 +159,24 @@ document.addEventListener("DOMContentLoaded", () => {
     resetView();
   }
 
+  // ✅ CLICK ROOM -> only one highlight stays (new click removes old highlight)
+  document.addEventListener("click", (e) => {
+    const roomEl = e.target.closest(".room");
+    if (!roomEl) return;
+
+    // remove previous highlight
+    document.querySelectorAll(".room.is-selected").forEach((el) => el.classList.remove("is-selected"));
+
+    // add highlight to clicked room
+    roomEl.classList.add("is-selected");
+
+    // update description box
+    const name = (roomEl.dataset.name || "").trim();
+    const desc = (roomEl.dataset.desc || "").trim();
+    setDescription(name, desc);
+  });
+
+  // Zoom
   viewport.addEventListener(
     "wheel",
     (e) => {
@@ -163,7 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const worldY = (mouseY - originY) / scale;
 
       scale = newScale;
-
       originX = mouseX - worldX * scale;
       originY = mouseY - worldY * scale;
 
@@ -172,8 +205,10 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: false }
   );
 
+  // Pan
   let isDragging = false;
-  let startX = 0, startY = 0;
+  let startX = 0,
+    startY = 0;
 
   viewport.addEventListener("mousedown", (e) => {
     isDragging = true;

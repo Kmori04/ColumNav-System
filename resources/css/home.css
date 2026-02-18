@@ -101,18 +101,33 @@ html, body {
   box-shadow: var(--shadow-soft);
 }
 
-.card-head { padding: 14px; }
+.card-head { padding: 10px; }
 
 .card-title {
   text-align: center;
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: 1.6px;
   color: var(--blue);
 }
 
 .card-body { padding: 18px; }
-.description-box { height: 120px; border-radius: 12px; }
+
+/* Center the room description text in the DESCRIPTION card */
+.description-box{
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  padding: 6px 10px 0;   /* ✅ fixed (no negative padding) */
+  overflow: hidden;
+}
+#roomDescText{
+  margin: 0;
+  line-height: 1.1;
+}
 
 .legend-card {
   background: #fff;
@@ -206,7 +221,7 @@ html, body {
   will-change: transform;
 }
 
-/* Base grid style (default = 1F) */
+/* Base grid style */
 .map-builder {
   display: grid;
   gap: var(--cell-gap);
@@ -217,8 +232,7 @@ html, body {
   position: relative;
 }
 
-
-/* Per-floor grid sizes (edit if your floors need different counts) */
+/* Per-floor grid sizes */
 .map-builder.floor-1 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
 .map-builder.floor-2 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
 .map-builder.floor-3 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
@@ -254,6 +268,21 @@ html, body {
 .room:hover {
   background: #eef6ff;
   outline: 3px solid rgba(37,99,235,.25);
+}
+
+/* ✅ THIS IS THE "HIGHLIGHT STAYS" STYLE (used by JS .is-selected) */
+.room.is-selected{
+  background: #e6f0ff;
+  border-color: #2563eb;
+  outline: 4px solid rgba(37,99,235,.35);
+  box-shadow: 0 6px 16px rgba(37,99,235,.18);
+  z-index: 5; /* stays above bg/paths */
+}
+
+/* optional: keep selected look even when hovering */
+.room.is-selected:hover{
+  background: #dbeafe;
+  outline: 4px solid rgba(37,99,235,.40);
 }
 
 .stairs{
@@ -354,7 +383,7 @@ html, body {
 
 /* ===== Background ===== */
 .floor-bg {
-  grid-column: 1 / -1; 
+  grid-column: 1 / -1;
   grid-row: 1 / -1;
   background: #dff1f8;
   border: 2px solid #2b6f93;
@@ -365,51 +394,51 @@ html, body {
 
 .floor1-bg {
   clip-path: polygon(
-    3% 3%,   
-    15% 3%,  
-    15% 91%, /* +1% */
-    3% 91%   /* +1% */
+    6% 3%,
+    15% 3%,
+    15% 91%,
+    6% 91%
   );
 }
 
 .floor1-bg-mid {
   clip-path: polygon(
-    10% 16%, 
-    86% 16%, 
-    86% 83%, /* +1% */
-    10% 83%  /* +1% */
+    10% 16%,
+    86% 16%,
+    86% 83%,
+    10% 83%
   );
 }
 
 .floor1-bg-bottom {
   clip-path: polygon(
-    10% 82%, 
-    96% 82%, 
-    96% 95%, /* +1% */
-    10% 95%  /* +1% */
+    10% 82%,
+    96% 82%,
+    96% 97%,
+    10% 97%
   );
 }
 
 .floor1-bg-rightpatch {
   clip-path: polygon(
-    73% 68%, 
-    86.8% 68%, 
-    86.8% 94%, /* +1% */
-    73% 94%  /* +1% */
+    73% 68%,
+    86.8% 68%,
+    86.8% 94%,
+    73% 94%
   );
-}/* =====GREY GUIDE LINE===== */
+}
 
+/* =====GREY GUIDE LINE===== */
 .path-container {
-    background-color: #9db3c5;
-    width: 18px;               
-    justify-self: center;      
-    border-radius: 0px; /* Makes the ends flat/square */
-    z-index: 2;                
-    position: relative;
+  background-color: #9db3c5;
+  width: 18px;
+  justify-self: center;
+  border-radius: 0px;
+  z-index: 2;
+  position: relative;
 }
 
 /* =====G7854===== */
-
 .asd {
   width: 100%;
   height: 100%;
@@ -421,4 +450,29 @@ html, body {
 .asd {
   margin: 1.5px;
   background-color: #9db3c5;
+}
+
+/* --- room labels (force visible) --- */
+.room{
+  position: relative;
+  overflow: hidden;
+}
+
+.room-label{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.1;
+
+  z-index: 9999;
+  pointer-events: none;
+  color: #0c3b66;
+  background: transparent;
 }
