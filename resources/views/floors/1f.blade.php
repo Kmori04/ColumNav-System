@@ -251,92 +251,538 @@
 </div>
 <!-- CANTEEN -->
 
+<!-- 
+|--------------------------------------------------------------------------
+| STAIRS PAYMENT AND INFORMATION
+|--------------------------------------------------------------------------
+-->
 
-
-
-
-
-
-<!-- STAIRS PAYMENT AND INFORMATION -->
 <div class="stairs" style="grid-column: 52 / 56; grid-row: 16 / 24; margin: 1.5px;"></div>
 
- 
+<!-- ROOM INFORMATION -->
 @php
   $id = 26;
   $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room" 
-     data-name="{{ $r?->room_name ?? 'Unknown Room' }}"
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      style="grid-column: 56 / 63; grid-row: 16 / 24; margin: 1.5px;">
-  <span class="room-label">{{ $r?->room_name ?? '' }}</span>
+  <span class="room-label">{{ $name ?? '' }}</span>
 </div>
+<!-- ROOM INFORMATION -->
 
-<div class="room" style="grid-column: 63 / 70; grid-row: 16 / 24; margin: 1.5px;"></div>
+
+<!-- PAYMENT -->
+@php
+  $id = 25;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 63 / 70; grid-row: 16 / 24; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- PAYMENT -->
 
 <!-- GATE TOP -->
 <div class="room" style="grid-column: 70 / 76; grid-row: 16 / 18; margin: 1.5px;"></div>
+<!-- GATE TOP -->
+
 
 <!-- Jubilee -->
-<div class="room" style="grid-column: 76 / 86; grid-row: 16 / 24; margin: 1.5px;"></div>
+@php
+  $id = 24;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 76 / 86; grid-row: 16 / 24; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- ROOM JUBILEE -->
+
 
 <!-- STAIRS + RIGHT TALL BLOCKS -->
 <div class="stairs" style="grid-column: 86 / 90; grid-row: 16 / 24; margin: 1.5px;"></div>
-<div class="room"   style="grid-column: 90 / 96; grid-row: 15 / 24; margin: 1.5px;"></div>
-<div class="room"   style="grid-column: 96 / 104; grid-row: 14 / 24; margin: 1.5px;"></div>
+
+
+<!-- OFFICE OF THE PRESIDENT-->
+@php
+  $id = 23;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 90 / 96; grid-row: 15 / 24; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- OFFICE OF THE PRESIDENT-->
+
+
+<!-- SEWING DEPARTMENT -->
+@php
+  $id = 22;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 96 / 104; grid-row: 14 / 24; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- SEWING DEPARTMENT -->
 
 <!-- TOP RIGHT ROOM -->
-<div class="room"   style="grid-column: 104 / 110; grid-row: 20 / 32; margin: 1.5px;"></div>
+<!-- V108 -->
+@php
+  $id = 21;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 104 / 110; grid-row: 20 / 32; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- V108 -->
 
-<!-- LIKOD NG CCS BUILDING -->
-<div class="room"   style="grid-column: 97 / 104; grid-row: 30 / 38; margin: 1.5px;"></div>
-<div class="room"   style="grid-column: 97 / 104; grid-row: 38 / 46; margin: 1.5px;"></div>
-<div class="room"   style="grid-column: 97 / 104; grid-row: 46 / 54; margin: 1.5px;"></div>
-<div class="room"   style="grid-column: 97 / 107; grid-row: 54 / 62; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 97 / 105; grid-row: 62 / 69; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 97 / 105; grid-row: 69 / 76; margin: 1.5px;"></div>
+<!-- 
+|--------------------------------------------------------------------------
+| LIKOD NG CCS BUILDING
+|--------------------------------------------------------------------------
+-->
+
+<!-- V107 -->
+@php
+  $id = 20;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 97 / 104; grid-row: 30 / 38; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- V107 -->
+
+<!-- V106 -->
+@php
+  $id = 19;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 97 / 104; grid-row: 38 / 46; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- V106 -->
+
+<!-- V105 -->
+@php
+  $id = 18;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 97 / 104; grid-row: 46 / 54; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- V105 -->
+
+<!-- V104 -->
+@php
+  $id = 17;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 97 / 107; grid-row: 54 / 62; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- V104 -->
+
+<!-- SOCIAL WORKS -->
+@php
+  $id = 16;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 97 / 105; grid-row: 62 / 69; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- SOCIAL WORKS -->
+
+
+
+<!-- V102 -->
+@php
+  $id = 9;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 97 / 105; grid-row: 69 / 76; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- V102 -->
+ 
+<!-- stairs likod ng ccs -->
 <div class="stairs" style="grid-column: 105 / 110; grid-row: 71 / 83; margin: 1.5px;"></div><div class="room" style="grid-column: 110 / 118; grid-row: 80 / 96; margin: 1.5px;"></div>
 
-<!-- CCS -->
-<div class="room" style="grid-column: 80 / 86; grid-row: 32 / 48; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 80 / 86; grid-row: 48 / 62; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 80 / 86; grid-row: 62 / 76; margin: 1.5px;"></div>
+
+<!-- 
+|--------------------------------------------------------------------------
+| CCS BUILDING
+|--------------------------------------------------------------------------
+-->
+
+<!-- B101 -->
+@php
+  $id = 110;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 80 / 86; grid-row: 32 / 48; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- B101 -->
+
+
+<!-- B102 -->
+@php
+  $id = 111;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 80 / 86; grid-row: 48 / 62; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- B102 -->
+
+
+<!-- B103 -->
+@php
+  $id = 112;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 80 / 86; grid-row: 62 / 76; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- B103 -->
+
+<!-- HAGDAN SA TABI NG CCS BUILDING -->
 <div class="stairs stairs-right" style="grid-column: 80 / 86; grid-row: 76 / 83; margin: 1.5px;"></div>
 
 <!-- STAGE -->
 <div class="room no-hover" style="grid-column: 29 / 37; grid-row: 38 / 68; margin: 1.5px;"></div>
 
-<!-- COMFORT ROOMS Men -->
-<div class="room" style="grid-column: 86 / 90; grid-row: 32 / 40; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 86 / 90; grid-row: 40 / 48; margin: 1.5px;"></div>
+<!-- 
+|--------------------------------------------------------------------------
+| COMFORT ROOMS Men
+|--------------------------------------------------------------------------
+-->
+
+<!-- PWD MEN CR -->
+@php
+  $id = 12;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 86 / 90; grid-row: 32 / 40; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- PWD MEN CR -->
+
+<!-- CR MEN CCS -->
+@php
+  $id = 13;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 86 / 90; grid-row: 40 / 48; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- CR MEN CCS -->
+
 
 <!-- COMFORT ROOMS Women -->
-<div class="room" style="grid-column: 86 / 90; grid-row: 67 / 75; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 86 / 90; grid-row: 75 / 83; margin: 1.5px;"></div>
+
+<!-- PWD WOMEN CR-->
+@php
+  $id = 11;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 86 / 90; grid-row: 67 / 75; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- PWD WOMEN CR-->
+ 
+<!-- WOMEN CR -->
+@php
+  $id = 10;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 86 / 90; grid-row: 75 / 83; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- WOMEN CR -->
 
 <!-- STUDY CENTER -->
 <div class="room no-hover" style="grid-column: 60 / 75; grid-row: 74 / 82; margin: 1.5px;"></div>
 
-<!-- CASED AND OFFICES BELOW -->
-<div class="room" style="grid-column: 8 / 15;   grid-row: 90 / 98; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 15 / 22;  grid-row: 90 / 98; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 22 / 29;  grid-row: 90 / 98; margin: 1.5px;"></div>
 
-<div class="room" style="grid-column: 29 / 38; grid-row: 94 / 101; margin: 1.5px;"></div>
 
-<div class="room" style="grid-column: 38 / 45;  grid-row: 90 / 98; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 45 / 52;  grid-row: 90 / 98; margin: 1.5px;"></div>
+<!-- 
+|--------------------------------------------------------------------------
+| CASED AND OFFICES BELOW
+|--------------------------------------------------------------------------
+-->
+
+<!-- AVR -->
+@php
+  $id = 41;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 8 / 15; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- AVR -->
+ 
+<!-- H103 -->
+@php
+  $id = 42;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 15 / 22; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- H103 -->
+ 
+
+<!-- Business Executive Room -->
+@php
+  $id = 43;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 22 / 29; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- Business Executive Room -->
+
+<!-- PREMIER POST OFFICE -->
+@php
+  $id = 44;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 29 / 38; grid-row: 94 / 101; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- PREMIER POST OFFICE -->
+
+<!-- CASED FACULTY -->
+@php
+  $id = 45;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 38 / 45; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- CASED FACULTY -->
+ 
+<!-- IDCC -->
+@php
+  $id = 46;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 45 / 52; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- IDCC -->
+
 
 <!-- MAIN GATE -->
 <div class="room" style="grid-column: 52 / 58; grid-row: 96 / 98; margin: 1.5px;"></div>
 
-<!-- GATE RIGHT SIDE -->
-<div class="room" style="grid-column: 58 / 65;  grid-row: 90 / 98; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 65 / 74;  grid-row: 90 / 98; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 74 / 83;  grid-row: 90 / 98; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 83 / 92;  grid-row: 90 / 98; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 92 / 101; grid-row: 90 / 98; margin: 1.5px;"></div>
-<div class="room" style="grid-column: 101 / 110; grid-row: 90 / 98; margin: 1.5px;"></div>
+
+
+<!-- 
+|--------------------------------------------------------------------------
+| GATE RIGHT SIDE
+|--------------------------------------------------------------------------
+-->
+
+<!-- STUDENT AFFAIRS -->
+@php
+  $id = 1;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 58 / 65; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- STUDENT AFFAIRS -->
+ 
+
+<!-- GUIDANCE OFFICE -->
+@php
+  $id = 2;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 65 / 74; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- GUIDANCE OFFICE -->
+ 
+
+
+<!-- PESCA OFFICE -->
+@php
+  $id = 3;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 74 / 83; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- PESCA OFFICE -->
+
+
+<!-- CLINIC -->
+@php
+  $id = 4;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 83 / 92; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- CLINIC -->
+
+
+<!-- Campus Youth Ministry -->
+@php
+  $id = 5;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 92 / 101; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- Campus Youth Ministry -->
+
+
+<!-- CATECHETICAL -->
+@php
+  $id = 6;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 101 / 110; grid-row: 90 / 98; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- CATECHETICAL -->
+
 
 
 
@@ -346,6 +792,11 @@
 
 <!-- Small Patch -->
 <div class="floor-bg floor1-bg-rightpatch"></div>
+
+
+
+
+
 
 <!-- GREY "LONG" CONTAINER LINE -->
 <div class="path-container" style="grid-column: 54 / 56; grid-row: 86 / 95;"></div>
