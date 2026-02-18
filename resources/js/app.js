@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const builder = document.getElementById("mapBuilder");
   const floorSelect = document.getElementById("floorSelect");
 
-  // ✅ DESCRIPTION elements (make sure these IDs exist in home.blade.php)
+  //  DESCRIPTION elements (make sure these IDs exist in home.blade.php)
   const descNameEl = document.getElementById("roomDescName"); // optional
   const descTextEl = document.getElementById("roomDescText"); // required
 
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Default description text
   setDescription("", "Tap any room box on the map to see its description here.");
 
-  // ✅ Zoom/Pan values
+  // Zoom/Pan values
   let scale = 1;
   let originX = 0;
   let originY = 0;
