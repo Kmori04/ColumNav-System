@@ -454,8 +454,23 @@
 <!-- V102 -->
  
 <!-- stairs likod ng ccs -->
-<div class="stairs" style="grid-column: 105 / 110; grid-row: 71 / 83; margin: 1.5px;"></div><div class="room" style="grid-column: 110 / 118; grid-row: 80 / 96; margin: 1.5px;"></div>
+<div class="stairs" style="grid-column: 105 / 110; grid-row: 71 / 83; margin: 1.5px;"></div>
 
+
+<!-- College chapel -->
+@php
+  $id = 8;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 110 / 118; grid-row: 80 / 96; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+<!-- College chapel -->
 
 <!-- 
 |--------------------------------------------------------------------------
