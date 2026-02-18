@@ -39,9 +39,16 @@
       <div class="sidebar-wrapper">
 
         <section class="card">
-          <div class="card-head"><h2 class="card-title">DESCRIPTION</h2></div>
-          <div class="card-body"><div class="description-box"></div></div>
-        </section>
+          <div class="card-head">
+            <h2 class="card-title">DESCRIPTION</h2>
+          </div>
+
+         <div class="card-body">
+           <div class="description-box" id="roomDescBox">
+             <div id="roomDescText">Tap any room box on the map to see its description here.</div>
+          </div>
+       </div>
+      </section>
 
         <section class="legend-card">
           <div class="legend-titlebar">
@@ -91,7 +98,7 @@
 </main>
 
 
-<template id="tpl-1F">@includeIf('floors.1f')</template>
+<template id="tpl-1F">@includeIf('floors.1f', ['rooms' => $rooms ?? collect()])</template>
 <template id="tpl-2F">@includeIf('floors.2f')</template>
 <template id="tpl-3F">@includeIf('floors.3f')</template>
 <template id="tpl-4F">@includeIf('floors.4f')</template>
