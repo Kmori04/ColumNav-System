@@ -109,6 +109,8 @@
      style="grid-column: 4 / 11; grid-row: 48 / 54;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
+
+
 <!-- A105 -->
 
 
@@ -290,7 +292,7 @@
 <!-- PAYMENT -->
 
 <!-- GATE TOP -->
-<div class="room" style="grid-column: 70 / 76; grid-row: 16 / 18; margin: 1.5px;"></div>
+<div class="room no-hover" style="grid-column: 70 / 76; grid-row: 16 / 18; margin: 1.5px;"></div>
 <!-- GATE TOP -->
 
 
@@ -697,7 +699,7 @@
 
 
 <!-- MAIN GATE -->
-<div class="room" style="grid-column: 52 / 58; grid-row: 96 / 98; margin: 1.5px;"></div>
+<div class="room no-hover" style="grid-column: 52 / 58; grid-row: 96 / 98; margin: 1.5px;"></div>
 
 
 
@@ -852,6 +854,8 @@
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 38 / 41;"></div>
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 53 / 56;"></div>
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 67 / 70;"></div>
+<div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 78 / 81;"></div>
+
 
 <div class="path-container" style="grid-column: 98 / 101; grid-row: 24 / 28;"></div>
 <div class="path-container" style="grid-column: 91 / 95; grid-row: 24 / 28;"></div>
