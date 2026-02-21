@@ -379,7 +379,7 @@ html, body {
   border-bottom: 10px solid transparent;
 }
 
-/* PARA DI MAG  */
+/* PARA DI MAG  hovver */
 .no-hover:hover {
   background-color: inherit !important;
   outline: none !important;
@@ -438,7 +438,7 @@ html, body {
 
 /* =====GREY GUIDE LINE===== */
 .path-container {
-  background-color: #9db3c5;
+  background-color: #cddfee;
   width: 18px;
   justify-self: center;
   border-radius: 0px;
@@ -457,7 +457,7 @@ html, body {
 }
 .horizontal-path {
   margin: 1.5px;
-  background-color: #9db3c5;
+  background-color: #cddfee;
 }
 
 /* --- room labels (force visible) --- */

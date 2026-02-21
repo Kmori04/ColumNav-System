@@ -247,3 +247,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   viewport.style.cursor = "grab";
 });
+
+// Yellow guideline code
+const drawYellowLine = (ctx) => {
+    ctx.strokeStyle = "yellow";
+    ctx.lineWidth = 10; // Original 4 + 6
+    ctx.lineCap = "round";
+    
+    ctx.beginPath();
+    ctx.moveTo(16, 16); // Original 10,10 + 6
+    ctx.lineTo(106, 106); // Original 100,100 + 6
+    ctx.stroke();
+    
+    console.log("Yellow guide active at opacity 0.8");
+};
