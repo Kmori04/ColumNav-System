@@ -95,7 +95,7 @@ class RoomController extends Controller
             ->get(['room_id', 'room_name', 'room_description']);
     }
 
-    // ✅ FLOOR 1: keyed by room_id (best for mapping boxes to DB rows)
+    //FLOOR 1: keyed by room_id (best for mapping boxes to DB rows)
     public function floor1()
     {
         $rooms = Room::where('is_active', 1)

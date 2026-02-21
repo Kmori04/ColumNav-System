@@ -7,20 +7,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const builder = document.getElementById("mapBuilder");
   const floorSelect = document.getElementById("floorSelect");
 
-  //  DESCRIPTION elements (make sure these IDs exist in home.blade.php)
+  // DESCRIPTION elements (make sure these IDs exist in home.blade.php)
   const descNameEl = document.getElementById("roomDescName"); // optional
   const descTextEl = document.getElementById("roomDescText"); // required
 
   if (!viewport || !layer || !builder) return;
 
-  // ✅ Helper to set description UI
+  // Helper to set description UI
   const setDescription = (name, desc) => {
     if (descNameEl) descNameEl.textContent = name || "";
     if (descTextEl) descTextEl.textContent = (desc || "").trim(); // never show "No description yet"
   };
 
   // Default description text
-  setDescription("", "Tap any room box on the map to see its description here.");
+  const DEFAULT_DESC = "Tap any room box on the map to see its description here.";
+  setDescription("", DEFAULT_DESC);
 
   // Zoom/Pan values
   let scale = 1;
@@ -133,7 +134,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // ✅ Render floor using <template> contents
+  const clearSelection = () => {
+    document.querySelectorAll(".room.is-selected").forEach((el) => el.classList.remove("is-selected"));
+    setDescription("", DEFAULT_DESC);
+  };
+
+  // Render floor using <template> contents
   const renderFloor = (floor) => {
     const tpl = document.getElementById(`tpl-${floor}`);
     if (!tpl) return;
@@ -146,8 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     builder.classList.add(`floor-${floor.replace("F", "")}`);
 
     // clear selection + reset description
-    document.querySelectorAll(".room.is-selected").forEach((el) => el.classList.remove("is-selected"));
-    setDescription("", "Tap any room box on the map to see its description here.");
+    clearSelection();
 
     requestAnimationFrame(resetView);
   };
@@ -159,15 +164,23 @@ document.addEventListener("DOMContentLoaded", () => {
     resetView();
   }
 
-  // ✅ CLICK ROOM -> only one highlight stays (new click removes old highlight)
+  // CLICK ROOM -> click again = unselect
   document.addEventListener("click", (e) => {
     const roomEl = e.target.closest(".room");
     if (!roomEl) return;
 
+    const isAlreadySelected = roomEl.classList.contains("is-selected");
+
     // remove previous highlight
     document.querySelectorAll(".room.is-selected").forEach((el) => el.classList.remove("is-selected"));
 
-    // add highlight to clicked room
+    if (isAlreadySelected) {
+      // ✅ unselect + reset description
+      setDescription("", DEFAULT_DESC);
+      return;
+    }
+
+    // ✅ select new room
     roomEl.classList.add("is-selected");
 
     // update description box

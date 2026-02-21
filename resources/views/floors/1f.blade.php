@@ -31,11 +31,15 @@
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
 
-<div class="room"
+<div class="room room-leftlabel room-menimg"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      style="grid-column: 1 / 11; grid-row: 16 / 23;">
   <span class="room-label">{{ $name ?? '' }}</span>
+
+  <img class="room-sideimg"
+       src="{{ Vite::asset('resources/images/men.png') }}"
+       alt="Men">
 </div>
 <!-- CR ROOM TOP LEFT -->
 
@@ -213,11 +217,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+<div class="room room-crwomen-up room-womenimg"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      style="grid-column: 19 / 24; grid-row: 13 / 24; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
+
+  <img class="room-belowimg"
+       src="{{ Vite::asset('resources/images/women.png') }}"
+       alt="Women">
 </div>
 <!-- CR TOP LEFT WOMEN -->
 

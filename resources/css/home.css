@@ -101,7 +101,9 @@ html, body {
   box-shadow: var(--shadow-soft);
 }
 
-.card-head { padding: 10px; }
+.card-head { 
+  padding: 20px 10px 10px;    
+}
 
 .card-title {
   text-align: center;
@@ -109,24 +111,33 @@ html, body {
   font-weight: 700;
   letter-spacing: 1.6px;
   color: var(--blue);
+  margin: 0;              
+  line-height: 1.1;
 }
 
-.card-body { padding: 18px; }
+.card-body { 
+  padding: 14px 18px 30px; 
+}
 
-/* Center the room description text in the DESCRIPTION card */
 .description-box{
-  height: 50px;
+  height: auto;            
+  min-height: 34px;         
   border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   text-align: center;
-  padding: 6px 10px 0;   
+
+  padding: 0 10px;        
+  margin-top: 0;          
   overflow: hidden;
 }
+
 #roomDescText{
   margin: 0;
-  line-height: 1.1;
+  padding: 0;
+  line-height: 1.15;
+  transform: none;         
 }
 
 .legend-card {
@@ -202,7 +213,6 @@ html, body {
   background-size: 26px 26px;
 }
 
-/* viewport centers the map, clips zoomed content */
 .map-zoom-viewport {
   position: absolute;
   inset: 0;
@@ -270,16 +280,14 @@ html, body {
   outline: 3px solid rgba(37,99,235,.25);
 }
 
-/* ✅ THIS IS THE "HIGHLIGHT STAYS" STYLE (used by JS .is-selected) */
 .room.is-selected{
   background: #e6f0ff;
   border-color: #2563eb;
   outline: 4px solid rgba(37,99,235,.35);
   box-shadow: 0 6px 16px rgba(37,99,235,.18);
-  z-index: 5; /* stays above bg/paths */
+  z-index: 5; 
 }
 
-/* optional: keep selected look even when hovering */
 .room.is-selected:hover{
   background: #dbeafe;
   outline: 4px solid rgba(37,99,235,.40);
@@ -468,11 +476,57 @@ html, body {
 
   padding: 4px;
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 530;
   line-height: 1.1;
 
   z-index: 9999;
   pointer-events: none;
   color: #0c3b66;
   background: transparent;
+}
+
+
+.room.room-leftlabel .room-label{
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 6px;
+}
+
+
+.room.room-menimg{
+  position: relative;
+  padding-right: 28px; 
+}
+
+.room.room-menimg .room-sideimg{
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.room.room-womenimg{
+  position: relative;
+}
+
+.room.room-womenimg .room-label{
+  align-items: flex-start;
+  justify-content: center;    
+  text-align: center;
+  padding-top: 2px;
+}
+
+.room.room-womenimg .room-belowimg{
+  position: absolute;
+  top: 30px;                  
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  pointer-events: none;
 }
