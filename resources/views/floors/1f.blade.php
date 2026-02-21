@@ -31,11 +31,15 @@
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
 
-<div class="room"
+<div class="room room-leftlabel room-menimg"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      style="grid-column: 1 / 11; grid-row: 16 / 23;">
   <span class="room-label">{{ $name ?? '' }}</span>
+
+  <img class="room-sideimg"
+       src="{{ Vite::asset('resources/images/men.png') }}"
+       alt="Men">
 </div>
 <!-- CR ROOM TOP LEFT -->
 
@@ -109,6 +113,8 @@
      style="grid-column: 4 / 11; grid-row: 48 / 54;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
+
+
 <!-- A105 -->
 
 
@@ -213,11 +219,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+<div class="room room-crwomen-up room-womenimg"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      style="grid-column: 19 / 24; grid-row: 13 / 24; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
+
+  <img class="room-belowimg"
+       src="{{ Vite::asset('resources/images/women.png') }}"
+       alt="Women">
 </div>
 <!-- CR TOP LEFT WOMEN -->
 
@@ -290,7 +300,7 @@
 <!-- PAYMENT -->
 
 <!-- GATE TOP -->
-<div class="room" style="grid-column: 70 / 76; grid-row: 16 / 18; margin: 1.5px;"></div>
+<div class="room no-hover" style="grid-column: 70 / 76; grid-row: 16 / 18; margin: 1.5px;"></div>
 <!-- GATE TOP -->
 
 
@@ -697,7 +707,7 @@
 
 
 <!-- MAIN GATE -->
-<div class="room" style="grid-column: 52 / 58; grid-row: 96 / 98; margin: 1.5px;"></div>
+<div class="room no-hover" style="grid-column: 52 / 58; grid-row: 96 / 98; margin: 1.5px;"></div>
 
 
 
@@ -852,6 +862,8 @@
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 38 / 41;"></div>
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 53 / 56;"></div>
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 67 / 70;"></div>
+<div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 78 / 81;"></div>
+
 
 <div class="path-container" style="grid-column: 98 / 101; grid-row: 24 / 28;"></div>
 <div class="path-container" style="grid-column: 91 / 95; grid-row: 24 / 28;"></div>
