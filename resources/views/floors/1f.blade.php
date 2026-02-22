@@ -852,10 +852,15 @@
 
 <!-- 
 |--------------------------------------------------------------------------
-| GREY LINES
+| YELLOW GUIDE (TOP OF GREY LINE)
 |--------------------------------------------------------------------------
 -->
 
+<!-- 
+|--------------------------------------------------------------------------
+| GREY LINES
+|--------------------------------------------------------------------------
+-->
 
 <!-- GATE GREY LINE -->
 <div class="path-container" style="grid-column: 54 / 56; grid-row: 86 / 95; position: relative;">
@@ -866,7 +871,7 @@
 
    <img src="{{ Vite::asset('resources/images/GPSblue.png') }}" alt="GPS Blue"
     style="position:absolute; left:50%; top:80%; width:22px; height:25px; object-fit:contain;
-           transform: translate(-50%, -50%); z-index:5;">
+           transform: translate(-50%, -50%);">
 
   <img src="{{ Vite::asset('resources/images/BlueArrow.png') }}" alt="Blue Arrow"
       style="position:absolute; right:-15px; top:0; width:50%; height:100%; object-fit:contain;
