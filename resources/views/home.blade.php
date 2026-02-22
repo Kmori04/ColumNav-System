@@ -25,7 +25,7 @@
       <label class="floors-label" for="floorSelect">Floors</label>
       <select class="floors-select" id="floorSelect">
         <option value="1F" selected>1F</option>
-        <option value="2F" selected>2F</option>
+        <option value="2F">2F</option>
         <option value="3F">3F</option>
         <option value="4F">4F</option>
       </select>

@@ -551,15 +551,31 @@
 @php
   $id = 12;
   $r  = $rooms[$id] ?? null;
-  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(PWD)" only
+  $name = $r?->room_name
+    ? preg_replace('/\s*\(PWD\)\s*/i', '', $r->room_name)
+    : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 86 / 90; grid-row: 32 / 40; margin: 1.5px;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     style="grid-column: 86 / 90; grid-row: 32 / 40; margin: 1.5px; position: relative;">
+
+  <span class="room-label"
+        style="position: absolute; top: -35px; left: 50%; transform: translateX(-50%); font-size: 10px; text-align: center; white-space: nowrap;">
+    {{ $name ?? '' }}
+  </span>
+
+  <img src="{{ Vite::asset('resources/images/PWD.png') }}"
+     alt="PWD"
+     style="position:absolute; top:16px; left:50%; transform:translateX(-50%); width:42px; height:45px; z-index:5;" />
+
 </div>
 <!-- PWD MEN CR -->
+
+
 
 <!-- CR MEN CCS -->
 @php
@@ -578,19 +594,30 @@
 
 <!-- COMFORT ROOMS Women -->
 
-<!-- PWD WOMEN CR-->
+<!-- PWD WOMEN CR -->
 @php
   $id = 11;
   $r  = $rooms[$id] ?? null;
-  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(2)" and remove "(PWD)" only
+  $name = $r?->room_name
+    ? preg_replace('/\s*\(PWD\)\s*/i', '', preg_replace('/\s*\(2\)\s*$/', '', $r->room_name))
+    : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 86 / 90; grid-row: 67 / 75; margin: 1.5px;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     style="grid-column: 86 / 90; grid-row: 67 / 75; margin: 1.5px; position: relative; overflow: visible;">
+  <span class="room-label"
+        style="position: absolute; top: -40px; left: 50%; transform: translateX(-50%); font-size: 10px; text-align: center; white-space: pre-line; width: 100%; line-height: 0.9; pointer-events: none;">
+    {{ str_replace(' - ', " -\n", $name) }}
+  </span>
+  <img src="{{ Vite::asset('resources/images/PWD.png') }}"
+     alt="PWD"
+     style="position:absolute; top:20px; left:50%; transform:translateX(-50%); width:42px; height:45px; z-index:5;" />
 </div>
-<!-- PWD WOMEN CR-->
+<!-- PWD WOMEN CR -->
  
 <!-- WOMEN CR -->
 @php
@@ -809,28 +836,50 @@
 <!-- CATECHETICAL -->
 
 
-
+<!-- 
+|--------------------------------------------------------------------------
+| BACKGROUND
+|--------------------------------------------------------------------------
+-->
 
 <div class="floor-bg floor1-bg"></div>
 <div class="floor-bg floor1-bg-mid"></div>
 <div class="floor-bg floor1-bg-bottom"></div>
-
 <!-- Small Patch -->
 <div class="floor-bg floor1-bg-rightpatch"></div>
 
 
 
+<!-- 
+|--------------------------------------------------------------------------
+| GREY LINES
+|--------------------------------------------------------------------------
+-->
 
 
+<!-- GATE GREY LINE -->
+<div class="path-container" style="grid-column: 54 / 56; grid-row: 86 / 95; position: relative;">
 
+  <img src="{{ Vite::asset('resources/images/RedArrow.png') }}" alt="Red Arrow"
+     style="position:absolute; left:-15px; top:0; width:50%; height:100%; object-fit:contain;
+              transform: rotate(90deg) scale(3.4); transform-origin:center;">
+
+   <img src="{{ Vite::asset('resources/images/GPSblue.png') }}" alt="GPS Blue"
+    style="position:absolute; left:50%; top:80%; width:22px; height:25px; object-fit:contain;
+           transform: translate(-50%, -50%); z-index:5;">
+
+  <img src="{{ Vite::asset('resources/images/BlueArrow.png') }}" alt="Blue Arrow"
+      style="position:absolute; right:-15px; top:0; width:50%; height:100%; object-fit:contain;
+              transform: rotate(-90deg) scale(3.4); transform-origin:center;">
+</div>
 <!-- GREY "LONG" CONTAINER LINE -->
-<div class="path-container" style="grid-column: 54 / 56; grid-row: 86 / 95;"></div>
 <div class="horizontal-path" style="grid-column: 11 / 110; grid-row: 85 / 88;"></div>
 <div class="path-container" style="grid-column: 27 / 1; grid-row: 5 / 86;"></div>
 <div class="path-container" style="grid-column: 77 / 78; grid-row: 27 / 86;"></div>
 <div class="horizontal-path" style="grid-column: 15 / 103; grid-row: 26 / 29;"></div>
 <div class="path-container" style="grid-column: 108 / 78; grid-row: 27 / 86;"></div>
-<!-- GREY "SHORT" CONTAINER LINE -->
+
+<!-- GREY "SHORT" BOTTOM PART -->
 <div class="path-container" style="grid-column: 61 / 62; grid-row: 85 / 90 ;"></div>
 <div class="path-container" style="grid-column: 69 / 70; grid-row: 85 / 90;"></div>
 <div class="path-container" style="grid-column: 77 / 78; grid-row: 85 / 90;"></div>
@@ -844,6 +893,7 @@
 <div class="path-container" style="grid-column: 25 / 26; grid-row: 85 / 90;"></div>
 <div class="path-container" style="grid-column: 18 / 19; grid-row: 85 / 90;"></div>
 <div class="path-container" style="grid-column: 13 / 14; grid-row: 85 / 90;"></div>
+
 <!-- ===(GREY CONTAINER LINE) ""CBA""=== -->
 <div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 80 / 83;"></div>
 <div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 74 / 77;"></div>
@@ -858,6 +908,7 @@
 <div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 18 / 21;"></div>
 <div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 12 / 15;"></div>
 <div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 6 / 9;"></div>
+
 <!-- ===(GREY CONTAINER LINE) ""CCS""=== -->
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 38 / 41;"></div>
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 53 / 56;"></div>
@@ -865,6 +916,7 @@
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 78 / 81;"></div>
 
 
+<!--SMALL PATH TOP PART " -->
 <div class="path-container" style="grid-column: 98 / 101; grid-row: 24 / 28;"></div>
 <div class="path-container" style="grid-column: 91 / 95; grid-row: 24 / 28;"></div>
 <div class="path-container" style="grid-column: 86 / 90; grid-row: 24 / 28;"></div>
@@ -877,6 +929,7 @@
 <div class="path-container" style="grid-column: 1 / 54; grid-row: 24 / 29;"></div>
 
 
+<!--TOP LEFT AND LIKOD NG CCS " -->
 <div class="horizontal-path" style="grid-column: 15 / 19; grid-row: 8 / 11;"></div>
 <div class="horizontal-path" style="grid-column: 15 / 19; grid-row: 17 / 20;"></div>
 <div class="horizontal-path" style="grid-column: 94 / 97; grid-row: 71 / 74;"></div>
