@@ -4,7 +4,8 @@
 <!-- Floor 2 -->
 
     <!-- TOP PART -->
-    <div class="room" style="grid-column: 14 / 22; grid-row: 8 / 14; border: 1.5px solid #6b93a3; background: white;"></div>
+
+
     <div class="room" style="grid-column: 22 / 29; grid-row: 8 / 14; border: 1.5px solid #6b93a3; background: white;"></div>
     <div class="room" style="grid-column: 29 / 38; grid-row: 8 / 14; border: 1.5px solid #6b93a3; background: white;"></div>
     <div class="room" style="grid-column: 38 / 46; grid-row: 8 / 14; border: 1.5px solid #6b93a3; background: white;"></div>
@@ -85,3 +86,69 @@
     
 
 </div>
+
+<!-- GREY "LONG" CONTAINER LINE -->
+<div class="horizontal-path" style="grid-column: 11 / 110; grid-row: 85 / 88;"></div>
+<div class="path-container" style="grid-column: 27 / 1; grid-row: 5 / 86;"></div>
+<div class="path-container" style="grid-column: 72 / 74; grid-row: 17 / 86;"></div>
+<div class="horizontal-path" style="grid-column: 15 / 95; grid-row: 15 / 18;"></div>
+<div class="path-container" style="grid-column: 105 / 75; grid-row: 17 / 86;"></div>
+<div class="path-container" style="grid-column: 54 / 22; grid-row: 17 / 24;"></div>
+
+<!-- GREY "SHORT" BOTTOM PART -->
+<div class="path-container" style="grid-column: 61 / 62; grid-row: 85 / 89;"></div>
+<div class="path-container" style="grid-column: 69 / 70; grid-row: 85 / 89;"></div>
+<div class="path-container" style="grid-column: 77 / 78; grid-row: 85 / 89;"></div>
+<div class="path-container" style="grid-column: 87 / 88; grid-row: 85 / 89;"></div>
+<div class="path-container" style="grid-column: 96 / 99; grid-row: 87 / 89;"></div>
+<div class="path-container" style="grid-column: 96 / 105; grid-row: 87 / 78;"></div>
+<div class="path-container" style="grid-column: 48 / 49; grid-row: 85 / 89;"></div>
+<div class="path-container" style="grid-column: 41 / 42; grid-row: 85 / 89;"></div>
+<div class="path-container" style="grid-column: 33 / 34; grid-row: 85 / 92;"></div>
+<div class="path-container" style="grid-column: 25 / 26; grid-row: 85 / 89;"></div>
+<div class="path-container" style="grid-column: 18 / 19; grid-row: 85 / 89;"></div>
+<div class="path-container" style="grid-column: 13 / 14; grid-row: 85 / 89;"></div>
+<div class="path-container" style="grid-column: 82 / 84; grid-row: 87 / 75;"></div>
+
+<!-- ===(GREY CONTAINER LINE) ""CBA""=== -->
+<div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 79 / 82;"></div>
+<div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 73 / 76;"></div>
+<div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 67 / 70;"></div>
+<div class="horizontal-path" style="grid-column: 8 / 15; grid-row: 62 / 65;"></div>
+<div class="horizontal-path" style="grid-column: 8 / 15; grid-row: 56 / 59;"></div>
+<div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 49 / 52;"></div>
+<div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 42 / 45;"></div>
+<div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 35 / 38;"></div>
+<div class="horizontal-path" style="grid-column: 8 / 15; grid-row: 28 / 31;"></div>
+<div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 19 / 22;"></div>
+ <div class="horizontal-path" style="grid-column: 8 / 15; grid-row: 12 / 15;"></div>
+<div class="horizontal-path" style="grid-column: 10 / 15; grid-row: 6 / 9;"></div>
+ 
+
+<!-- ===(GREY CONTAINER LINE) ""CCS""=== -->
+<div class="horizontal-path" style="grid-column: 73 / 75; grid-row: 28 / 31;"></div>
+<div class="horizontal-path" style="grid-column: 73 / 75; grid-row: 41 / 44;"></div>
+<div class="horizontal-path" style="grid-column: 73 / 75; grid-row: 55 / 58;"></div>
+<div class="horizontal-path" style="grid-column: 73 / 75; grid-row: 67 / 70;"></div>
+<div class="horizontal-path" style="grid-column: 73 / 75; grid-row: 77 / 80;"></div>
+
+<!--SMALL PATH TOP PART " -->
+ 
+<div class="path-container" style="grid-column: 91 / 95; grid-row: 12 / 18;"></div>
+<div class="path-container" style="grid-column: 82 / 90; grid-row: 12 / 18;"></div>
+<div class="path-container" style="grid-column: 80 / 81; grid-row: 14 / 18;"></div>
+<div class="path-container" style="grid-column: 73 / 77; grid-row: 14 / 18;"></div>
+<div class="path-container" style="grid-column: 80 / 87; grid-row: 16 / 23;"></div>
+<div class="path-container" style="grid-column: 64 / 70; grid-row: 14 / 18;"></div>
+<div class="path-container" style="grid-column: 49 / 71; grid-row: 14 / 18;"></div>
+<div class="path-container" style="grid-column: 37 / 71; grid-row: 14 / 18;"></div> 
+<div class="path-container" style="grid-column: 26 / 71; grid-row: 14 / 18;"></div>
+<div class="path-container" style="grid-column: 14 / 71; grid-row: 14 / 18;"></div>
+<div class="path-container" style="grid-column: 5 / 62; grid-row: 14 / 18;"></div>
+<div class="path-container" style="grid-column: 1 / 49; grid-row: 14 / 18;"></div>
+<div class="horizontal-path" style="grid-column: 38/ 40; grid-row: 21 / 24;"></div>
+
+<!--TOP LEFT AND LIKOD NG CCS " -->
+<div class="horizontal-path" style="grid-column: 88 / 92; grid-row: 36 / 39;"></div>
+<div class="horizontal-path" style="grid-column: 88 / 92; grid-row: 64 / 67;"></div>
+ 
