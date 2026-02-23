@@ -487,8 +487,23 @@
 | CCS BUILDING
 |--------------------------------------------------------------------------
 -->
+<!-- FOOD STAND -->
+@php
+  $id = 7;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+<div class="room"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     style="grid-column: 75 / 69 ; grid-row: 34 / 40; margin: 1.5px;">
+  <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+
 
 <!-- B101 -->
+
 @php
   $id = 110;
   $r  = $rooms[$id] ?? null;
