@@ -526,7 +526,7 @@ html, body {
 
   padding: 4px;
   font-size: 10px;
-  font-weight: 530;
+  font-weight: 510;
   line-height: 1.1;
 
   z-index: 9999;
@@ -583,19 +583,19 @@ html, body {
 
 .floor2-bg{
   clip-path: polygon(
-    5% 3%,
-    17.5% 3%,
-    17.5% 88%,
+    4.5% 3%,
+    12.5% 3%,
+    12.5% 88%,
     2.9% 88.9%
   );
 }
 
 .floor2-bg-mid{
   clip-path: polygon(
-    16% 10%,
+    12% 10%,
     81% 10%,
-    81% 82%,
-    16% 82%
+    81% 89%,
+    12% 89%
   );
 }
 

@@ -12,6 +12,23 @@
 </head>
 <body>
 
+@php
+  use App\Models\Room;
+
+  // ✅ preload rooms for each floor (keyed by room_id so $rooms[$id] works)
+  $rooms1 = Room::where('is_active', 1)->where('floor_number', 1)
+    ->get(['room_id','room_name','room_description'])->keyBy('room_id');
+
+  $rooms2 = Room::where('is_active', 1)->where('floor_number', 2)
+    ->get(['room_id','room_name','room_description'])->keyBy('room_id');
+
+  $rooms3 = Room::where('is_active', 1)->where('floor_number', 3)
+    ->get(['room_id','room_name','room_description'])->keyBy('room_id');
+
+  $rooms4 = Room::where('is_active', 1)->where('floor_number', 4)
+    ->get(['room_id','room_name','room_description'])->keyBy('room_id');
+@endphp
+
 <header class="topbar">
   <div class="topbar-inner">
     <div class="cc">
@@ -25,7 +42,7 @@
       <label class="floors-label" for="floorSelect">Floors</label>
       <select class="floors-select" id="floorSelect">
         <option value="1F" selected>1F</option>
-        <option value="2F">2F</option>
+        <option value="2F" selected>2F</option>
         <option value="3F">3F</option>
         <option value="4F">4F</option>
       </select>
@@ -43,12 +60,12 @@
             <h2 class="card-title">DESCRIPTION</h2>
           </div>
 
-         <div class="card-body">
-           <div class="description-box" id="roomDescBox">
-             <div id="roomDescText">Tap any room box on the map to see its description here.</div>
+          <div class="card-body">
+            <div class="description-box" id="roomDescBox">
+              <div id="roomDescText">Tap any room box on the map to see its description here.</div>
+            </div>
           </div>
-       </div>
-      </section>
+        </section>
 
         <section class="legend-card">
           <div class="legend-titlebar">
@@ -82,7 +99,7 @@
             <div class="map-zoom-layer" id="zoomLayer">
               <div class="map-builder floor-1" id="mapBuilder">
                 {{-- Default floor shown on load --}}
-                @includeIf('floors.1f')
+                @includeIf('floors.1f', ['rooms' => $rooms1])
               </div>
             </div>
           </div>
@@ -97,11 +114,10 @@
   </div>
 </main>
 
-
-<template id="tpl-1F">@includeIf('floors.1f', ['rooms' => $rooms ?? collect()])</template>
-<template id="tpl-2F">@includeIf('floors.2f')</template>
-<template id="tpl-3F">@includeIf('floors.3f')</template>
-<template id="tpl-4F">@includeIf('floors.4f')</template>
+<template id="tpl-1F">@includeIf('floors.1f', ['rooms' => $rooms1])</template>
+<template id="tpl-2F">@includeIf('floors.2f', ['rooms' => $rooms2])</template>
+<template id="tpl-3F">@includeIf('floors.3f', ['rooms' => $rooms3])</template>
+<template id="tpl-4F">@includeIf('floors.4f', ['rooms' => $rooms4])</template>
 
 </body>
 </html>

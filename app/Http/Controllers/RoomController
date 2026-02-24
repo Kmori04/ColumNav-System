@@ -26,8 +26,8 @@ class RoomController extends Controller
         }
 
         $rooms = $q->orderBy('floor_number')
-                  ->orderBy('room_name')
-                  ->get();
+                   ->orderBy('room_name')
+                   ->get();
 
         return view('rooms.index', compact('rooms'));
     }
@@ -87,41 +87,84 @@ class RoomController extends Controller
     |--------------------------------------------------------------------------
     */
 
+    // ✅ Returns rooms keyed by room_id so $rooms[$id] works on ALL floors
     private function floorRooms(int $floor)
     {
-        return Room::where('is_active', 1)
-            ->where('floor_number', $floor)
-            ->orderBy('room_name')
-            ->get(['room_id', 'room_name', 'room_description']);
-    }
-
-    //FLOOR 1: keyed by room_id (best for mapping boxes to DB rows)
-    public function floor1()
-    {
-        $rooms = Room::where('is_active', 1)
-            ->where('floor_number', 1)
+        return Room::where('floor_number', $floor)
+            ->where('is_active', 1)
             ->get(['room_id', 'room_name', 'room_description'])
             ->keyBy('room_id');
+    }
+
+    public function floor1(Request $request)
+    {
+        $rooms = $this->floorRooms(1);
+
+        // Debug: /floor/1?debug=1
+        if ($request->boolean('debug')) {
+            dd([
+                'floor' => 1,
+                'count' => $rooms->count(),
+                'has_48' => $rooms->has(48),
+                'keys_sample' => $rooms->keys()->take(30),
+                'room_48' => $rooms[48] ?? null,
+            ]);
+        }
 
         return view('floors.1f', compact('rooms'));
     }
 
-    // Floors 2-4 keep normal list (you can switch to keyBy later if needed)
-    public function floor2()
+    public function floor2(Request $request)
     {
         $rooms = $this->floorRooms(2);
+
+        // Debug: /floor/2?debug=1
+        if ($request->boolean('debug')) {
+            dd([
+                'floor' => 2,
+                'count' => $rooms->count(),
+                'has_48' => $rooms->has(48),
+                'keys_sample' => $rooms->keys()->take(30),
+                'room_48' => $rooms[48] ?? null,
+            ]);
+        }
+
         return view('floors.2f', compact('rooms'));
     }
 
-    public function floor3()
+    public function floor3(Request $request)
     {
         $rooms = $this->floorRooms(3);
+
+        // Debug: /floor/3?debug=1
+        if ($request->boolean('debug')) {
+            dd([
+                'floor' => 3,
+                'count' => $rooms->count(),
+                'has_48' => $rooms->has(48),
+                'keys_sample' => $rooms->keys()->take(30),
+                'room_48' => $rooms[48] ?? null,
+            ]);
+        }
+
         return view('floors.3f', compact('rooms'));
     }
 
-    public function floor4()
+    public function floor4(Request $request)
     {
         $rooms = $this->floorRooms(4);
+
+        // Debug: /floor/4?debug=1
+        if ($request->boolean('debug')) {
+            dd([
+                'floor' => 4,
+                'count' => $rooms->count(),
+                'has_48' => $rooms->has(48),
+                'keys_sample' => $rooms->keys()->take(30),
+                'room_48' => $rooms[48] ?? null,
+            ]);
+        }
+
         return view('floors.4f', compact('rooms'));
     }
 }
