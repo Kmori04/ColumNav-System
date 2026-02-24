@@ -3,6 +3,20 @@
 
 <!-- Floor 2 -->
 
+<!-- 
+|--------------------------------------------------------------------------
+| BACKGROUND
+|--------------------------------------------------------------------------
+-->
+<div class="floor-bg floor2-bg"></div>
+<div class="floor-bg floor2-bg-mid"></div>
+<div class="floor-bg floor2-bg-bottom"></div>
+<!-- Small Patch -->
+<div class="floor-bg floor2-bg-rightpatch"></div>
+
+
+
+
     <!-- TOP PART -->
 
 
@@ -88,7 +102,7 @@
 </div>
 
 <!-- GREY "LONG" CONTAINER LINE -->
-<div class="horizontal-path" style="grid-column: 11 / 110; grid-row: 85 / 88;"></div>
+<div class="horizontal-path" style="grid-column: 11 / 106; grid-row: 85 / 88;"></div>
 <div class="path-container" style="grid-column: 27 / 1; grid-row: 5 / 86;"></div>
 <div class="path-container" style="grid-column: 72 / 74; grid-row: 17 / 86;"></div>
 <div class="horizontal-path" style="grid-column: 15 / 95; grid-row: 15 / 18;"></div>
@@ -104,7 +118,9 @@
 <div class="path-container" style="grid-column: 96 / 105; grid-row: 87 / 78;"></div>
 <div class="path-container" style="grid-column: 48 / 49; grid-row: 85 / 89;"></div>
 <div class="path-container" style="grid-column: 41 / 42; grid-row: 85 / 89;"></div>
-<div class="path-container" style="grid-column: 33 / 34; grid-row: 85 / 92;"></div>
+
+<div class="path-container" style="grid-column: 33 / 34; grid-row: 86 / 89;"></div>
+
 <div class="path-container" style="grid-column: 25 / 26; grid-row: 85 / 89;"></div>
 <div class="path-container" style="grid-column: 18 / 19; grid-row: 85 / 89;"></div>
 <div class="path-container" style="grid-column: 13 / 14; grid-row: 85 / 89;"></div>
