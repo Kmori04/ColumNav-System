@@ -9,7 +9,9 @@
 |--------------------------------------------------------------------------
 -->
 <div class="floor-bg floor2-bg"></div>
+
 <div class="floor-bg floor2-bg-mid"></div>
+
 <div class="floor-bg floor2-bg-bottom"></div>
 <!-- Small Patch -->
 <div class="floor-bg floor2-bg-rightpatch"></div>
@@ -18,8 +20,6 @@
 
 
     <!-- TOP PART -->
-
-
     <div class="room" style="grid-column: 22 / 29; grid-row: 8 / 14; border: 1.5px solid #6b93a3; background: white;"></div>
     <div class="room" style="grid-column: 29 / 38; grid-row: 8 / 14; border: 1.5px solid #6b93a3; background: white;"></div>
     <div class="room" style="grid-column: 38 / 46; grid-row: 8 / 14; border: 1.5px solid #6b93a3; background: white;"></div>

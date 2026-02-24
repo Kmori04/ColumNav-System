@@ -580,3 +580,38 @@ html, body {
   object-fit: contain;
   pointer-events: none;
 }
+
+.floor2-bg{
+  clip-path: polygon(
+    5% 3%,
+    17.5% 3%,
+    17.5% 88%,
+    2.9% 88.9%
+  );
+}
+
+.floor2-bg-mid{
+  clip-path: polygon(
+    16% 10%,
+    81% 10%,
+    81% 82%,
+    16% 82%
+  );
+}
+
+.floor2-bg-bottom{
+  clip-path: polygon(
+    16% 82%,
+    96% 82%,
+    96% 90%,
+    16% 90%
+  );
+}
+.floor2-bg-rightpatch{
+  clip-path: polygon(
+    78% 48%,
+    92% 48%,
+    92% 90%,
+    78% 90%
+  );
+}
