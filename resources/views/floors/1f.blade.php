@@ -11,14 +11,25 @@
 <div class="stairs stairs-left" style="grid-column: 4 / 11; grid-row: 4 / 10;"></div>
 
 <!-- MAINTENANCE OFFICE -->
+<svg id="path-guide-svg" class="path-guide-overlay" viewBox="0 0 120 100" preserveAspectRatio="none">
+    <g id="path-group"></g>
+</svg>
+
+
 @php
   $id = 30;
   $r  = $rooms[$id] ?? null;
 @endphp
-<div class="room" 
+
+<div class="room room-2f-new" 
      data-name="{{ $r?->room_name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 4 / 11; grid-row: 10 / 16;">
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="6" 
+     data-row-end="16"
+   
+     style="grid-column: 4 / 11; grid-row: 10 / 16; margin: 1.5px;">
   <span class="room-label">{{ $r?->room_name ?? '' }}</span>
 </div>
 <!-- MAINTENANCE OFFICE -->
@@ -34,6 +45,11 @@
 <div class="room room-leftlabel room-menimg"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="13" 
+     data-row-end="23"
+     
      style="grid-column: 1 / 11; grid-row: 16 / 23;">
   <span class="room-label">{{ $name ?? '' }}</span>
 
@@ -50,9 +66,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="21" 
+     data-row-end="30"
+     
      style="grid-column: 4 / 11; grid-row: 23 / 30;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -64,9 +86,15 @@
   $r  = $rooms[$id] ?? null;
   $forcedName = "NSTP Office";
 @endphp
+
 <div class="room"
      data-name="{{ $forcedName }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="31" 
+     data-row-end="36"
+     
      style="grid-column: 4 / 11; grid-row: 30 / 36;">
   <span class="room-label">{{ $forcedName }}</span>
 </div>
@@ -79,9 +107,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="38" 
+     data-row-end="42"
+     
      style="grid-column: 4 / 11; grid-row: 36 / 42;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -93,9 +127,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="46" 
+     data-row-end="47"
+    
      style="grid-column: 4 / 11; grid-row: 42 / 48;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -107,9 +147,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="49" 
+     data-row-end="58"
+     
      style="grid-column: 4 / 11; grid-row: 48 / 54;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -124,9 +170,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="54" 
+     data-row-end="66"
+     
      style="grid-column: 4 / 11; grid-row: 54 / 60;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -138,9 +190,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="67" 
+     data-row-end="66"
+    
      style="grid-column: 4 / 11; grid-row: 60 / 66;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -152,9 +210,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="66" 
+     data-row-end="80"
+    
      style="grid-column: 4 / 11; grid-row: 66 / 72;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -167,9 +231,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="16" 
+     data-row-start="81" 
+     data-row-end="78"
+      
      style="grid-column: 4 / 11; grid-row: 72 / 78;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -184,9 +254,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="4" 
+     data-col-end="55" 
+     data-row-start="84" 
+     data-row-end="100"
+     
      style="grid-column: 4 / 11; grid-row: 84 / 90;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -219,9 +295,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room room-crwomen-up room-womenimg"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="19" 
+     data-col-end="73" 
+     data-row-start="19" 
+     data-row-end="15"
+     data-side="right-2" 
      style="grid-column: 19 / 24; grid-row: 13 / 24; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 
@@ -238,9 +320,15 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
+
 <div class="room"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     data-col-start="20" 
+     data-col-end="73" 
+     data-row-start="30" 
+     data-row-end="24"
+     data-side="right" 
      style="grid-column: 24 / 32; grid-row: 15 / 24; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
