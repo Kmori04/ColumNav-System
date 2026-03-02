@@ -248,16 +248,95 @@ document.addEventListener("DOMContentLoaded", () => {
   viewport.style.cursor = "grab";
 });
 
-// Yellow guideline code
-const drawYellowLine = (ctx) => {
-    ctx.strokeStyle = "yellow";
-    ctx.lineWidth = 10; // Original 4 + 6
-    ctx.lineCap = "round";
-    
-    ctx.beginPath();
-    ctx.moveTo(16, 16); // Original 10,10 + 6
-    ctx.lineTo(106, 106); // Original 100,100 + 6
-    ctx.stroke();
-    
-    console.log("Yellow guide active at opacity 0.8");
-};
+ 
+// #YELLOW LINE#
+ 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const rooms = document.querySelectorAll('.room');
+    const pathGroup = document.getElementById('path-group');
+
+    rooms.forEach(room => {
+        room.addEventListener('click', function() {
+            // 1. Toggle Logic
+            const isAlreadySelected = this.classList.contains('room-click');
+
+            // 2. Reset UI
+            document.querySelectorAll('.room').forEach(r => r.classList.remove('room-click'));
+            if (pathGroup) pathGroup.innerHTML = '';
+
+            if (isAlreadySelected) return;
+
+            // 4. Activate current room
+            this.classList.add('room-click');
+
+            // 5. Extract Coordinates
+            const cStart = parseInt(this.dataset.colStart);
+            const cEnd = parseInt(this.dataset.colEnd);
+            const rStart = parseInt(this.dataset.rowStart);
+            const rEnd = parseInt(this.dataset.rowEnd);
+            const side = this.dataset.side; 
+
+            // 6. Math Calculations
+            const roomX = (cStart + cEnd) / 5.2; 
+            const roomY = ((rStart + rEnd) / 2.2) + 2; 
+
+            const startX = 54; 
+            const startY = 92;
+            const mainCorridorY = 85.7;
+
+            // 7. SMART PATH LOGIC
+            const entryX = (side === 'right' || side === 'right-2') ? (roomX - 5) : (roomX + 6);
+            
+            // Thrust Logic (Horizontal)
+            let thrust = 0; 
+            if (side === 'right-2') {
+                thrust = 1;
+            } else if (side === 'right') {
+                thrust = 11;
+            }
+            
+            const endX = roomX + thrust;
+
+            // --- UPRIGHT LOGIC ---
+            // Changed the second 3 to 0. 
+            // Now, if NOT 'upright', length is 0 and the line vanishes.
+            const upwardLength = (side === 'upright') ? 3 : 0;
+            const endY = roomY - upwardLength;
+
+            const points = [
+                {x: startX, y: startY},           
+                {x: startX, y: mainCorridorY},     
+                {x: entryX, y: mainCorridorY},     
+                {x: entryX, y: roomY},             
+                {x: roomX, y: roomY},              
+                {x: endX, y: roomY},               
+                {x: endX, y: endY}                 
+            ];
+
+            // 8. Generate SVG Path
+            const d = points.map((p, i) => (i === 0 ? 'M' : 'L') + ` ${p.x} ${p.y}`).join(' ');
+
+            if(pathGroup) {
+                pathGroup.innerHTML = `
+                    <path d="${d}" 
+                          stroke="#fbbf24" 
+                          stroke-width="0.6" 
+                          fill="none" 
+                          stroke-linecap="round" 
+                          stroke-linejoin="round"
+                          stroke-dasharray="200" 
+                          stroke-dashoffset="200"
+                          style="animation: drawPath 1.6s forwards, pulsePath 2s infinite 1.2s" />
+                    
+                    <circle cx="${endX}" cy="${endY}" r="0.6" fill="#ef4444">
+                        <animate attributeName="r" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite" />
+                    </circle>
+                `;
+            }
+        });
+    });
+});
+
+

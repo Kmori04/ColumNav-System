@@ -615,3 +615,39 @@ html, body {
     78% 90%
   );
 }
+
+
+
+
+
+
+/* --- TEST --- */
+
+/* Yellow Line Highlight for the Room */
+.room.room-click {
+    outline: 3px solid #fbbf24 !important;
+    outline-offset: -3px;
+    z-index: 60 !important;
+    transition: all 0.2s ease;
+}
+
+/* Path Animations */
+@keyframes drawPath {
+    from { stroke-dashoffset: 200; }
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes pulsePath {
+    0%, 100% { stroke-width: 0.8; opacity: 1; }
+    50% { stroke-width: 1.2; opacity: 0.8; }
+}
+
+.path-guide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+}
