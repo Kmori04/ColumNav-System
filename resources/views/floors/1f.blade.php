@@ -764,7 +764,7 @@
 <div class="stairs stairs-right" style="grid-column: 80 / 86; grid-row: 76 / 83; margin: 1.5px;"></div>
 
 <!-- STAGE -->
-<div class="room no-hover" style="grid-column: 29 / 37; grid-row: 38 / 68; margin: 1.5px; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+<div class="room no-hover" style="grid-column: 29 / 37; grid-row: 38 / 68; margin: 1.5px; display: flex; align-items: center; justify-content: center; font-weight: 500px;">
   Stage
 </div>
 <!-- 

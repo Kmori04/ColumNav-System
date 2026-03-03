@@ -248,8 +248,10 @@ html, body {
 .map-builder.floor-3 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
 .map-builder.floor-4 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
 
+/* ===== ROOMS + STAIRS BASE ===== */
 .room,
-.stairs {
+.stairs,
+.stairs-down {
   width: 100%;
   height: 100%;
   margin: 0 !important;
@@ -260,47 +262,14 @@ html, body {
   z-index: 2;
 }
 
-.room {
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: 700;
-  color: #0c3b66;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 3px;
-  word-break: break-word;
-  overflow: hidden;
-  transition: all .18s ease;
-}
-
-.room:hover {
-  background: #eef6ff;
-  outline: 3px solid rgba(37,99,235,.25);
-}
-
-.room.is-selected{
-  background: #e6f0ff;
-  border-color: #2563eb;
-  outline: 4px solid rgba(37,99,235,.35);
-  box-shadow: 0 6px 16px rgba(37,99,235,.18);
-  z-index: 5; 
-}
-
-.room.is-selected:hover{
-  background: #dbeafe;
-  outline: 4px solid rgba(37,99,235,.40);
-}
-
+/* ===== STAIRS (UP) ===== */
 .stairs{
   position: relative;
   overflow: hidden;
   background: #fff;
-  border: 1px solid #6b93a3;
-  border-radius: 6px;
 }
 
+/* step lines */
 .stairs::before{
   content:"";
   position:absolute;
@@ -313,6 +282,7 @@ html, body {
     );
 }
 
+/* arrow UP */
 .stairs::after{
   content:"";
   position:absolute;
@@ -327,6 +297,7 @@ html, body {
   filter: drop-shadow(0 2px 0 rgba(12,59,102,.15));
 }
 
+/* ===== STAIRS LEFT ===== */
 .stairs.stairs-left::before{
   background:
     repeating-linear-gradient(
@@ -344,6 +315,63 @@ html, body {
   border-right: 16px solid rgba(12,59,102,.55);
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
+}
+
+/* ===== STAIRS RIGHT ===== */
+.stairs.stairs-right::before{
+  background:
+    repeating-linear-gradient(
+      to right,
+      rgba(12,59,102,.60) 0 2px,
+      transparent 2px 9px
+    );
+}
+
+.stairs.stairs-right::after{
+  left: auto;
+  right: 18%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right: 0;
+  border-left: 16px solid rgba(12,59,102,.55);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+/* ===== STAIRS DOWN (NEW) ===== */
+.stairs-down{
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* step lines (same as stairs) */
+.stairs-down::before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(12,59,102,.60) 0 2px,
+      transparent 2px 9px
+    );
+}
+
+/* arrow DOWN (flipped) */
+.stairs-down::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:18%;
+  width:0;
+  height:0;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 16px solid rgba(12,59,102,.55);
+  border-bottom: 0;
+  filter: drop-shadow(0 2px 0 rgba(12,59,102,.15));
 }
 
 .zoom-controls {
@@ -378,6 +406,7 @@ html, body {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
+
 
 /* PARA DI MAG  hovver */
 .no-hover:hover {
@@ -526,7 +555,7 @@ html, body {
 
   padding: 4px;
   font-size: 10px;
-  font-weight: 510;
+  font-weight: 500;
   line-height: 1.1;
 
   z-index: 9999;
@@ -644,6 +673,14 @@ html, body {
   );
 }
 
+.floor4-bg-mid{
+  clip-path: polygon(
+    7.5% 17%,
+    86% 17%,
+    86% 95%,
+    7.5% 95%
+  );
+}
 
 
 /* --- TEST --- */
