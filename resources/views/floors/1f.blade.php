@@ -1249,7 +1249,7 @@
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 53 / 56;"></div>
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 67 / 70;"></div>
 <div class="horizontal-path" style="grid-column: 77 / 80; grid-row: 78 / 81;"></div>
- <div class="horizontal-path" style="grid-column: 75 / 78; grid-row: 36 / 39;"></div>
+<div class="horizontal-path" style="grid-column: 75 / 78; grid-row: 36 / 39;"></div>
 
 
 <!--SMALL PATH TOP PART " -->
