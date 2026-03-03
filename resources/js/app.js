@@ -259,52 +259,66 @@ document.addEventListener('DOMContentLoaded', function() {
 
     rooms.forEach(room => {
         room.addEventListener('click', function() {
-            // 1. Toggle Logic
+            // 1. Reset UI & Toggle Selection
             const isAlreadySelected = this.classList.contains('room-click');
-
-            // 2. Reset UI
             document.querySelectorAll('.room').forEach(r => r.classList.remove('room-click'));
+            
+            // Always clear the existing path first
             if (pathGroup) pathGroup.innerHTML = '';
-
+            
             if (isAlreadySelected) return;
 
-            // 4. Activate current room
+            // 2. Add highlight to the clicked room
             this.classList.add('room-click');
 
-            // 5. Extract Coordinates
-            const cStart = parseInt(this.dataset.colStart);
-            const cEnd = parseInt(this.dataset.colEnd);
-            const rStart = parseInt(this.dataset.rowStart);
-            const rEnd = parseInt(this.dataset.rowEnd);
-            const side = this.dataset.side; 
+            // --- 3. THE HIDE CHECK ---
+            // If data-hide-path="true" is on the element, stop here.
+            // This prevents the horizontal (right-2/thrust) and vertical lines from appearing.
+            if (this.dataset.hidePath === "true") {
+                return; 
+            }
 
-            // 6. Math Calculations
+            // 4. Extract Data for normal rooms
+            const cStart = parseFloat(this.dataset.colStart);
+            const cEnd = parseFloat(this.dataset.colEnd);
+            const rStart = parseFloat(this.dataset.rowStart);
+            const rEnd = parseFloat(this.dataset.rowEnd);
+            const side = this.dataset.side || 'left'; 
+            const customThrust = this.dataset.thrust ? parseFloat(this.dataset.thrust) : null;
+
+            // 5. Grid to SVG Calculations
             const roomX = (cStart + cEnd) / 5.2; 
             const roomY = ((rStart + rEnd) / 2.2) + 2; 
 
-            const startX = 54; 
+            const startX = 53.8; 
             const startY = 92;
             const mainCorridorY = 85.7;
 
-            // 7. SMART PATH LOGIC
-            const entryX = (side === 'right' || side === 'right-2') ? (roomX - 5) : (roomX + 6);
+            // 6. Entry Logic
+            let entryX;
+            if (customThrust < 0) {
+                entryX = roomX + 1; 
+            } else {
+                entryX = (side.includes('right')) ? (roomX - 5) : (roomX + 6);
+            }
             
-            // Thrust Logic (Horizontal)
-            let thrust = 0; 
-            if (side === 'right-2') {
+            // 7. Horizontal Thrust Logic
+            let thrust = 0;
+            if (customThrust !== null) {
+                thrust = customThrust;
+            } else if (side === 'right' || side === 'upright') {
+                thrust = 4;
+            } else if (side === 'right-2') {
                 thrust = 1;
-            } else if (side === 'right') {
-                thrust = 11;
             }
             
             const endX = roomX + thrust;
 
-            // --- UPRIGHT LOGIC ---
-            // Changed the second 3 to 0. 
-            // Now, if NOT 'upright', length is 0 and the line vanishes.
+            // 8. Vertical Hook Logic
             const upwardLength = (side === 'upright') ? 3 : 0;
             const endY = roomY - upwardLength;
 
+            // 9. Point Array
             const points = [
                 {x: startX, y: startY},           
                 {x: startX, y: mainCorridorY},     
@@ -315,20 +329,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 {x: endX, y: endY}                 
             ];
 
-            // 8. Generate SVG Path
+            // 10. Generate Path String
             const d = points.map((p, i) => (i === 0 ? 'M' : 'L') + ` ${p.x} ${p.y}`).join(' ');
 
+            
+
+            // 11. Render SVG Path
             if(pathGroup) {
                 pathGroup.innerHTML = `
                     <path d="${d}" 
                           stroke="#fbbf24" 
-                          stroke-width="0.6" 
+                          stroke-width="0.4" 
                           fill="none" 
                           stroke-linecap="round" 
                           stroke-linejoin="round"
                           stroke-dasharray="200" 
                           stroke-dashoffset="200"
-                          style="animation: drawPath 1.6s forwards, pulsePath 2s infinite 1.2s" />
+                          style="animation: drawPath 2.6s forwards, pulsePath 2.6s infinite 0.6s" />
                     
                     <circle cx="${endX}" cy="${endY}" r="0.6" fill="#ef4444">
                         <animate attributeName="r" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite" />
@@ -338,5 +355,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-

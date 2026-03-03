@@ -664,7 +664,7 @@ html, body {
 
 @keyframes pulsePath {
     0%, 100% { stroke-width: 0.8; opacity: 1; }
-    50% { stroke-width: 1.2; opacity: 0.8; }
+    50% { stroke-width: .3; opacity: 0.8; }
 }
 
 .path-guide-overlay {
@@ -676,3 +676,4 @@ html, body {
     pointer-events: none;
     z-index: 50;
 }
+
