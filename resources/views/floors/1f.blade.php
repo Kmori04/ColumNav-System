@@ -351,6 +351,7 @@
 
 <div class="room"
      data-name="{{ $name27 ?? 'Unknown Room' }}"
+     data-desc="{{ $r27?->room_description ?? 'No description yet.' }}"
      data-col-start="32" 
      data-col-end="60" 
      data-row-start="29" 
