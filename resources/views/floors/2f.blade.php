@@ -552,7 +552,21 @@
 
 
     <!-- Taas ng Library No info -->
-    <div class="room" style="grid-column: 96 / 105; grid-row: 12 / 24; border: 1.5px solid #6b93a3; background: white;"></div>
+    <!-- C111 -->
+@php
+  $id = 126;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+@endphp
+
+    <div class="room"
+        data-id="{{ $id }}"
+        data-name="{{ $name ?? 'Unknown Room' }}"
+        data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+        style="grid-column: 96 / 105; grid-row: 12 / 24; border: 1.5px solid #6b93a3; background: white;">
+        <span class="room-label">{{ $name ?? '' }}</span>
+      </div>
+    <!-- C111 -->
 
     <!-- below (no hover) Pader -->
     <div class="room" style="grid-column: 92 / 106; grid-row: 24 / 51; border: 1.5px solid #6b93a3; background: white; pointer-events: none;"></div>

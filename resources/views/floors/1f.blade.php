@@ -15,7 +15,6 @@
     <g id="path-group"></g>
 </svg>
 
-
 @php
   $id = 30;
   $r  = $rooms[$id] ?? null;
