@@ -33,7 +33,9 @@
   <div class="topbar-inner">
     <div class="cc">
       <div class="cc-logo">
-        <img src="{{ Vite::asset('resources/images/ColumbanCollegeLogo.png') }}" alt="Columban College Logo">
+          <a href="{{ route('login.show') }}">
+            <img src="{{ Vite::asset('resources/images/ColumbanCollegeLogo.png') }}" alt="Columban College Logo">
+           </a>
       </div>
       <h1 class="cc-title">Columban College - Campus Navigation</h1>
     </div>
@@ -44,7 +46,7 @@
         <option value="1F" selected>1F</option>
         <option value="2F">2F</option>
         <option value="3F">3F</option>
-        <option value="4F" selected>4F</option>
+        <option value="4F">4F</option>
       </select>
     </div>
   </div>

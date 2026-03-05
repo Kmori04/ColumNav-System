@@ -1,27 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminRoomController;
 use App\Models\Room;
 
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
 /*
 |--------------------------------------------------------------------------
-| PUBLIC (USER)
+| GUEST / PUBLIC (no login required)
 |--------------------------------------------------------------------------
 */
-
-// HOME (public) - loads FLOOR 1 rooms keyed by room_id (for box mapping like $rooms[30])
 Route::get('/', function () {
     $rooms = Room::where('is_active', 1)
         ->where('floor_number', 1)
-        ->get(['room_id', 'room_name', 'room_description'])
-        ->keyBy('room_id'); // ✅ key = room_id (used to match boxes)
+        ->get(['room_id','room_name','room_description'])
+        ->keyBy('room_id');
 
     return view('home', compact('rooms'));
 })->name('home');
 
-// Floors (map pages)
 Route::get('/floor/1', [RoomController::class, 'floor1'])->name('floor.1');
 Route::get('/floor/2', [RoomController::class, 'floor2'])->name('floor.2');
 Route::get('/floor/3', [RoomController::class, 'floor3'])->name('floor.3');
@@ -29,26 +31,38 @@ Route::get('/floor/4', [RoomController::class, 'floor4'])->name('floor.4');
 
 /*
 |--------------------------------------------------------------------------
-| ADMIN AUTH (public)
+| ADMIN LOGIN
 |--------------------------------------------------------------------------
 */
-
-Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+Route::get('/login', [LoginController::class, 'show'])->name('login.show');
+Route::post('/login', [LoginController::class, 'login'])->name('login.do');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 /*
 |--------------------------------------------------------------------------
-| ADMIN (protected)
+| ADMIN AREA (must be logged in)
 |--------------------------------------------------------------------------
 */
+Route::middleware('auth')->group(function () {
 
-Route::middleware('admin.auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
 
-    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+    /*
+    |--------------------------------------------------------------------------
+    | ADMIN: Rooms Management (bind using room_id)
+    |--------------------------------------------------------------------------
+    | IMPORTANT: {room:room_id} fixes route-model binding when PK is room_id
+    */
+    Route::prefix('admin')->name('admin.')->group(function () {
 
-    // Rooms CRUD (admin only)
-    Route::resource('rooms', RoomController::class)->except(['show']);
+        Route::get('/rooms', [AdminRoomController::class, 'index'])->name('rooms.index');
+
+        Route::get('/rooms/{room:room_id}/edit', [AdminRoomController::class, 'edit'])->name('rooms.edit');
+
+        Route::put('/rooms/{room:room_id}', [AdminRoomController::class, 'update'])->name('rooms.update');
+
+    });
+
 });

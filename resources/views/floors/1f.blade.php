@@ -22,6 +22,7 @@
 @endphp
 
 <div class="room room-2f-new" 
+     data-id="{{ $id }}"
      data-name="{{ $r?->room_name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -43,6 +44,7 @@
 @endphp
 
 <div class="room room-leftlabel room-menimg"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -68,6 +70,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -88,6 +91,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $forcedName }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -109,6 +113,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -129,6 +134,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -149,6 +155,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -172,6 +179,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -192,6 +200,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -212,6 +221,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -233,6 +243,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="20" 
@@ -256,6 +267,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="4" 
@@ -283,6 +295,7 @@
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="19" 
@@ -303,6 +316,7 @@
 @endphp
 
 <div class="room room-crwomen-up room-womenimg"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="19" 
@@ -328,6 +342,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name28 ?? 'Unknown Room' }}"
      data-desc="{{ $r28?->room_description ?? 'No description yet.' }}"
      data-col-start="38" 
@@ -350,6 +365,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name27 ?? 'Unknown Room' }}"
      data-desc="{{ $r27?->room_description ?? 'No description yet.' }}"
      data-col-start="32" 
@@ -379,6 +395,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -402,6 +419,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -429,6 +447,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -455,6 +474,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -477,6 +497,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -491,6 +512,7 @@
 <!-- SEWING DEPARTMENT -->
 
 <!-- TOP RIGHT ROOM -->
+
 <!-- V108 -->
 @php
   $id = 21;
@@ -499,6 +521,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -526,6 +549,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -547,6 +571,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -568,6 +593,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -588,6 +614,7 @@
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -608,6 +635,7 @@
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -631,6 +659,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -656,6 +685,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -682,6 +712,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -704,6 +735,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -726,6 +758,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -748,6 +781,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -786,6 +820,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -817,6 +852,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -845,6 +881,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -872,6 +909,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
@@ -905,6 +943,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="39" 
@@ -926,6 +965,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="67" 
@@ -948,6 +988,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
@@ -969,6 +1010,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
@@ -990,6 +1032,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
@@ -1011,6 +1054,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
@@ -1044,6 +1088,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
@@ -1066,6 +1111,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
@@ -1089,6 +1135,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
@@ -1111,6 +1158,7 @@
 @endphp
 
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
@@ -1132,6 +1180,7 @@
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
@@ -1153,6 +1202,7 @@
   $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
 <div class="room"
+     data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
