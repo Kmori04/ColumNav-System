@@ -122,29 +122,35 @@ padding: 14px 18px 30px;
 }
 
 .description-box{
-height: auto;
+  /* ✅ fixed box so sidebar doesn't move */
+  height:70px;            /* adjust: 140 / 160 / 200 */
+  min-height: 8px;
+  max-height: 160px;
 
-min-height: 34px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
 
-border-radius: 12px;
-display: flex;
-justify-content: center;
-align-items: flex-start;
-text-align: center;
+  padding: 12px 10px;
+  margin-top: 0;
 
-padding: 0 10px;
-
-margin-top: 0;
-
-overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #roomDescText{
-margin: 0;
-padding: 0;
-line-height: 1.15;
-transform: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
 
+  /* ✅ prevent overflow issues */
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  width: 100%;
+  transform: none;
 }
 
 .legend-card {
@@ -701,3 +707,4 @@ height: 100%;
 pointer-events: none;
 z-index: 50;
 }
+
