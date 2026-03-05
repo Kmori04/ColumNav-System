@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // -----------------------------
   // ✅ YELLOW PATH (delegated)
   // -----------------------------
-  function drawYellowPath(roomEl) {
+function drawYellowPath(roomEl) {
     const pathGroup = document.getElementById("path-group");
     if (!pathGroup) return;
 
@@ -191,16 +191,19 @@ document.addEventListener("DOMContentLoaded", () => {
       return; // don't draw if missing coords
     }
 
+    // --- UPDATED FOR ADJUSTABILITY ---
+    // Grabs from HTML data-attributes, defaults to your original values if empty
+    const startX = parseFloat(roomEl.dataset.startX) || 53.8;
+    const startY = parseFloat(roomEl.dataset.startY) || 92;
+    const mainCorridorY = parseFloat(roomEl.dataset.corridorY) || 85.7;
+    // ---------------------------------
+
     const side = roomEl.dataset.side || "left";
     const customThrust = roomEl.dataset.thrust ? parseFloat(roomEl.dataset.thrust) : null;
 
-    // Grid to SVG calculations (same as yours)
+    // Grid to SVG calculations
     const roomX = (cStart + cEnd) / 5.2;
     const roomY = ((rStart + rEnd) / 2.2) + 2;
-
-    const startX = 53.8;
-    const startY = 92;
-    const mainCorridorY = 85.7;
 
     // Entry Logic
     let entryX;
@@ -238,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const d = points.map((p, i) => (i === 0 ? "M" : "L") + ` ${p.x} ${p.y}`).join(" ");
 
+    // Kept exactly as your original code to maintain animation
     pathGroup.innerHTML = `
       <path d="${d}"
             stroke="#fbbf24"
@@ -253,8 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <animate attributeName="r" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite" />
       </circle>
     `;
-  }
-
+}
   // -----------------------------
   // ✅ ONE CLICK HANDLER (works after floor swap)
   // - toggles selection

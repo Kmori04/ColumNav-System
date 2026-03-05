@@ -18,6 +18,7 @@
 
 
 
+
 <!-- 
 |--------------------------------------------------------------------------
 | TOP PART
@@ -27,19 +28,46 @@
 
  <!-- C201 -->
 @php
-  $id = 48;
-  $r  = $rooms[$id] ?? null;
-  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+    $id = 48;
+    $r = $rooms[$id] ?? null;
+    $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-2f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
-     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 16 / 22; grid-row: 8 / 14; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
-</div>
-<!-- C201 -->
+     
+     /* GRID COORDINATES */
+     data-col-start="16"
+     data-col-end="111"
+     data-row-start="1"
+     data-row-end="22"
+     
+     /* ADJUST THE CALCULATION HERE */
+     data-x-divisor="6.3"
+     data-y-divisor="2.2"
+     data-y-offset="2"
 
+     /* STARTING POINT SETTINGS */
+     data-start-x="9.4"
+     data-start-y="6.0"
+     data-corridor-y="15.2"
+     
+     /* OTHER PATH SETTINGS */
+     data-thrust=0"
+     data-side="right"
+     
+     onclick="drawYellowPath(this)"
+     style="grid-column: 16 / 22; grid-row: 8 / 14; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+    <span class="room-label">{{ $name ?? '' }}</span>
+</div>
+
+<svg id="svg-overlay"
+     viewBox="0 0 100 100"
+     preserveAspectRatio="none"
+     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;">
+    <g id="path-group"></g>
+</svg>
 <!-- C202 -->
 @php
   $id = 49;
