@@ -7,20 +7,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const builder = document.getElementById("mapBuilder");
   const floorSelect = document.getElementById("floorSelect");
 
-  // DESCRIPTION elements (make sure these IDs exist in home.blade.php)
+  // DESCRIPTION elements
   const descNameEl = document.getElementById("roomDescName"); // optional
   const descTextEl = document.getElementById("roomDescText"); // required
 
   if (!viewport || !layer || !builder) return;
 
+  const DEFAULT_DESC = "Tap any room box on the map to see its description here.";
+
   // Helper to set description UI
   const setDescription = (name, desc) => {
     if (descNameEl) descNameEl.textContent = name || "";
-    if (descTextEl) descTextEl.textContent = (desc || "").trim(); // never show "No description yet"
+    if (descTextEl) descTextEl.textContent = (desc || "").trim() || DEFAULT_DESC;
   };
 
   // Default description text
-  const DEFAULT_DESC = "Tap any room box on the map to see its description here.";
   setDescription("", DEFAULT_DESC);
 
   // Zoom/Pan values
@@ -136,6 +137,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const clearSelection = () => {
     document.querySelectorAll(".room.is-selected").forEach((el) => el.classList.remove("is-selected"));
+    document.querySelectorAll(".room.room-click").forEach((el) => el.classList.remove("room-click"));
+
+    // clear yellow path (works even after floor swap)
+    const pathGroup = document.getElementById("path-group");
+    if (pathGroup) pathGroup.innerHTML = "";
+
     setDescription("", DEFAULT_DESC);
   };
 
@@ -144,14 +151,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const tpl = document.getElementById(`tpl-${floor}`);
     if (!tpl) return;
 
-    // swap blocks
     builder.innerHTML = tpl.innerHTML;
 
-    // swap per-floor grid class
     builder.classList.remove("floor-1", "floor-2", "floor-3", "floor-4");
     builder.classList.add(`floor-${floor.replace("F", "")}`);
 
-    // clear selection + reset description
     clearSelection();
 
     requestAnimationFrame(resetView);
@@ -164,29 +168,129 @@ document.addEventListener("DOMContentLoaded", () => {
     resetView();
   }
 
-  // CLICK ROOM -> click again = unselect
+  // -----------------------------
+  // ✅ YELLOW PATH (delegated)
+  // -----------------------------
+  function drawYellowPath(roomEl) {
+    const pathGroup = document.getElementById("path-group");
+    if (!pathGroup) return;
+
+    // Always clear existing path
+    pathGroup.innerHTML = "";
+
+    // hide path support
+    if (roomEl.dataset.hidePath === "true") return;
+
+    // must have these dataset values
+    const cStart = parseFloat(roomEl.dataset.colStart);
+    const cEnd = parseFloat(roomEl.dataset.colEnd);
+    const rStart = parseFloat(roomEl.dataset.rowStart);
+    const rEnd = parseFloat(roomEl.dataset.rowEnd);
+
+    if ([cStart, cEnd, rStart, rEnd].some((v) => Number.isNaN(v))) {
+      return; // don't draw if missing coords
+    }
+
+    const side = roomEl.dataset.side || "left";
+    const customThrust = roomEl.dataset.thrust ? parseFloat(roomEl.dataset.thrust) : null;
+
+    // Grid to SVG calculations (same as yours)
+    const roomX = (cStart + cEnd) / 5.2;
+    const roomY = ((rStart + rEnd) / 2.2) + 2;
+
+    const startX = 53.8;
+    const startY = 92;
+    const mainCorridorY = 85.7;
+
+    // Entry Logic
+    let entryX;
+    if (customThrust !== null && customThrust < 0) {
+      entryX = roomX + 1;
+    } else {
+      entryX = (side.includes("right")) ? (roomX - 5) : (roomX + 6);
+    }
+
+    // Horizontal Thrust Logic
+    let thrust = 0;
+    if (customThrust !== null && !Number.isNaN(customThrust)) {
+      thrust = customThrust;
+    } else if (side === "right" || side === "upright") {
+      thrust = 4;
+    } else if (side === "right-2") {
+      thrust = 1;
+    }
+
+    const endX = roomX + thrust;
+
+    // Vertical Hook Logic
+    const upwardLength = (side === "upright") ? 3 : 0;
+    const endY = roomY - upwardLength;
+
+    const points = [
+      { x: startX, y: startY },
+      { x: startX, y: mainCorridorY },
+      { x: entryX, y: mainCorridorY },
+      { x: entryX, y: roomY },
+      { x: roomX, y: roomY },
+      { x: endX, y: roomY },
+      { x: endX, y: endY }
+    ];
+
+    const d = points.map((p, i) => (i === 0 ? "M" : "L") + ` ${p.x} ${p.y}`).join(" ");
+
+    pathGroup.innerHTML = `
+      <path d="${d}"
+            stroke="#fbbf24"
+            stroke-width="0.4"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-dasharray="200"
+            stroke-dashoffset="200"
+            style="animation: drawPath 2.6s forwards, pulsePath 2.6s infinite 0.6s" />
+
+      <circle cx="${endX}" cy="${endY}" r="0.6" fill="#ef4444">
+        <animate attributeName="r" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite" />
+      </circle>
+    `;
+  }
+
+  // -----------------------------
+  // ✅ ONE CLICK HANDLER (works after floor swap)
+  // - toggles selection
+  // - updates description
+  // - draws yellow path
+  // -----------------------------
   document.addEventListener("click", (e) => {
     const roomEl = e.target.closest(".room");
     if (!roomEl) return;
 
-    const isAlreadySelected = roomEl.classList.contains("is-selected");
+    const alreadySelected = roomEl.classList.contains("is-selected");
 
-    // remove previous highlight
+    // clear old selection + path highlight
     document.querySelectorAll(".room.is-selected").forEach((el) => el.classList.remove("is-selected"));
+    document.querySelectorAll(".room.room-click").forEach((el) => el.classList.remove("room-click"));
 
-    if (isAlreadySelected) {
-      // ✅ unselect + reset description
+    // clear existing path
+    const pathGroup = document.getElementById("path-group");
+    if (pathGroup) pathGroup.innerHTML = "";
+
+    if (alreadySelected) {
       setDescription("", DEFAULT_DESC);
       return;
     }
 
-    // ✅ select new room
+    // select
     roomEl.classList.add("is-selected");
+    roomEl.classList.add("room-click");
 
-    // update description box
+    // description
     const name = (roomEl.dataset.name || "").trim();
     const desc = (roomEl.dataset.desc || "").trim();
     setDescription(name, desc);
+
+    // yellow path
+    drawYellowPath(roomEl);
   });
 
   // Zoom
@@ -220,8 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Pan
   let isDragging = false;
-  let startX = 0,
-    startY = 0;
+  let startX = 0, startY = 0;
 
   viewport.addEventListener("mousedown", (e) => {
     isDragging = true;
@@ -246,112 +349,4 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", resetView);
 
   viewport.style.cursor = "grab";
-});
-
- 
-// #YELLOW LINE#
- 
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const rooms = document.querySelectorAll('.room');
-    const pathGroup = document.getElementById('path-group');
-
-    rooms.forEach(room => {
-        room.addEventListener('click', function() {
-            // 1. Reset UI & Toggle Selection
-            const isAlreadySelected = this.classList.contains('room-click');
-            document.querySelectorAll('.room').forEach(r => r.classList.remove('room-click'));
-            
-            // Always clear the existing path first
-            if (pathGroup) pathGroup.innerHTML = '';
-            
-            if (isAlreadySelected) return;
-
-            // 2. Add highlight to the clicked room
-            this.classList.add('room-click');
-
-            // --- 3. THE HIDE CHECK ---
-            // If data-hide-path="true" is on the element, stop here.
-            // This prevents the horizontal (right-2/thrust) and vertical lines from appearing.
-            if (this.dataset.hidePath === "true") {
-                return; 
-            }
-
-            // 4. Extract Data for normal rooms
-            const cStart = parseFloat(this.dataset.colStart);
-            const cEnd = parseFloat(this.dataset.colEnd);
-            const rStart = parseFloat(this.dataset.rowStart);
-            const rEnd = parseFloat(this.dataset.rowEnd);
-            const side = this.dataset.side || 'left'; 
-            const customThrust = this.dataset.thrust ? parseFloat(this.dataset.thrust) : null;
-
-            // 5. Grid to SVG Calculations
-            const roomX = (cStart + cEnd) / 5.2; 
-            const roomY = ((rStart + rEnd) / 2.2) + 2; 
-
-            const startX = 53.8; 
-            const startY = 92;
-            const mainCorridorY = 85.7;
-
-            // 6. Entry Logic
-            let entryX;
-            if (customThrust < 0) {
-                entryX = roomX + 1; 
-            } else {
-                entryX = (side.includes('right')) ? (roomX - 5) : (roomX + 6);
-            }
-            
-            // 7. Horizontal Thrust Logic
-            let thrust = 0;
-            if (customThrust !== null) {
-                thrust = customThrust;
-            } else if (side === 'right' || side === 'upright') {
-                thrust = 4;
-            } else if (side === 'right-2') {
-                thrust = 1;
-            }
-            
-            const endX = roomX + thrust;
-
-            // 8. Vertical Hook Logic
-            const upwardLength = (side === 'upright') ? 3 : 0;
-            const endY = roomY - upwardLength;
-
-            // 9. Point Array
-            const points = [
-                {x: startX, y: startY},           
-                {x: startX, y: mainCorridorY},     
-                {x: entryX, y: mainCorridorY},     
-                {x: entryX, y: roomY},             
-                {x: roomX, y: roomY},              
-                {x: endX, y: roomY},               
-                {x: endX, y: endY}                 
-            ];
-
-            // 10. Generate Path String
-            const d = points.map((p, i) => (i === 0 ? 'M' : 'L') + ` ${p.x} ${p.y}`).join(' ');
-
-            
-
-            // 11. Render SVG Path
-            if(pathGroup) {
-                pathGroup.innerHTML = `
-                    <path d="${d}" 
-                          stroke="#fbbf24" 
-                          stroke-width="0.4" 
-                          fill="none" 
-                          stroke-linecap="round" 
-                          stroke-linejoin="round"
-                          stroke-dasharray="200" 
-                          stroke-dashoffset="200"
-                          style="animation: drawPath 2.6s forwards, pulsePath 2.6s infinite 0.6s" />
-                    
-                    <circle cx="${endX}" cy="${endY}" r="0.6" fill="#ef4444">
-                        <animate attributeName="r" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite" />
-                    </circle>
-                `;
-            }
-        });
-    });
 });
