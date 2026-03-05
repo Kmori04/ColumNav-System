@@ -28,7 +28,6 @@
      data-col-end="16" 
      data-row-start="6" 
      data-row-end="16"
-     data-thrust="0"
      style="grid-column: 4 / 11; grid-row: 10 / 16; margin: 1.5px;">
   <span class="room-label">{{ $r?->room_name ?? '' }}</span>
 </div>
