@@ -254,17 +254,21 @@
 
 <script>
 (function () {
-  const btnEdit = document.getElementById('btnEditRoom');
-  const hiddenId = document.getElementById('selectedRoomId');
+  const btnEdit   = document.getElementById('btnEditRoom');
+  const hiddenId  = document.getElementById('selectedRoomId');
 
-  const modal = document.getElementById('editModal');
-  const editName = document.getElementById('editName');
-  const editDesc = document.getElementById('editDesc');
-  const editRoomIdText = document.getElementById('editRoomIdText');
+  const modal         = document.getElementById('editModal');
+  const editName      = document.getElementById('editName');
+  const editDesc      = document.getElementById('editDesc');
+  const editRoomIdText= document.getElementById('editRoomIdText');
 
-  const btnCancel = document.getElementById('btnCancelEdit');
+  const btnCancel  = document.getElementById('btnCancelEdit');
   const btnCancel2 = document.getElementById('btnCancelEdit2');
-  const btnSave = document.getElementById('btnSaveEdit');
+  const btnSave    = document.getElementById('btnSaveEdit');
+
+  // ✅ description panel elements (so no reload needed)
+  const roomDescBox  = document.getElementById('roomDescBox');
+  const roomDescText = document.getElementById('roomDescText');
 
   let currentRoomEl = null;
 
@@ -279,6 +283,20 @@
     modal.setAttribute('aria-hidden', 'true');
   }
 
+  // ✅ helper: update the left description panel immediately
+  function renderDescFromRoom(roomEl) {
+    if (!roomDescText) return;
+
+    const name = roomEl?.getAttribute('data-name') || 'Unknown Room';
+    const desc = roomEl?.getAttribute('data-desc') || 'No description yet.';
+
+    // If your CSS expects plain text only:
+    roomDescText.textContent = desc;
+
+    // (optional) add a tiny visual cue on box
+    if (roomDescBox) roomDescBox.style.outline = 'none';
+  }
+
   // Select room when clicking on map room blocks
   document.addEventListener('click', function (e) {
     const roomEl = e.target.closest('.room');
@@ -290,6 +308,9 @@
     currentRoomEl = roomEl;
     hiddenId.value = rid;
     btnEdit.disabled = false;
+
+    // ✅ show description instantly when selecting (no reload)
+    renderDescFromRoom(roomEl);
   });
 
   // Open edit modal
@@ -316,7 +337,7 @@
   // Save to DB
   btnSave.addEventListener('click', async function () {
     const rid = hiddenId.value;
-    if (!rid) return;
+    if (!rid || !currentRoomEl) return;
 
     const payload = {
       room_name: editName.value.trim(),
@@ -337,18 +358,21 @@
         body: JSON.stringify(payload)
       });
 
-     if (!res.ok) {
-       const text = await res.text();
-       alert(`Save failed (${res.status}).\n\n${text}`);
-  return;
-}
+      if (!res.ok) {
+        const text = await res.text();
+        alert(`Save failed (${res.status}).\n\n${text}`);
+        return;
+      }
 
-      // Update UI instantly
+      // ✅ Update UI instantly
       currentRoomEl.setAttribute('data-name', payload.room_name);
       currentRoomEl.setAttribute('data-desc', payload.room_description);
 
       const label = currentRoomEl.querySelector('.room-label');
       if (label) label.textContent = payload.room_name;
+
+      // ✅ Update DESCRIPTION panel instantly (this fixes your reload issue)
+      renderDescFromRoom(currentRoomEl);
 
       closeModal();
 
