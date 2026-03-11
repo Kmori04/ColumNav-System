@@ -23,12 +23,15 @@
 <div class="room room-2f-new" 
      data-id="{{ $id }}"
      data-name="{{ $r?->room_name ?? 'Unknown Room' }}"
-     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+ 
      data-col-start="20" 
      data-col-end="16" 
      data-row-start="6" 
      data-row-end="16"
-     style="grid-column: 4 / 11; grid-row: 10 / 16; margin: 1.5px;">
+      
+     
+     onclick="drawYellowPath(this)"
+     style="grid-column: 4 / 11; grid-row: 10 / 16; margin: 1.5px; cursor: pointer;">
   <span class="room-label">{{ $r?->room_name ?? '' }}</span>
 </div>
 <!-- MAINTENANCE OFFICE -->
@@ -296,7 +299,7 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="19" 
+     data-col-start="17" 
      data-col-end="75" 
      data-row-start="2" 
      data-row-end="12"
@@ -317,7 +320,7 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="19" 
+     data-col-start="17" 
      data-col-end="75" 
      data-row-start="19" 
      data-row-end="15"

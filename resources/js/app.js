@@ -175,73 +175,86 @@ function drawYellowPath(roomEl) {
     const pathGroup = document.getElementById("path-group");
     if (!pathGroup) return;
 
-    // Always clear existing path
+    // Clear previous path
     pathGroup.innerHTML = "";
 
-    // hide path support
+    // Feature: Hide path if data-hide-path="true"
     if (roomEl.dataset.hidePath === "true") return;
 
-    // must have these dataset values
+    // Parse Grid coordinates
     const cStart = parseFloat(roomEl.dataset.colStart);
     const cEnd = parseFloat(roomEl.dataset.colEnd);
     const rStart = parseFloat(roomEl.dataset.rowStart);
     const rEnd = parseFloat(roomEl.dataset.rowEnd);
 
-    if ([cStart, cEnd, rStart, rEnd].some((v) => Number.isNaN(v))) {
-      return; // don't draw if missing coords
-    }
+    if ([cStart, cEnd, rStart, rEnd].some((v) => Number.isNaN(v))) return;
 
-    // --- UPDATED FOR ADJUSTABILITY ---
-    // Grabs from HTML data-attributes, defaults to your original values if empty
+    // Start positions and Corridor Y
     const startX = parseFloat(roomEl.dataset.startX) || 53.8;
     const startY = parseFloat(roomEl.dataset.startY) || 92;
     const mainCorridorY = parseFloat(roomEl.dataset.corridorY) || 85.7;
-    // ---------------------------------
+    
+    // START HOOK LOGIC
+    const startThrust = parseFloat(roomEl.dataset.startThrust) || 0;
+    const initialPointX = startX - startThrust;
 
     const side = roomEl.dataset.side || "left";
     const customThrust = roomEl.dataset.thrust ? parseFloat(roomEl.dataset.thrust) : null;
 
-    // Grid to SVG calculations
+    // MAP GRID TO SVG SPACE
     const roomX = (cStart + cEnd) / 5.2;
-    const roomY = ((rStart + rEnd) / 2.2) + 2;
+    
+    // Offset for the overall end position
+    const lastLineOffset = parseFloat(roomEl.dataset.lastLineOffset) || 0;
+    const roomY = ((rStart + rEnd) / 2.2) + 2 - lastLineOffset;
 
-    // Entry Logic
+    // ENTRY LOGIC
     let entryX;
     if (customThrust !== null && customThrust < 0) {
-      entryX = roomX + 1;
+        entryX = roomX + 1;
+    } else if (side === "hide") {
+        entryX = roomX; 
     } else {
-      entryX = (side.includes("right")) ? (roomX - 5) : (roomX + 6);
+        entryX = (side.includes("right")) ? (roomX - 5) : (roomX + 6);
     }
 
-    // Horizontal Thrust Logic
+    // FEATURE: EDITABLE END LINE SIZE (The final vertical drop)
+    const lastLineSize = parseFloat(roomEl.dataset.lastLineSize) || 0;
+
+    // THRUST LOGIC
     let thrust = 0;
     if (customThrust !== null && !Number.isNaN(customThrust)) {
-      thrust = customThrust;
+        thrust = customThrust;
     } else if (side === "right" || side === "upright") {
-      thrust = 4;
-    } else if (side === "right-2") {
-      thrust = 1;
+        thrust = 4;
     }
 
     const endX = roomX + thrust;
-
-    // Vertical Hook Logic
     const upwardLength = (side === "upright") ? 3 : 0;
     const endY = roomY - upwardLength;
 
-    const points = [
-      { x: startX, y: startY },
-      { x: startX, y: mainCorridorY },
-      { x: entryX, y: mainCorridorY },
-      { x: entryX, y: roomY },
-      { x: roomX, y: roomY },
-      { x: endX, y: roomY },
-      { x: endX, y: endY }
+    // ASSEMBLE POINTS
+    let points = [
+        { x: initialPointX, y: startY }, 
+        { x: startX, y: startY },        
+        { x: startX, y: mainCorridorY }, 
+        { x: entryX, y: mainCorridorY }, 
+        { x: entryX, y: roomY },         
+        { x: roomX, y: roomY },         
+        { x: endX, y: roomY }
     ];
 
+    // If a specific size is provided, add the final vertical drop
+    if (lastLineSize !== 0) {
+        points.push({ x: endX, y: roomY + lastLineSize });
+    } else if (side !== "hide") {
+        points.push({ x: endX, y: endY });
+    }
+
+    // Generate Path Data
     const d = points.map((p, i) => (i === 0 ? "M" : "L") + ` ${p.x} ${p.y}`).join(" ");
 
-    // Kept exactly as your original code to maintain animation
+    // RENDER
     pathGroup.innerHTML = `
       <path d="${d}"
             stroke="#fbbf24"
@@ -253,12 +266,15 @@ function drawYellowPath(roomEl) {
             stroke-dashoffset="200"
             style="animation: drawPath 2.6s forwards, pulsePath 2.6s infinite 0.6s" />
 
-      <circle cx="${endX}" cy="${endY}" r="0.6" fill="#ef4444">
+      <circle cx="${points[points.length - 1].x}" 
+              cy="${points[points.length - 1].y}" 
+              r="0.6" 
+              fill="#ef4444">
         <animate attributeName="r" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite" />
       </circle>
     `;
 }
-  // -----------------------------
+// -----------------------------
   // ✅ ONE CLICK HANDLER (works after floor swap)
   // - toggles selection
   // - updates description
