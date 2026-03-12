@@ -208,12 +208,12 @@ function drawYellowPath(roomEl) {
     const lastLineOffset = parseFloat(roomEl.dataset.lastLineOffset) || 0;
     const roomY = ((rStart + rEnd) / 2.2) + 2 - lastLineOffset;
 
-    // ENTRY LOGIC
+    // --- UPDATED ENTRY LOGIC FOR RIGHT2 ---
     let entryX;
-    if (customThrust !== null && customThrust < 0) {
+    if (side === "right2" || side === "hide") {
+        entryX = roomX; // Go directly to the target column
+    } else if (customThrust !== null && customThrust < 0) {
         entryX = roomX + 1;
-    } else if (side === "hide") {
-        entryX = roomX; 
     } else {
         entryX = (side.includes("right")) ? (roomX - 5) : (roomX + 6);
     }
@@ -221,12 +221,14 @@ function drawYellowPath(roomEl) {
     // FEATURE: EDITABLE END LINE SIZE (The final vertical drop)
     const lastLineSize = parseFloat(roomEl.dataset.lastLineSize) || 0;
 
-    // THRUST LOGIC
+    // --- UPDATED THRUST LOGIC FOR RIGHT2 ---
     let thrust = 0;
     if (customThrust !== null && !Number.isNaN(customThrust)) {
         thrust = customThrust;
     } else if (side === "right" || side === "upright") {
-        thrust = 4;
+        thrust = 4; // Keep legacy behavior for standard "right"
+    } else if (side === "right2") {
+        thrust = 0; // Default to zero for right2 unless data-thrust is provided
     }
 
     const endX = roomX + thrust;
@@ -247,7 +249,7 @@ function drawYellowPath(roomEl) {
     // If a specific size is provided, add the final vertical drop
     if (lastLineSize !== 0) {
         points.push({ x: endX, y: roomY + lastLineSize });
-    } else if (side !== "hide") {
+    } else if (side !== "hide" && side !== "right2") {
         points.push({ x: endX, y: endY });
     }
 
