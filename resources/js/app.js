@@ -270,9 +270,9 @@ function drawYellowPath(roomEl) {
 
       <circle cx="${points[points.length - 1].x}" 
               cy="${points[points.length - 1].y}" 
-              r="0.6" 
+              r="1.6" 
               fill="#ef4444">
-        <animate attributeName="r" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite" />
+        <animate attributeName="r" values="0.6;0.8;0.6" dur="2.5s" repeatCount="indefinite" />
       </circle>
     `;
 }
