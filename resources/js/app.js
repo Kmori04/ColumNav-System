@@ -8,20 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const floorSelect = document.getElementById("floorSelect");
 
   // DESCRIPTION elements
-  const descNameEl = document.getElementById("roomDescName"); // optional
-  const descTextEl = document.getElementById("roomDescText"); // required
+  const descNameEl = document.getElementById("roomDescName");
+  const descTextEl = document.getElementById("roomDescText");
 
   if (!viewport || !layer || !builder) return;
 
   const DEFAULT_DESC = "Tap any room box on the map to see its description here.";
 
-  // Helper to set description UI
   const setDescription = (name, desc) => {
     if (descNameEl) descNameEl.textContent = name || "";
     if (descTextEl) descTextEl.textContent = (desc || "").trim() || DEFAULT_DESC;
   };
 
-  // Default description text
   setDescription("", DEFAULT_DESC);
 
   // Zoom/Pan values
@@ -35,6 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const EXTRA_UNZOOM = 0.12;
   let MIN = 0.2;
   const PAN_MARGIN = 12;
+
+  let currentFloor = floorSelect ? floorSelect.value : "1F";
+  let crossFloorTimer = null;
+
+  // SAVE ROUTE PER FLOOR
+  const floorRoutes = {
+    "1F": null,
+    "2F": null,
+    "3F": null,
+    "4F": null,
+  };
 
   const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
@@ -135,18 +144,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const clearSelection = () => {
-    document.querySelectorAll(".room.is-selected").forEach((el) => el.classList.remove("is-selected"));
-    document.querySelectorAll(".room.room-click").forEach((el) => el.classList.remove("room-click"));
-
-    // clear yellow path (works even after floor swap)
+  const clearPath = () => {
     const pathGroup = document.getElementById("path-group");
     if (pathGroup) pathGroup.innerHTML = "";
+  };
 
+  const clearSelectionOnly = () => {
+    document.querySelectorAll(".room.is-selected").forEach((el) => el.classList.remove("is-selected"));
+    document.querySelectorAll(".room.room-click").forEach((el) => el.classList.remove("room-click"));
+  };
+
+  const clearAllRoutes = () => {
+    floorRoutes["1F"] = null;
+    floorRoutes["2F"] = null;
+    floorRoutes["3F"] = null;
+    floorRoutes["4F"] = null;
+    clearSelectionOnly();
+    clearPath();
     setDescription("", DEFAULT_DESC);
   };
 
-  // Render floor using <template> contents
+  const clearOtherFloorRoutes = (keepFloor) => {
+    Object.keys(floorRoutes).forEach((floor) => {
+      if (floor !== keepFloor) {
+        floorRoutes[floor] = null;
+      }
+    });
+  };
+
   const renderFloor = (floor) => {
     const tpl = document.getElementById(`tpl-${floor}`);
     if (!tpl) return;
@@ -156,32 +181,138 @@ document.addEventListener("DOMContentLoaded", () => {
     builder.classList.remove("floor-1", "floor-2", "floor-3", "floor-4");
     builder.classList.add(`floor-${floor.replace("F", "")}`);
 
-    clearSelection();
+    currentFloor = floor;
 
-    requestAnimationFrame(resetView);
+    requestAnimationFrame(() => {
+      resetView();
+      requestAnimationFrame(() => {
+        redrawSavedRouteForCurrentFloor();
+      });
+    });
   };
 
-  if (floorSelect) {
-    floorSelect.addEventListener("change", (e) => renderFloor(e.target.value));
-    renderFloor(floorSelect.value); // initial
-  } else {
-    resetView();
-  }
+  const cancelCrossFloorRoute = () => {
+    if (crossFloorTimer) {
+      clearTimeout(crossFloorTimer);
+      crossFloorTimer = null;
+    }
+  };
+
+  // -------------------------------------------------
+  // STAIR ROUTING CONFIG
+  // -------------------------------------------------
+  const FLOOR1_STAIR_TARGETS = {
+    left: {
+      name: "Stairs to 2nd Floor",
+      desc: "Go to the left stairs to continue to Floor 2.",
+      colStart: "20",
+      colEnd: "16",
+      rowStart: "88",
+      rowEnd: "84",
+      startX: "53.8",
+      startY: "92",
+      corridorY: "85.7",
+      side: "left",
+      thrust: "0",
+      lastLineOffset: "0",
+      lastLineSize: "0",
+    },
+    middle: {
+      name: "Stairs to 2nd Floor",
+      desc: "Go to the middle stairs to continue to Floor 2.",
+      colStart: "52",
+      colEnd: "56",
+      rowStart: "16",
+      rowEnd: "24",
+      startX: "53.8",
+      startY: "92",
+      corridorY: "85.7",
+      side: "hide",
+      thrust: "0",
+      lastLineOffset: "0",
+      lastLineSize: "0",
+    },
+    right: {
+      name: "Stairs to 2nd Floor",
+      desc: "Go to the right stairs to continue to Floor 2.",
+      colStart: "80",
+      colEnd: "86",
+      rowStart: "76",
+      rowEnd: "83",
+      startX: "53.8",
+      startY: "92",
+      corridorY: "85.7",
+      side: "right",
+      thrust: "0",
+      lastLineOffset: "0",
+      lastLineSize: "0",
+    },
+  };
+
+  const getRoomVisualCenter = (roomEl) => {
+    const styleAttr = roomEl.getAttribute("style") || "";
+
+    const colMatch = styleAttr.match(/grid-column:\s*([\d.]+)\s*\/\s*([\d.]+)/i);
+    const rowMatch = styleAttr.match(/grid-row:\s*([\d.]+)\s*\/\s*([\d.]+)/i);
+
+    const colStart = colMatch ? parseFloat(colMatch[1]) : 0;
+    const colEnd = colMatch ? parseFloat(colMatch[2]) : 0;
+    const rowStart = rowMatch ? parseFloat(rowMatch[1]) : 0;
+    const rowEnd = rowMatch ? parseFloat(rowMatch[2]) : 0;
+
+    return {
+      x: (colStart + colEnd) / 2,
+      y: (rowStart + rowEnd) / 2,
+    };
+  };
+
+  const getAssignedStairFor2FRoom = (roomEl) => {
+    const manual = (roomEl.dataset.stair || "").trim().toLowerCase();
+    if (manual === "left" || manual === "middle" || manual === "right") {
+      return manual;
+    }
+
+    const center = getRoomVisualCenter(roomEl);
+
+    if (center.x <= 18) return "left";
+    if (center.x >= 74) return "right";
+    if (center.x < 45 && center.y >= 60) return "left";
+
+    return "middle";
+  };
+
+  const makeVirtualRoom = (config) => {
+    return {
+      dataset: {
+        hidePath: "false",
+        colStart: config.colStart,
+        colEnd: config.colEnd,
+        rowStart: config.rowStart,
+        rowEnd: config.rowEnd,
+        startX: config.startX,
+        startY: config.startY,
+        corridorY: config.corridorY,
+        side: config.side,
+        thrust: config.thrust,
+        lastLineOffset: config.lastLineOffset,
+        lastLineSize: config.lastLineSize,
+        name: config.name,
+        desc: config.desc,
+      },
+    };
+  };
 
   // -----------------------------
-  // ✅ YELLOW PATH (delegated)
+  // YELLOW PATH
   // -----------------------------
-function drawYellowPath(roomEl) {
+  function drawYellowPath(roomEl) {
     const pathGroup = document.getElementById("path-group");
-    if (!pathGroup) return;
+    if (!pathGroup || !roomEl || !roomEl.dataset) return;
 
-    // Clear previous path
     pathGroup.innerHTML = "";
 
-    // Feature: Hide path if data-hide-path="true"
     if (roomEl.dataset.hidePath === "true") return;
 
-    // Parse Grid coordinates
     const cStart = parseFloat(roomEl.dataset.colStart);
     const cEnd = parseFloat(roomEl.dataset.colEnd);
     const rStart = parseFloat(roomEl.dataset.rowStart);
@@ -189,74 +320,74 @@ function drawYellowPath(roomEl) {
 
     if ([cStart, cEnd, rStart, rEnd].some((v) => Number.isNaN(v))) return;
 
-    // Start positions and Corridor Y
     const startX = parseFloat(roomEl.dataset.startX) || 53.8;
     const startY = parseFloat(roomEl.dataset.startY) || 92;
     const mainCorridorY = parseFloat(roomEl.dataset.corridorY) || 85.7;
-    
-    // START HOOK LOGIC
+
     const startThrust = parseFloat(roomEl.dataset.startThrust) || 0;
     const initialPointX = startX - startThrust;
 
     const side = roomEl.dataset.side || "left";
     const customThrust = roomEl.dataset.thrust ? parseFloat(roomEl.dataset.thrust) : null;
 
-    // MAP GRID TO SVG SPACE
     const roomX = (cStart + cEnd) / 5.2;
-    
-    // Offset for the overall end position
     const lastLineOffset = parseFloat(roomEl.dataset.lastLineOffset) || 0;
     const roomY = ((rStart + rEnd) / 2.2) + 2 - lastLineOffset;
 
-    // --- UPDATED ENTRY LOGIC FOR RIGHT2 ---
     let entryX;
     if (side === "right2" || side === "hide") {
-        entryX = roomX; // Go directly to the target column
+      entryX = roomX;
     } else if (customThrust !== null && customThrust < 0) {
-        entryX = roomX + 1;
+      entryX = roomX + 1;
     } else {
-        entryX = (side.includes("right")) ? (roomX - 5) : (roomX + 6);
+      entryX = side.includes("right") ? (roomX - 5) : (roomX + 6);
     }
 
-    // FEATURE: EDITABLE END LINE SIZE (The final vertical drop)
     const lastLineSize = parseFloat(roomEl.dataset.lastLineSize) || 0;
 
-    // --- UPDATED THRUST LOGIC FOR RIGHT2 ---
     let thrust = 0;
     if (customThrust !== null && !Number.isNaN(customThrust)) {
-        thrust = customThrust;
+      thrust = customThrust;
     } else if (side === "right" || side === "upright") {
-        thrust = 4; // Keep legacy behavior for standard "right"
+      thrust = 4;
     } else if (side === "right2") {
-        thrust = 0; // Default to zero for right2 unless data-thrust is provided
+      thrust = 0;
     }
 
-    const endX = roomX + thrust;
-    const upwardLength = (side === "upright") ? 3 : 0;
+    const leftDotOffset = 1.6;
+
+    let endX = roomX + thrust;
+    if (side === "left") {
+      endX = roomX - leftDotOffset;
+    }
+
+    const upwardLength = side === "upright" ? 3 : 0;
     const endY = roomY - upwardLength;
 
-    // ASSEMBLE POINTS
     let points = [
-        { x: initialPointX, y: startY }, 
-        { x: startX, y: startY },        
-        { x: startX, y: mainCorridorY }, 
-        { x: entryX, y: mainCorridorY }, 
-        { x: entryX, y: roomY },         
-        { x: roomX, y: roomY },         
-        { x: endX, y: roomY }
+      { x: initialPointX, y: startY },
+      { x: startX, y: startY },
+      { x: startX, y: mainCorridorY },
+      { x: entryX, y: mainCorridorY },
+      { x: entryX, y: roomY },
+      { x: roomX, y: roomY }
     ];
 
-    // If a specific size is provided, add the final vertical drop
-    if (lastLineSize !== 0) {
+    if (side === "left") {
+      points.push({ x: endX, y: roomY });
+    } else {
+      points.push({ x: endX, y: roomY });
+
+      if (lastLineSize !== 0) {
         points.push({ x: endX, y: roomY + lastLineSize });
-    } else if (side !== "hide" && side !== "right2") {
+      } else if (side !== "hide" && side !== "right2" && side !== "left") {
         points.push({ x: endX, y: endY });
+      }
     }
 
-    // Generate Path Data
     const d = points.map((p, i) => (i === 0 ? "M" : "L") + ` ${p.x} ${p.y}`).join(" ");
+    const lastPoint = points[points.length - 1];
 
-    // RENDER
     pathGroup.innerHTML = `
       <path d="${d}"
             stroke="#fbbf24"
@@ -268,19 +399,138 @@ function drawYellowPath(roomEl) {
             stroke-dashoffset="200"
             style="animation: drawPath 2.6s forwards, pulsePath 2.6s infinite 0.6s" />
 
-      <circle cx="${points[points.length - 1].x}" 
-              cy="${points[points.length - 1].y}" 
-              r="1.6" 
+      <circle cx="${lastPoint.x}"
+              cy="${lastPoint.y}"
+              r="1.6"
               fill="#ef4444">
         <animate attributeName="r" values="0.6;0.8;0.6" dur="2.5s" repeatCount="indefinite" />
       </circle>
     `;
-}
-// -----------------------------
-  // ✅ ONE CLICK HANDLER (works after floor swap)
-  // - toggles selection
-  // - updates description
-  // - draws yellow path
+  }
+
+  window.drawYellowPath = drawYellowPath;
+
+  const saveRoomRoute = (floor, roomEl) => {
+    floorRoutes[floor] = {
+      type: "room",
+      roomId: roomEl.dataset.id || null,
+      name: (roomEl.dataset.name || "").trim(),
+      desc: (roomEl.dataset.desc || "").trim(),
+    };
+  };
+
+  const saveVirtualRoute = (floor, stairConfig, name, desc) => {
+    floorRoutes[floor] = {
+      type: "virtual",
+      stairConfig,
+      name,
+      desc,
+    };
+  };
+
+  const redrawSavedRouteForCurrentFloor = () => {
+    clearSelectionOnly();
+    clearPath();
+
+    const saved = floorRoutes[currentFloor];
+    if (!saved) {
+      setDescription("", DEFAULT_DESC);
+      return;
+    }
+
+    if (saved.type === "virtual") {
+      const virtualRoom = makeVirtualRoom(saved.stairConfig);
+      setDescription(saved.name || "", saved.desc || "");
+      drawYellowPath(virtualRoom);
+      return;
+    }
+
+    if (saved.type === "room") {
+      const roomEl = builder.querySelector(`.room[data-id="${saved.roomId}"]`);
+      if (!roomEl) {
+        setDescription("", DEFAULT_DESC);
+        return;
+      }
+
+      roomEl.classList.add("is-selected");
+      roomEl.classList.add("room-click");
+      setDescription(saved.name || "", saved.desc || "");
+      drawYellowPath(roomEl);
+    }
+  };
+
+  const selectRoomAndDraw = (roomEl) => {
+    if (!roomEl) return;
+
+    clearSelectionOnly();
+
+    roomEl.classList.add("is-selected");
+    roomEl.classList.add("room-click");
+
+    const name = (roomEl.dataset.name || "").trim();
+    const desc = (roomEl.dataset.desc || "").trim();
+
+    setDescription(name, desc);
+    drawYellowPath(roomEl);
+    saveRoomRoute(currentFloor, roomEl);
+  };
+
+  const start2FCrossFloorRoute = (targetRoomEl) => {
+    cancelCrossFloorRoute();
+
+    // clear old routes first because another room was clicked
+    floorRoutes["1F"] = null;
+    floorRoutes["2F"] = null;
+    floorRoutes["3F"] = null;
+    floorRoutes["4F"] = null;
+
+    const targetId = targetRoomEl.dataset.id;
+    const targetName = (targetRoomEl.dataset.name || "").trim();
+    const targetDesc = (targetRoomEl.dataset.desc || "").trim();
+    const stairKey = getAssignedStairFor2FRoom(targetRoomEl);
+    const stairConfig = FLOOR1_STAIR_TARGETS[stairKey] || FLOOR1_STAIR_TARGETS.middle;
+
+    // SAVE 1F ROUTE
+    saveVirtualRoute(
+      "1F",
+      stairConfig,
+      targetName,
+      `Step 1: ${stairConfig.desc}`
+    );
+
+    // SAVE 2F ROUTE
+    floorRoutes["2F"] = {
+      type: "room",
+      roomId: targetId,
+      name: targetName,
+      desc: targetDesc,
+    };
+
+    // SHOW 1F FIRST
+    if (floorSelect) floorSelect.value = "1F";
+    renderFloor("1F");
+
+    // AUTO SWITCH TO 2F
+    crossFloorTimer = setTimeout(() => {
+      if (floorSelect) floorSelect.value = "2F";
+      renderFloor("2F");
+      cancelCrossFloorRoute();
+    }, 1800);
+  };
+
+  if (floorSelect) {
+    floorSelect.addEventListener("change", (e) => {
+      cancelCrossFloorRoute();
+      renderFloor(e.target.value);
+    });
+
+    renderFloor(floorSelect.value);
+  } else {
+    resetView();
+  }
+
+  // -----------------------------
+  // ONE CLICK HANDLER
   // -----------------------------
   document.addEventListener("click", (e) => {
     const roomEl = e.target.closest(".room");
@@ -288,30 +538,26 @@ function drawYellowPath(roomEl) {
 
     const alreadySelected = roomEl.classList.contains("is-selected");
 
-    // clear old selection + path highlight
-    document.querySelectorAll(".room.is-selected").forEach((el) => el.classList.remove("is-selected"));
-    document.querySelectorAll(".room.room-click").forEach((el) => el.classList.remove("room-click"));
-
-    // clear existing path
-    const pathGroup = document.getElementById("path-group");
-    if (pathGroup) pathGroup.innerHTML = "";
+    clearSelectionOnly();
+    clearPath();
 
     if (alreadySelected) {
-      setDescription("", DEFAULT_DESC);
+      clearAllRoutes();
       return;
     }
 
-    // select
-    roomEl.classList.add("is-selected");
-    roomEl.classList.add("room-click");
+    if (currentFloor === "2F") {
+      start2FCrossFloorRoute(roomEl);
+      return;
+    }
 
-    // description
-    const name = (roomEl.dataset.name || "").trim();
-    const desc = (roomEl.dataset.desc || "").trim();
-    setDescription(name, desc);
+    cancelCrossFloorRoute();
 
-    // yellow path
-    drawYellowPath(roomEl);
+    // keep only the current floor route, remove routes from other floors
+    clearOtherFloorRoutes(currentFloor);
+    floorRoutes[currentFloor] = null;
+
+    selectRoomAndDraw(roomEl);
   });
 
   // Zoom
@@ -345,7 +591,8 @@ function drawYellowPath(roomEl) {
 
   // Pan
   let isDragging = false;
-  let startX = 0, startY = 0;
+  let startX = 0;
+  let startY = 0;
 
   viewport.addEventListener("mousedown", (e) => {
     isDragging = true;
@@ -366,8 +613,20 @@ function drawYellowPath(roomEl) {
     applyAndClamp();
   });
 
-  if (resetBtn) resetBtn.addEventListener("click", resetView);
-  window.addEventListener("resize", resetView);
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      cancelCrossFloorRoute();
+      clearAllRoutes();
+      resetView();
+    });
+  }
+
+  window.addEventListener("resize", () => {
+    resetView();
+    requestAnimationFrame(() => {
+      redrawSavedRouteForCurrentFloor();
+    });
+  });
 
   viewport.style.cursor = "grab";
 });
