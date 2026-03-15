@@ -1570,7 +1570,9 @@
 
 <!-- GREY "LONG" CONTAINER LINE -->
 <div class="horizontal-path" style="grid-column: 10 / 106; grid-row: 85 / 88;"></div>
+
 <div class="path-container" style="grid-column: 24 / 1; grid-row: 5 / 86;"></div>
+
 <div class="path-container" style="grid-column: 72 / 74; grid-row: 17 / 86;"></div>
 <div class="horizontal-path" style="grid-column: 12 / 96; grid-row: 15 / 18;"></div>
 <div class="path-container" style="grid-column: 105 / 75; grid-row: 17 / 86;"></div>
@@ -1592,18 +1594,18 @@
 <div class="path-container" style="grid-column: 82 / 84; grid-row: 87 / 75;"></div>
 
 <!-- ===(GREY CONTAINER LINE) ""CBA""=== -->
-<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 79 / 82;"></div>
-<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 73 / 76;"></div>
-<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 67 / 70;"></div>
-<div class="horizontal-path" style="grid-column: 7 / 13; grid-row: 62 / 65;"></div>
-<div class="horizontal-path" style="grid-column: 7 / 13; grid-row: 56 / 59;"></div>
-<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 49 / 52;"></div>
-<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 42 / 45;"></div>
-<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 35 / 38;"></div>
-<div class="horizontal-path" style="grid-column: 7 / 13; grid-row: 28 / 31;"></div>
-<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 19 / 22;"></div>
- <div class="horizontal-path" style="grid-column:7 / 13; grid-row: 12 / 15;"></div>
-<div class="horizontal-path" style="grid-column: 9 / 13; grid-row: 6 / 9;"></div>
+<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 79 / 82; transform: scaleX(0.83); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 73 / 76; transform: scaleX(0.83); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 67 / 70; transform: scaleX(0.83); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 7 / 13; grid-row: 62 / 65; transform: scaleX(0.92); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 7 / 13; grid-row: 56 / 59; transform: scaleX(0.92); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 49 / 52; transform: scaleX(0.83); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 42 / 45; transform: scaleX(0.83); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 35 / 38; transform: scaleX(0.83); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 7 / 13; grid-row: 28 / 31; transform: scaleX(0.92); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 10 / 13; grid-row: 19 / 22; transform: scaleX(0.83); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 7 / 13; grid-row: 12 / 15; transform: scaleX(0.92); transform-origin: left center;"></div>
+<div class="horizontal-path" style="grid-column: 9 / 13; grid-row: 6 / 9; transform: scaleX(0.875); transform-origin: left center;"></div>
  
 
 <!-- ===(GREY CONTAINER LINE) ""CCS""=== -->
@@ -1628,8 +1630,7 @@
 <div class="path-container" style="grid-column: 5 / 62; grid-row: 14 / 18;"></div>
 <div class="path-container" style="grid-column: 3 / 49; grid-row: 14 / 18;"></div>
 <div class="path-container" style="grid-column: 3 / 36; grid-row: 14 / 18;"></div>
- <div class="horizontal-path" style="grid-column: 38/ 40; grid-row: 21 / 24;"></div>
-
+<div id="adminPathSpecial" class="horizontal-path" style="grid-column: 38 / 40; grid-row: 21 / 24;"></div>
 <!--TOP LEFT AND LIKOD NG CCS " -->
  
 <div class="horizontal-path" style="grid-column: 89 / 92; grid-row: 64 / 67;"></div>

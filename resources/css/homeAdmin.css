@@ -687,3 +687,7 @@ html, body {
   pointer-events: none;
   z-index: 50;
 }
+#adminPathSpecial {
+  transform: scaleY(0.9);
+  transform-origin: top center;
+}
