@@ -201,106 +201,126 @@ document.addEventListener("DOMContentLoaded", () => {
   // -------------------------------------------------
   // STAIR ROUTING CONFIG
   // -------------------------------------------------
-  const FLOOR1_STAIR_TARGETS = {
-    left: {
-      name: "Stairs to 2nd Floor",
-      desc: "Go to the left stairs to continue to Floor 2.",
-      colStart: "20",
-      colEnd: "16",
-      rowStart: "88",
-      rowEnd: "84",
-      startX: "53.8",
-      startY: "92",
-      corridorY: "85.7",
-      side: "left",
-      thrust: "0",
-      lastLineOffset: "0",
-      lastLineSize: "0",
+const FLOOR1_STAIR_TARGETS = {
+  left: {
+    name: "Stairs to 2nd Floor (West)",
+    desc: "Go to the left stairs to continue to Floor 2.",
+    colStart: "20",
+    colEnd: "47",
+    rowStart: "89",
+    rowEnd: "84",
+    startX: "53.8",
+    startY: "92",
+    corridorY: "85.7",
+    side: "right2",
+    thrust: "-3",
+    lastLineOffset: "0",
+    lastLineSize: "0",
+  },
+  middle: {
+    name: "Stairs to 2nd Floor (Central)",
+    desc: "Go to the middle stairs to continue to Floor 2.",
+    colStart: "51",
+    colEnd: "16",
+    rowStart: "88",
+    rowEnd: "85",
+    startX: "53.8",
+    startY: "92",
+    corridorY: "85.7",
+    side: "right2",
+    thrust: "-3",
+    lastLineOffset: "0",
+    lastLineSize: "0",
+  },
+  right: {
+    name: "Stairs to 2nd Floor (East)",
+    desc: "Go to the right stairs to continue to Floor 2.",
+    colStart: "216",
+    colEnd: "180",
+    rowStart: "86",
+    rowEnd: "83",
+    startX: "53.8",
+    startY: "92",
+    corridorY: "85.7",
+    side: "right2",
+    thrust: "2",
+    lastLineOffset: "0",
+    lastLineSize: "0",
+  },
+  far_right: {
+    name: "Stairs to 2nd Floor (Far East)",
+    desc: "Use the stairs near the Printing Center to reach the 2nd floor.",
+    colStart: "216",
+    colEnd: "180",
+    rowStart: "86",
+    rowEnd: "83",
+    startX: "53.8",
+    startY: "92",
+    corridorY: "85.7",
+    side: "right2",
+    thrust: "2",
+    lastLineOffset: "0",
+    lastLineSize: "0",
+  }
+};
+
+const getRoomVisualCenter = (roomEl) => {
+  const styleAttr = roomEl.getAttribute("style") || "";
+
+  const colMatch = styleAttr.match(/grid-column:\s*([\d.]+)\s*\/\s*([\d.]+)/i);
+  const rowMatch = styleAttr.match(/grid-row:\s*([\d.]+)\s*\/\s*([\d.]+)/i);
+
+  const colStart = colMatch ? parseFloat(colMatch[1]) : 0;
+  const colEnd = colMatch ? parseFloat(colMatch[2]) : 0;
+  const rowStart = rowMatch ? parseFloat(rowMatch[1]) : 0;
+  const rowEnd = rowMatch ? parseFloat(rowMatch[2]) : 0;
+
+  return {
+    x: (colStart + colEnd) / 2,
+    y: (rowStart + rowEnd) / 2,
+  };
+};
+
+const getAssignedStairFor2FRoom = (roomEl) => {
+  const manual = (roomEl.dataset.stair || "").trim().toLowerCase();
+  // Validating against all 4 options now
+  if (["left", "middle", "right", "far_right"].includes(manual)) {
+    return manual;
+  }
+
+  const center = getRoomVisualCenter(roomEl);
+
+  // Logic to determine which stair to use based on Grid Column (center.x)
+  if (center.x >= 45) return "far_right"; // Rooms near C210 / Printing Center
+  if (center.x >= 55) return "right";     // Rooms like C207, C208, C209
+  if (center.x <= 25) return "left";      // Far left rooms
+  
+  // Specific check for lower-left quadrant
+  if (center.x < 45 && center.y >= 60) return "left";
+
+  return "middle"; // Default
+};
+
+const makeVirtualRoom = (config) => {
+  return {
+    dataset: {
+      hidePath: "false",
+      colStart: config.colStart,
+      colEnd: config.colEnd,
+      rowStart: config.rowStart,
+      rowEnd: config.rowEnd,
+      startX: config.startX,
+      startY: config.startY,
+      corridorY: config.corridorY,
+      side: config.side,
+      thrust: config.thrust,
+      lastLineOffset: config.lastLineOffset,
+      lastLineSize: config.lastLineSize,
+      name: config.name,
+      desc: config.desc,
     },
-    middle: {
-      name: "Stairs to 2nd Floor",
-      desc: "Go to the middle stairs to continue to Floor 2.",
-      colStart: "52",
-      colEnd: "56",
-      rowStart: "16",
-      rowEnd: "24",
-      startX: "53.8",
-      startY: "92",
-      corridorY: "85.7",
-      side: "hide",
-      thrust: "0",
-      lastLineOffset: "0",
-      lastLineSize: "0",
-    },
-    right: {
-      name: "Stairs to 2nd Floor",
-      desc: "Go to the right stairs to continue to Floor 2.",
-      colStart: "80",
-      colEnd: "86",
-      rowStart: "76",
-      rowEnd: "83",
-      startX: "53.8",
-      startY: "92",
-      corridorY: "85.7",
-      side: "right",
-      thrust: "0",
-      lastLineOffset: "0",
-      lastLineSize: "0",
-    },
   };
-
-  const getRoomVisualCenter = (roomEl) => {
-    const styleAttr = roomEl.getAttribute("style") || "";
-
-    const colMatch = styleAttr.match(/grid-column:\s*([\d.]+)\s*\/\s*([\d.]+)/i);
-    const rowMatch = styleAttr.match(/grid-row:\s*([\d.]+)\s*\/\s*([\d.]+)/i);
-
-    const colStart = colMatch ? parseFloat(colMatch[1]) : 0;
-    const colEnd = colMatch ? parseFloat(colMatch[2]) : 0;
-    const rowStart = rowMatch ? parseFloat(rowMatch[1]) : 0;
-    const rowEnd = rowMatch ? parseFloat(rowMatch[2]) : 0;
-
-    return {
-      x: (colStart + colEnd) / 2,
-      y: (rowStart + rowEnd) / 2,
-    };
-  };
-
-  const getAssignedStairFor2FRoom = (roomEl) => {
-    const manual = (roomEl.dataset.stair || "").trim().toLowerCase();
-    if (manual === "left" || manual === "middle" || manual === "right") {
-      return manual;
-    }
-
-    const center = getRoomVisualCenter(roomEl);
-
-    if (center.x <= 18) return "left";
-    if (center.x >= 74) return "right";
-    if (center.x < 45 && center.y >= 60) return "left";
-
-    return "middle";
-  };
-
-  const makeVirtualRoom = (config) => {
-    return {
-      dataset: {
-        hidePath: "false",
-        colStart: config.colStart,
-        colEnd: config.colEnd,
-        rowStart: config.rowStart,
-        rowEnd: config.rowEnd,
-        startX: config.startX,
-        startY: config.startY,
-        corridorY: config.corridorY,
-        side: config.side,
-        thrust: config.thrust,
-        lastLineOffset: config.lastLineOffset,
-        lastLineSize: config.lastLineSize,
-        name: config.name,
-        desc: config.desc,
-      },
-    };
-  };
+};
 
   // -----------------------------
   // YELLOW PATH
@@ -397,7 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
             stroke-linejoin="round"
             stroke-dasharray="200"
             stroke-dashoffset="200"
-            style="animation: drawPath 2.6s forwards, pulsePath 2.6s infinite 0.6s" />
+            style="animation: drawPath 5.6s forwards, pulsePath 2.6s infinite 0.6s" />
 
       <circle cx="${lastPoint.x}"
               cy="${lastPoint.y}"

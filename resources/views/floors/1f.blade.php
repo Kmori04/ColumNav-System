@@ -24,10 +24,14 @@
      data-id="{{ $id }}"
      data-name="{{ $r?->room_name ?? 'Unknown Room' }}"
  
-     data-col-start="20" 
-     data-col-end="16" 
+    data-col-start="51.7" 
+     data-col-end="15" 
      data-row-start="6" 
      data-row-end="16"
+     data-last-line-offset="0"
+     data-last-line-size="0"
+     data-thrust="-3"
+     data-side="hide"
       
      
      onclick="drawYellowPath(this)"
@@ -48,11 +52,15 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="20" 
-     data-col-end="16" 
+     data-col-start="51.7" 
+     data-col-end="15" 
      data-row-start="13" 
      data-row-end="23"
-     
+     data-last-line-offset="0"
+     data-last-line-size="0"
+     data-thrust="-3"
+     data-side="hide"
+
      style="grid-column: 1 / 11; grid-row: 16 / 23;">
   <span class="room-label">{{ $name ?? '' }}</span>
 
@@ -74,10 +82,14 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="20" 
-     data-col-end="16" 
+     data-col-start="51.7" 
+     data-col-end="15" 
      data-row-start="21" 
      data-row-end="30"
+     data-last-line-offset="0"
+     data-last-line-size="0"
+     data-thrust="-3"
+     data-side="hide"
      
      style="grid-column: 4 / 11; grid-row: 23 / 30;">
   <span class="room-label">{{ $name ?? '' }}</span>
@@ -95,10 +107,14 @@
      data-id="{{ $id }}"
      data-name="{{ $forcedName }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="20" 
-     data-col-end="16" 
+     data-col-start="51.7" 
+     data-col-end="15" 
      data-row-start="31" 
      data-row-end="36"
+     data-last-line-offset="0"
+     data-last-line-size="0"
+     data-thrust="-3"
+     data-side="hide"
      
      style="grid-column: 4 / 11; grid-row: 30 / 36;">
   <span class="room-label">{{ $forcedName }}</span>
@@ -117,10 +133,14 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="20" 
-     data-col-end="16" 
+     data-col-start="51.7" 
+     data-col-end="15" 
      data-row-start="38" 
      data-row-end="42"
+     data-last-line-offset="0"
+     data-last-line-size="0"
+     data-thrust="-3"
+     data-side="hide"
      
      style="grid-column: 4 / 11; grid-row: 36 / 42;">
   <span class="room-label">{{ $name ?? '' }}</span>
@@ -138,10 +158,14 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="20" 
-     data-col-end="16" 
+     data-col-start="51.7" 
+     data-col-end="15" 
      data-row-start="46" 
      data-row-end="47"
+     data-last-line-offset="0"
+     data-last-line-size="0"
+     data-thrust="-3"
+     data-side="hide"
     
      style="grid-column: 4 / 11; grid-row: 42 / 48;">
   <span class="room-label">{{ $name ?? '' }}</span>
@@ -159,10 +183,14 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="20" 
-     data-col-end="16" 
+     data-col-start="51.7" 
+     data-col-end="15"
      data-row-start="49" 
      data-row-end="58"
+     data-last-line-offset="0"
+     data-last-line-size="0"
+     data-thrust="-3"
+     data-side="hide"
      
      style="grid-column: 4 / 11; grid-row: 48 / 54;">
   <span class="room-label">{{ $name ?? '' }}</span>
@@ -183,10 +211,14 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="20" 
-     data-col-end="16" 
+     data-col-start="51.7" 
+     data-col-end="15" 
      data-row-start="54" 
      data-row-end="66"
+     data-last-line-offset="0"
+     data-last-line-size="0"
+     data-thrust="-3"
+     data-side="hide"
      
      style="grid-column: 4 / 11; grid-row: 54 / 60;">
   <span class="room-label">{{ $name ?? '' }}</span>
@@ -204,10 +236,14 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="20" 
-     data-col-end="16" 
+     data-col-start="51.7" 
+     data-col-end="15"  
      data-row-start="67" 
      data-row-end="66"
+     data-last-line-offset="0"
+     data-last-line-size="0"
+     data-thrust="-3"
+     data-side="hide"
     
      style="grid-column: 4 / 11; grid-row: 60 / 66;">
   <span class="room-label">{{ $name ?? '' }}</span>
@@ -225,11 +261,14 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="20" 
-     data-col-end="16" 
+     data-col-start="51.7" 
+     data-col-end="15" 
      data-row-start="66" 
      data-row-end="80"
-    
+     data-last-line-offset="0"
+     data-last-line-size="0"
+     data-thrust="-3"
+     data-side="hide"
      style="grid-column: 4 / 11; grid-row: 66 / 72;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -246,11 +285,14 @@
 <div class="room"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
-     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="20" 
-     data-col-end="16" 
-     data-row-start="81" 
+     data-col-start="51.7" 
+     data-col-end="15" 
+     data-row-start="81.5" 
      data-row-end="78"
+     data-last-line-offset="0"
+     data-last-line-size="0" {{-- Ensures no vertical tail --}}
+     data-thrust="-3"         {{-- Ensures no horizontal tail --}}
+     data-side="hide"
       
      style="grid-column: 4 / 11; grid-row: 72 / 78;">
   <span class="room-label">{{ $name ?? '' }}</span>
@@ -553,12 +595,15 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="56" 
-     data-col-end="452.5" 
-     data-row-start="16" 
-     data-row-end="50.7"
-     data-thrust="0"
-     data-side="right"
+     data-col-start="292.5" 
+     data-col-end="190"
+     data-row-start="32.5"
+     data-row-end="34"
+     
+     {{-- Adjust thrust for horizontal length --}}
+     data-thrust="3"
+     data-side="right2"
+     
      style="grid-column: 97 / 104; grid-row: 30 / 38; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -576,11 +621,13 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
-     data-col-end="452.5" 
+     data-col-end="426.5" 
      data-row-start="16" 
      data-row-end="68.5"
-     data-thrust="0"
-     data-side="right"
+
+     {{-- Adjust thrust for horizontal length --}}
+     data-thrust="3"
+     data-side="right2"
      style="grid-column: 97 / 104; grid-row: 38 / 46; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -598,11 +645,13 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
-     data-col-end="452.5" 
+     data-col-end="426.5" 
      data-row-start="16" 
      data-row-end="86.4"
-     data-thrust="0"
-     data-side="right"
+
+     {{-- Adjust thrust for horizontal length --}}
+     data-thrust="3"
+     data-side="right2"
      style="grid-column: 97 / 104; grid-row: 46 / 54; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -619,11 +668,11 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
-     data-col-end="452.5" 
+     data-col-end="426.5" 
      data-row-start="16" 
      data-row-end="103.7"
-     data-thrust="0"
-     data-side="right"
+     data-thrust="3"
+     data-side="right2"
      style="grid-column: 97 / 107; grid-row: 54 / 62; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -640,11 +689,11 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
-     data-col-end="452.5" 
+     data-col-end="426.5" 
      data-row-start="16" 
      data-row-end="121.5"
-     data-thrust="0"
-     data-side="right"
+     data-thrust="3"
+     data-side="right2"
      style="grid-column: 97 / 105; grid-row: 62 / 69; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -664,11 +713,11 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
-     data-col-end="452.5" 
+     data-col-end="426.5" 
      data-row-start="16" 
      data-row-end="136.9"
-     data-thrust="0"
-     data-side="right"
+     data-thrust="3"
+     data-side="right2"
      style="grid-column: 97 / 105; grid-row: 69 / 76; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -739,12 +788,12 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="56" 
-     data-col-end="366.2" 
+      data-col-start="56" 
+     data-col-end="340.2" 
      data-row-start="16" 
      data-row-end="64"
-     data-thrust="0"
-     data-side="right"
+     data-thrust="2"
+     data-side="right2"
      style="grid-column: 80 / 86; grid-row: 32 / 48; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -762,12 +811,12 @@
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     data-col-start="56" 
-     data-col-end="366.2" 
+      data-col-start="56" 
+     data-col-end="340.2" 
      data-row-start="16" 
      data-row-end="97"
-     data-thrust="0"
-     data-side="right"
+     data-thrust="2"
+     data-side="right2"
      style="grid-column: 80 / 86; grid-row: 48 / 62; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -786,11 +835,11 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
-     data-col-end="366.2" 
+     data-col-end="340.2" 
      data-row-start="16" 
      data-row-end="128.5"
-     data-thrust="0"
-     data-side="right"
+     data-thrust="2"
+     data-side="right2"
      style="grid-column: 80 / 86; grid-row: 62 / 76; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -949,10 +998,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="39" 
      data-col-end="21" 
-     data-row-start="81" 
+     data-row-start="67" 
      data-row-end="122"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 8 / 15; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -971,10 +1020,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="67" 
      data-col-end="21" 
-     data-row-start="81" 
+     data-row-start="67" 
      data-row-end="122"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 15 / 22; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -994,10 +1043,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
      data-col-end="26" 
-     data-row-start="81" 
+     data-row-start="67" 
      data-row-end="122"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 22 / 29; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -1016,10 +1065,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
      data-col-end="68" 
-     data-row-start="81" 
+     data-row-start="69" 
      data-row-end="128"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 29 / 38; grid-row: 94 / 101; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -1038,10 +1087,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
      data-col-end="110" 
-     data-row-start="81" 
+     data-row-start="69" 
      data-row-end="120"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 38 / 45; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -1060,10 +1109,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
      data-col-end="147" 
-     data-row-start="81" 
+     data-row-start="69" 
      data-row-end="120"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 45 / 52; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -1094,10 +1143,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
      data-col-end="213" 
-     data-row-start="81" 
+     data-row-start="69" 
      data-row-end="120"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 58 / 65; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -1117,10 +1166,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
      data-col-end="255" 
-     data-row-start="81" 
+     data-row-start="69" 
      data-row-end="120"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 65 / 74; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -1141,10 +1190,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
      data-col-end="298" 
-     data-row-start="81" 
+     data-row-start="69" 
      data-row-end="120"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 74 / 83; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -1164,10 +1213,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
      data-col-end="353" 
-     data-row-start="81" 
+     data-row-start="69" 
      data-row-end="120"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 83 / 92; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -1186,10 +1235,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
      data-col-end="400" 
-     data-row-start="81" 
+     data-row-start="69" 
      data-row-end="120"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 92 / 101; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
@@ -1208,10 +1257,10 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
      data-col-end="446" 
-     data-row-start="81" 
+     data-row-start="69" 
      data-row-end="120"
-     data-thrust="-1"
-     data-side="hide"
+     data-thrust="0"
+     data-side="right2"
      style="grid-column: 101 / 110; grid-row: 90 / 98; margin: 1.5px;">
   <span class="room-label">{{ $name ?? '' }}</span>
 </div>
