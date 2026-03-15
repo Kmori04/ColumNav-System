@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("roomSearchInput");
     const suggestionList = document.getElementById("roomSuggestionList");
+    const floorSelect = document.getElementById("floorSelect");
 
     if (!input || !suggestionList) return;
 
@@ -105,24 +106,133 @@ document.addEventListener("DOMContentLoaded", () => {
         renderSuggestions(results);
     }
 
+    function findRoomElementByName(roomName) {
+        const allRooms = document.querySelectorAll(".room[data-name]");
+        const target = normalizeText(roomName);
+
+        for (const roomEl of allRooms) {
+            const mapRoomName = normalizeText(roomEl.dataset.name || "");
+            if (mapRoomName === target) {
+                return roomEl;
+            }
+        }
+
+        for (const roomEl of allRooms) {
+            const mapRoomName = normalizeText(roomEl.dataset.name || "");
+            if (mapRoomName.includes(target) || target.includes(mapRoomName)) {
+                return roomEl;
+            }
+        }
+
+        return null;
+    }
+
+    function findRoomFloor(roomName) {
+        const target = normalizeText(roomName);
+        const floors = ["1F", "2F", "3F", "4F"];
+
+        for (const floor of floors) {
+            const tpl = document.getElementById(`tpl-${floor}`);
+            if (!tpl) continue;
+
+            const temp = document.createElement("div");
+            temp.innerHTML = tpl.innerHTML;
+
+            const rooms = temp.querySelectorAll(".room[data-name]");
+            for (const roomEl of rooms) {
+                const templateRoomName = normalizeText(roomEl.dataset.name || "");
+                if (templateRoomName === target) {
+                    return floor;
+                }
+            }
+        }
+
+        for (const floor of floors) {
+            const tpl = document.getElementById(`tpl-${floor}`);
+            if (!tpl) continue;
+
+            const temp = document.createElement("div");
+            temp.innerHTML = tpl.innerHTML;
+
+            const rooms = temp.querySelectorAll(".room[data-name]");
+            for (const roomEl of rooms) {
+                const templateRoomName = normalizeText(roomEl.dataset.name || "");
+                if (templateRoomName.includes(target) || target.includes(templateRoomName)) {
+                    return floor;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    function clickRenderedRoom(roomName) {
+        const roomEl = findRoomElementByName(roomName);
+        if (!roomEl) return;
+
+        roomEl.scrollIntoView({
+            block: "center",
+            inline: "center",
+            behavior: "smooth"
+        });
+
+        setTimeout(() => {
+            roomEl.dispatchEvent(new MouseEvent("click", {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            }));
+        }, 120);
+    }
+
+    function triggerMapRoomClick(roomName) {
+        const targetFloor = findRoomFloor(roomName);
+
+        if (!targetFloor || !floorSelect) {
+            clickRenderedRoom(roomName);
+            return;
+        }
+
+        if (floorSelect.value !== targetFloor) {
+            floorSelect.value = targetFloor;
+            floorSelect.dispatchEvent(new Event("change", { bubbles: true }));
+
+            setTimeout(() => {
+                clickRenderedRoom(roomName);
+            }, 220);
+        } else {
+            clickRenderedRoom(roomName);
+        }
+    }
+
     input.addEventListener("input", updateSuggestions);
 
     suggestionList.addEventListener("click", (event) => {
         const button = event.target.closest(".chatbot-suggestion");
         if (!button) return;
 
+        const selectedRoom = button.dataset.room || "";
+
         animateSuggestionClick(button);
-        input.value = button.dataset.room || "";
+        input.value = selectedRoom;
 
         setTimeout(() => {
             updateSuggestions();
+            triggerMapRoomClick(selectedRoom);
         }, 120);
     });
 
     input.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault();
-            updateSuggestions();
+
+            const results = getTopSuggestions(input.value);
+            renderSuggestions(results);
+
+            if (results.length > 0) {
+                input.value = results[0];
+                triggerMapRoomClick(results[0]);
+            }
         }
     });
 
