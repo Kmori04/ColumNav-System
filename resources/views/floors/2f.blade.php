@@ -40,7 +40,7 @@
      
      /* GRID POSITIONING */
      data-col-start="1"
-     data-col-end="77"
+     data-col-end="77.5"
      data-row-start="1"
      data-row-end="23" {{-- Decreased from 22 to 20 to shorten the vertical drop --}}
      
@@ -80,7 +80,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="50" 
-     data-col-end="55"
+     data-col-end="56"
      data-row-start="1"
      data-row-end="24" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -114,7 +114,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="50" 
-     data-col-end="88"
+     data-col-end="89"
      data-row-start="1"
      data-row-end="24" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -150,7 +150,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="50" 
-     data-col-end="123"
+     data-col-end="125"
      data-row-start="1"
      data-row-end="24" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -228,7 +228,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="50" 
-     data-col-end="171"
+     data-col-end="173"
      data-row-start="1"
      data-row-end="24" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -265,7 +265,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="52" 
-     data-col-end="200"
+     data-col-end="202"
      data-row-start="1"
      data-row-end="24" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -301,7 +301,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="83.4" 
-     data-col-end="200"
+     data-col-end="202"
      data-row-start="1"
      data-row-end="24" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -337,7 +337,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="119.6" 
-     data-col-end="200"
+     data-col-end="201"
      data-row-start="1"
      data-row-end="24" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -376,7 +376,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="176.6" 
-     data-col-end="200"
+     data-col-end="197"
      data-row-start="1"
      data-row-end="20" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -398,7 +398,7 @@
 </div>
 <!-- PRINTING CENTER -->
 
-<!-- C110 -->
+<!-- C210 -->
 @php
   $id = 113;
   $r  = $rooms[$id] ?? null;
@@ -412,7 +412,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="206.6" 
-     data-col-end="200"
+     data-col-end="197"
      data-row-start="1"
      data-row-end="20" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -967,7 +967,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="72.4" 
-     data-col-end="76.1"
+     data-col-end="78.1"
      data-row-start="1"
      data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -1001,7 +1001,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="84.7" 
-     data-col-end="96.1"
+     data-col-end="98.1"
      data-row-start="1"
      data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -1034,7 +1034,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="84.7" 
-     data-col-end="129.1"
+     data-col-end="132.8"
      data-row-start="1"
      data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -1069,7 +1069,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="84.7" 
-     data-col-end="167.1"
+     data-col-end="169.8"
      data-row-start="1"
      data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -1103,7 +1103,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="126.7" 
-     data-col-end="167.1"
+     data-col-end="169"
      data-row-start="1"
      data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -1205,12 +1205,12 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="195.9 " 
-     data-col-end="229.5"
+     data-col-end="226.5"
      data-row-start="1"
      data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="84" 
+     data-start-x="83.5" 
      data-start-y="77.7"  
      data-start-thrust="0" {{-- Shortened starting tail --}}
      data-corridor-y="85.5"
@@ -1227,7 +1227,7 @@
 
 
     <!-- Taas ng Library No info -->
-    <!-- C111 -->
+    <!-- C211 -->
 @php
   $id = 126;
   $r  = $rooms[$id] ?? null;
@@ -1286,7 +1286,7 @@
      data-row-end="136.4" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="84" 
+     data-start-x="83.5" 
      data-start-y="77.7"  
      data-start-thrust="0" {{-- Shortened starting tail --}}
      data-corridor-y="85.5"
@@ -1323,7 +1323,7 @@
      data-row-end="182.8" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="84" 
+     data-start-x="83.5" 
      data-start-y="77.7"  
      data-start-thrust="0" {{-- Shortened starting tail --}}
      data-corridor-y="85.5"
@@ -1505,7 +1505,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="83.4" 
-     data-col-end="280"
+     data-col-end="278"
      data-row-start="16"
      data-row-end="24" {{-- Matching the shortened drop from Room 48 --}}
      
@@ -1542,7 +1542,7 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="195.9 " 
-     data-col-end="169"
+     data-col-end="165"
      data-row-start="-26"
      data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      

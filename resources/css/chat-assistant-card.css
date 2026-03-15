@@ -1,0 +1,127 @@
+.chatbot-card {
+    position: static !important;
+    left: auto !important;
+    bottom: auto !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: 300px;
+    background: #f1f3f8;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.18);
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    z-index: auto !important;
+}
+
+.chatbot-card__header {
+    height: 50px;
+    background: linear-gradient(180deg, #dfe3ef 0%, #d5d9e6 100%);
+    border-bottom: 1px solid #cfd5df;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    flex-shrink: 0;
+}
+
+.chatbot-card__title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.chatbot-card__icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: #eaf2ff;
+    color: #1f5d94;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.chatbot-card__icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.chatbot-card__title-text {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #274f85;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.chatbot-card__body {
+    flex: 1;
+    padding: 14px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.chatbot-card__subtitle {
+    margin: 0 0 12px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #6e7f99;
+    font-weight: 500;
+}
+
+.chatbot-card__suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.chatbot-suggestion {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #c7ceda;
+    background: #dfe4ef;
+    color: #36547a;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+    padding: 0 12px;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.chatbot-card__input-wrap {
+    margin-top: auto;
+    display: block;
+    width: 100%;
+}
+
+.chatbot-card__input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #d0d6df;
+    border-radius: 6px;
+    background: #f7f8fb;
+    padding: 0 12px;
+    font-size: 12px;
+    color: #475569;
+    outline: none;
+}
+
+.chatbot-suggestion.is-clicked {
+    transform: scale(0.91);
+    background: #cfd8e8;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
+}

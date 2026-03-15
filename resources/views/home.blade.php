@@ -8,14 +8,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  @vite(['resources/css/home.css', 'resources/js/app.js'])
+  @vite([
+    'resources/css/home.css',
+    'resources/css/chat-assistant-card.css',
+    'resources/js/app.js',
+    'resources/js/ai-assistant.js',
+    'resources/js/chat-assistant-card.js'
+  ])
 </head>
 <body>
 
 @php
   use App\Models\Room;
 
-  // ✅ preload rooms for each floor (keyed by room_id so $rooms[$id] works)
   $rooms1 = Room::where('is_active', 1)->where('floor_number', 1)
     ->get(['room_id','room_name','room_description'])->keyBy('room_id');
 
@@ -33,9 +38,9 @@
   <div class="topbar-inner">
     <div class="cc">
       <div class="cc-logo">
-          <a href="{{ route('login.show') }}">
-            <img src="{{ Vite::asset('resources/images/ColumbanCollegeLogo.png') }}" alt="Columban College Logo">
-           </a>
+        <a href="{{ route('login.show') }}">
+          <img src="{{ Vite::asset('resources/images/ColumbanCollegeLogo.png') }}" alt="Columban College Logo">
+        </a>
       </div>
       <h1 class="cc-title">Columban College - Campus Navigation</h1>
     </div>
@@ -43,8 +48,8 @@
     <div class="floors-wrap">
       <label class="floors-label" for="floorSelect">Floors</label>
       <select class="floors-select" id="floorSelect">
-        <option value="1F">1F</option>
-        <option value="2F"selected>2F</option>
+        <option value="1F" selected>1F</option>
+        <option value="2F">2F</option>
         <option value="3F">3F</option>
         <option value="4F">4F</option>
       </select>
@@ -81,12 +86,14 @@
             <div class="legend-cell"><img class="legend-ico" src="{{ Vite::asset('resources/images/GPSblue.png') }}"><span class="legend-label">YOUR LOCATION</span></div>
             <div class="legend-cell"><img class="legend-ico" src="{{ Vite::asset('resources/images/MenWomen.png') }}"><span class="legend-label">RESTROOM</span></div>
             <div class="legend-cell"><img class="legend-ico arrow" src="{{ Vite::asset('resources/images/BlueArrow.png') }}"><span class="legend-label">ENTRANCE</span></div>
-            <div class="legend-cell"><img class="legend-ico" src="{{ Vite::asset('resources/images/GPSyellow.png') }}"><span class="legend-label">DESTINATION</span></div>
-            <div class="legend-cell"><img class="legend-ico arrow" src="{{ Vite::asset('resources/images/RedArrow.png') }}"><span class="legend-label">EXIT</span></div>
-            <div class="legend-cell is-empty"></div>
             <div class="legend-cell"><img class="legend-ico" src="{{ Vite::asset('resources/images/PWD.png') }}"><span class="legend-label">PWD RESTROOM</span></div>
+            <div class="legend-cell"><img class="legend-ico arrow" src="{{ Vite::asset('resources/images/RedArrow.png') }}"><span class="legend-label">EXIT</span></div>
           </div>
         </section>
+
+        <div class="sidebar-chatbot-wrap">
+          @include('components.chat-assistant-card')
+        </div>
 
       </div>
     </aside>
@@ -100,7 +107,6 @@
           <div class="map-zoom-viewport" id="zoomViewport">
             <div class="map-zoom-layer" id="zoomLayer">
               <div class="map-builder floor-1" id="mapBuilder">
-                {{-- Default floor shown on load --}}
                 @includeIf('floors.1f', ['rooms' => $rooms1])
               </div>
             </div>

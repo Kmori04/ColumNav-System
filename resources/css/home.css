@@ -86,12 +86,13 @@ height: 100%;
 background: linear-gradient(180deg, #edf5ff, #e6f0ff);
 border-radius: 26px;
 padding: 18px;
-padding-bottom: 140px;
 display: flex;
 flex-direction: column;
 gap: 22px;
 height: 100%;
 box-shadow: var(--shadow-strong);
+overflow-y: auto;
+overflow-x: hidden;
 }
 
 .card {
@@ -103,7 +104,6 @@ box-shadow: var(--shadow-soft);
 
 .card-head {
 padding: 20px 10px 10px;
-
 }
 
 .card-title {
@@ -113,7 +113,6 @@ font-weight: 700;
 letter-spacing: 1.6px;
 color: var(--blue);
 margin: 0;
-
 line-height: 1.1;
 }
 
@@ -122,20 +121,16 @@ padding: 14px 18px 30px;
 }
 
 .description-box{
-  /* ✅ fixed box so sidebar doesn't move */
-  height:100px;            /* adjust: 140 / 160 / 200 */
+  height:100px;
   min-height: 80px;
   max-height: 160px;
-
   border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   text-align: center;
-
   padding: 12px 10px;
   margin-top: 0;
-
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -144,11 +139,8 @@ padding: 14px 18px 30px;
   margin: 0;
   padding: 0;
   line-height: 1.2;
-
-  /* ✅ prevent overflow issues */
   white-space: pre-wrap;
   word-break: break-word;
-
   width: 100%;
   transform: none;
 }
@@ -191,13 +183,52 @@ column-gap: 10px;
 .legend-ico { width: 32px; height: 32px; object-fit: contain; }
 .legend-ico.arrow { width: 38px; height: 22px; }
 
-.legend-rows .legend-cell:nth-child(1) .legend-ico{ transform: translateX(-18px) scale(2.1) !important; transform-origin:left center; }
-.legend-rows .legend-cell:nth-child(2) .legend-ico{ transform: translateX(4px) scale(1) !important; transform-origin:left center; }
-.legend-rows .legend-cell:nth-child(3) .legend-ico{ transform: translateX(-32px) scale(3.5) !important; transform-origin:left center; }
-.legend-rows .legend-cell:nth-child(4) .legend-ico{ transform: scale(1) !important; transform-origin:center; }
-.legend-rows .legend-cell:nth-child(5) .legend-ico{ transform: translateX(-55px) scale(4) !important; transform-origin:left center; }
-.legend-rows .legend-cell:nth-child(6) .legend-ico{ transform: scale(1) !important; transform-origin:center; }
-.legend-rows .legend-cell:nth-child(8) .legend-ico{ transform: translateX(-15px) scale(2) !important; transform-origin: left center; }
+.legend-rows .legend-cell:nth-child(1) .legend-ico { 
+  transform: translateX(-18px) scale(2.1) !important; 
+  transform-origin: left center; 
+}
+
+.legend-rows .legend-cell:nth-child(2) .legend-ico { 
+  transform: translateX(4px) scale(1) !important; 
+  transform-origin: left center; 
+}
+
+.legend-rows .legend-cell:nth-child(3) .legend-ico { 
+  transform: translateX(-32px) scale(3.5) !important; 
+  transform-origin: left center; 
+}
+
+.legend-rows .legend-cell:nth-child(4) .legend-ico { 
+  transform: scale(1) !important; 
+  transform-origin: center; 
+}
+
+.legend-rows .legend-cell:nth-child(5) .legend-ico { 
+  transform: translateX(-15px) scale(2) !important; 
+  transform-origin: left center; 
+}
+
+.legend-rows .legend-cell:nth-child(6) .legend-ico { 
+  transform: scale(1) !important; 
+  transform-origin: center; 
+}
+
+/* chatbot inside sidebar */
+.sidebar-chatbot-wrap {
+width: 100%;
+margin-top: 4px;
+}
+
+.sidebar-chatbot-wrap .chatbot-card {
+position: static !important;
+left: auto !important;
+right: auto !important;
+top: auto !important;
+bottom: auto !important;
+width: 100% !important;
+height: 300px;
+z-index: auto !important;
+}
 
 .map-wrapper {
 background: #ffffff;
@@ -236,7 +267,6 @@ align-items: center;
 justify-content: center;
 }
 
-/* layer is what JS transforms */
 .map-zoom-layer {
 width: 100%;
 height: 100%;
@@ -244,7 +274,6 @@ transform-origin: top left;
 will-change: transform;
 }
 
-/* Base grid style */
 .map-builder {
 display: grid;
 gap: var(--cell-gap);
@@ -255,7 +284,6 @@ max-height: 100%;
 position: relative;
 }
 
-/* Per-floor grid sizes */
 .map-builder.floor-1 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
 .map-builder.floor-2 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
 .map-builder.floor-3 { grid-template-columns: repeat(120, 1fr); grid-template-rows: repeat(100, 1fr); aspect-ratio: 120 / 100; }
@@ -376,7 +404,6 @@ font-weight: 700;
 cursor: pointer;
 }
 
-/* stairs sa (CCS) */
 .stairs-right::before {
 background: repeating-linear-gradient(to right, rgba(12,59,102,.60) 0 2px, transparent 2px 9px);
 }
@@ -395,7 +422,6 @@ border-bottom: 10px solid transparent;
   transform: translateX(-50%) rotate(180deg);
 }
 
-/* PARA DI MAG  hovver */
 .no-hover:hover {
 background-color: inherit !important;
 outline: none !important;
@@ -405,7 +431,6 @@ cursor: default !important;
 pointer-events: none;
 }
 
-/* ===== Background ===== */
 .floor-bg {
 grid-column: 1 / -1;
 grid-row: 1 / -1;
@@ -452,7 +477,6 @@ clip-path: polygon(
 );
 }
 
-/* ===== Background floor 2===== */
 .floor-bg {
 grid-column: 1 / -1;
 grid-row: 1 / -1;
@@ -464,7 +488,6 @@ pointer-events: none;
 }
 
 .floor2-bg {
-/* Left 40% -> 20% | Right stays 15% */
 clip-path: polygon(
 20% 5%,
 15% 5%,
@@ -474,7 +497,6 @@ clip-path: polygon(
 }
 
 .floor2-bg-mid {
-/* Left 10% -> 0% | Right stays 86% */
 clip-path: polygon(
 2% 4%,
 88% 5%,
@@ -484,7 +506,6 @@ clip-path: polygon(
 }
 
 .floor2-bg-bottom {
-/* Left 0% -> 10% | Right stays 96% */
 clip-path: polygon(
 5% 67%,
 90% 67%,
@@ -511,7 +532,6 @@ z-index: 2;
 position: relative;
 }
 
-/* =====G7854===== */
 .horizontal-path {
 width: 100%;
 height: 100%;
@@ -525,7 +545,6 @@ margin: 1.5px;
 background-color: #cddfee;
 }
 
-/* --- room labels (force visible) --- */
 .room{
 position: relative;
 overflow: hidden;
@@ -538,12 +557,10 @@ display: flex;
 align-items: center;
 justify-content: center;
 text-align: center;
-
 padding: 4px;
 font-size: 10px;
 font-weight: 500;
 line-height: 1.1;
-
 z-index: 9999;
 pointer-events: none;
 color: #0c3b66;
@@ -579,7 +596,6 @@ position: relative;
 .room.room-womenimg .room-label{
 align-items: flex-start;
 justify-content: center;
-
 text-align: center;
 padding-top: 2px;
 }
@@ -587,7 +603,6 @@ padding-top: 2px;
 .room.room-womenimg .room-belowimg{
 position: absolute;
 top: 30px;
-
 left: 50%;
 transform: translateX(-50%);
 width: 45px;
@@ -630,8 +645,6 @@ clip-path: polygon(
 78% 90%
 );
 }
-
-/* ===== Background Floor 3 ===== */
 
 .floor3-bg{
 clip-path: polygon(
@@ -676,10 +689,6 @@ clip-path: polygon(
 );
 }
 
-
-/* --- TEST --- */
-
-/* Yellow Line Highlight for the Room */
 .room.room-click {
 outline: 3px solid #fbbf24 !important;
 outline-offset: -3px;
@@ -687,7 +696,6 @@ z-index: 60 !important;
 transition: all 0.2s ease;
 }
 
-/* Path Animations */
 @keyframes drawPath {
 from { stroke-dashoffset: 200; }
 to { stroke-dashoffset: 0; }

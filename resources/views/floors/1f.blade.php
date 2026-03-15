@@ -452,7 +452,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="56" 
-     data-col-end="366.5" 
+     data-col-end="368.5" 
      data-row-start="16" 
      data-row-end="37.5"
      data-thrust="0"
@@ -948,7 +948,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="39" 
-     data-col-end="16" 
+     data-col-end="21" 
      data-row-start="81" 
      data-row-end="122"
      data-thrust="-1"
@@ -970,7 +970,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="67" 
-     data-col-end="16" 
+     data-col-end="21" 
      data-row-start="81" 
      data-row-end="122"
      data-thrust="-1"
@@ -993,7 +993,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
-     data-col-end="21" 
+     data-col-end="26" 
      data-row-start="81" 
      data-row-end="122"
      data-thrust="-1"
@@ -1015,7 +1015,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
-     data-col-end="63" 
+     data-col-end="68" 
      data-row-start="81" 
      data-row-end="128"
      data-thrust="-1"
@@ -1037,7 +1037,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
-     data-col-end="105" 
+     data-col-end="110" 
      data-row-start="81" 
      data-row-end="120"
      data-thrust="-1"
@@ -1059,7 +1059,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
-     data-col-end="142.5" 
+     data-col-end="147" 
      data-row-start="81" 
      data-row-end="120"
      data-thrust="-1"
@@ -1093,7 +1093,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
-     data-col-end="208" 
+     data-col-end="213" 
      data-row-start="81" 
      data-row-end="120"
      data-thrust="-1"
@@ -1116,7 +1116,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
-     data-col-end="250" 
+     data-col-end="255" 
      data-row-start="81" 
      data-row-end="120"
      data-thrust="-1"
@@ -1140,7 +1140,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
-     data-col-end="292" 
+     data-col-end="298" 
      data-row-start="81" 
      data-row-end="120"
      data-thrust="-1"
@@ -1163,7 +1163,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
-     data-col-end="348" 
+     data-col-end="353" 
      data-row-start="81" 
      data-row-end="120"
      data-thrust="-1"
@@ -1185,7 +1185,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
-     data-col-end="395" 
+     data-col-end="400" 
      data-row-start="81" 
      data-row-end="120"
      data-thrust="-1"
@@ -1207,7 +1207,7 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="99" 
-     data-col-end="441.3" 
+     data-col-end="446" 
      data-row-start="81" 
      data-row-end="120"
      data-thrust="-1"
@@ -1263,23 +1263,23 @@
 <div class="horizontal-path" style="grid-column: 11 / 110; grid-row: 85 / 88;"></div>
 <div class="path-container" style="grid-column: 27 / 1; grid-row: 5 / 86;"></div>
 <div class="path-container" style="grid-column: 77 / 78; grid-row: 27 / 86;"></div>
-<div class="horizontal-path" style="grid-column: 15 / 103; grid-row: 26 / 29;"></div>
+<div class="horizontal-path" style="grid-column: 14 / 103; grid-row: 26 / 29;"></div>
 <div class="path-container" style="grid-column: 108 / 78; grid-row: 27 / 86;"></div>
 
 <!-- GREY "SHORT" BOTTOM PART -->
-<div class="path-container" style="grid-column: 61 / 62; grid-row: 85 / 90 ;"></div>
-<div class="path-container" style="grid-column: 69 / 70; grid-row: 85 / 90;"></div>
-<div class="path-container" style="grid-column: 77 / 78; grid-row: 85 / 90;"></div>
-<div class="path-container" style="grid-column: 87 / 88; grid-row: 85 / 90;"></div>
-<div class="path-container" style="grid-column: 96 / 97; grid-row: 85 / 90;"></div>
-<div class="path-container" style="grid-column: 105 / 106; grid-row: 85 / 90;"></div>
-<div class="path-container" style="grid-column: 107 / 108; grid-row: 83 / 86;"></div>
-<div class="path-container" style="grid-column: 48 / 49; grid-row: 85 / 90;"></div>
-<div class="path-container" style="grid-column: 41 / 42; grid-row: 85 / 90;"></div>
-<div class="path-container" style="grid-column: 33 / 34; grid-row: 85 / 93;"></div>
-<div class="path-container" style="grid-column: 25 / 26; grid-row: 85 / 90;"></div>
-<div class="path-container" style="grid-column: 18 / 19; grid-row: 85 / 90;"></div>
-<div class="path-container" style="grid-column: 13 / 14; grid-row: 85 / 90;"></div>
+<div class="path-container" style="grid-column: 61 / 62; grid-row: 86 / 90;"></div>
+<div class="path-container" style="grid-column: 69 / 70; grid-row: 86 / 90;"></div>
+<div class="path-container" style="grid-column: 77 / 78; grid-row: 86 / 90;"></div>
+<div class="path-container" style="grid-column: 87 / 88; grid-row: 86 / 90;"></div>
+<div class="path-container" style="grid-column: 96 / 97; grid-row: 86 / 90;"></div>
+<div class="path-container" style="grid-column: 105 / 106; grid-row: 86 / 90;"></div>
+<div class="path-container" style="grid-column: 107 / 108; grid-row: 84 / 86;"></div>
+<div class="path-container" style="grid-column: 48 / 49; grid-row: 86 / 90;"></div>
+<div class="path-container" style="grid-column: 41 / 42; grid-row: 86 / 90;"></div>
+<div class="path-container" style="grid-column: 33 / 34; grid-row: 86 / 93;"></div>
+<div class="path-container" style="grid-column: 25 / 26; grid-row: 86 / 90;"></div>
+<div class="path-container" style="grid-column: 18 / 19; grid-row: 86 / 90;"></div>
+<div class="path-container" style="grid-column: 13 / 14; grid-row: 86 / 90;"></div>
 
 <!-- ===(GREY CONTAINER LINE) ""CBA""=== -->
 <div class="horizontal-path" style="grid-column: 11 / 15; grid-row: 80 / 83;"></div>
@@ -1318,15 +1318,19 @@
 
 
 <!--TOP LEFT AND LIKOD NG CCS " -->
-<div class="horizontal-path" style="grid-column: 15 / 19; grid-row: 8 / 11;"></div>
-<div class="horizontal-path" style="grid-column: 15 / 19; grid-row: 17 / 20;"></div>
-<div class="horizontal-path" style="grid-column: 94 / 97; grid-row: 71 / 74;"></div>
-<div class="horizontal-path" style="grid-column: 94 / 97; grid-row: 64 / 67;"></div>
-<div class="horizontal-path" style="grid-column: 94 / 97; grid-row: 56 / 59;"></div>
-<div class="horizontal-path" style="grid-column: 94 / 97; grid-row: 48 / 51;"></div>
-<div class="horizontal-path" style="grid-column: 94 / 97; grid-row: 40 / 43;"></div>
-<div class="horizontal-path" style="grid-column: 94 / 97; grid-row: 32 / 35;"></div>
+<div class="horizontal-path" style="grid-column: 14 / 19; grid-row: 8 / 11;"></div>
+<div class="horizontal-path" style="grid-column: 14 / 19; grid-row: 17 / 20;"></div>
+
+
+<div class="horizontal-path" style="grid-column: 93 / 97; grid-row: 71 / 74;"></div>
+<div class="horizontal-path" style="grid-column: 93 / 97; grid-row: 64 / 67;"></div>
+<div class="horizontal-path" style="grid-column: 93 / 97; grid-row: 56 / 59;"></div>
+<div class="horizontal-path" style="grid-column: 93 / 97; grid-row: 48 / 51;"></div>
+<div class="horizontal-path" style="grid-column: 93 / 97; grid-row: 40 / 43;"></div>
+<div class="horizontal-path" style="grid-column: 93 / 97; grid-row: 32 / 35;"></div>
+
 <div class="horizontal-path" style="grid-column: 90 / 94; grid-row: 70 / 73;"></div>
 <div class="horizontal-path" style="grid-column: 90 / 94; grid-row: 78 / 81;"></div>
+
 <div class="horizontal-path" style="grid-column: 90 / 94; grid-row: 35 / 38;"></div>
 <div class="horizontal-path" style="grid-column: 90 / 94; grid-row: 43 / 46;"></div>
