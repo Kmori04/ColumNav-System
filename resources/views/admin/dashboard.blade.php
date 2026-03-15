@@ -8,15 +8,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  @vite(['resources/css/homeAdmin.css', 'resources/js/app.js'])
+  @vite([
+    'resources/css/homeAdmin.css',
+    'resources/css/chat-assistant-card.css',
+    'resources/js/app.js',
+    'resources/js/chat-assistant-card.js'
+  ])
 
   <style>
-    /* small admin-only add-ons */
     .admin-actions{
       display:flex;
       gap:10px;
       margin-top:12px;
     }
+
     .admin-btn{
       width:100%;
       padding:10px 12px;
@@ -28,17 +33,18 @@
       font-family:'Poppins', sans-serif;
       font-size:14px;
     }
+
     .admin-btn.secondary{
       background:transparent;
       color:#0f172a;
       border:1px solid rgba(15,23,42,.18);
     }
+
     .admin-btn:disabled{
       opacity:.5;
       cursor:not-allowed;
     }
 
-    /* modal */
     .edit-modal{
       display:none;
       position:fixed;
@@ -46,6 +52,7 @@
       background:rgba(0,0,0,.35);
       z-index:9999;
     }
+
     .edit-modal-card{
       width:440px;
       max-width:92vw;
@@ -55,6 +62,7 @@
       margin:12vh auto;
       box-shadow:0 20px 50px rgba(0,0,0,.25);
     }
+
     .edit-modal-head{
       display:flex;
       align-items:center;
@@ -62,24 +70,29 @@
       gap:10px;
       margin-bottom:10px;
     }
+
     .edit-modal-title{
       margin:0;
       font-size:18px;
       font-weight:700;
       color:#0f172a;
     }
+
     .edit-modal-sub{
       font-size:12px;
       opacity:.7;
       margin-top:2px;
     }
+
     .edit-field-label{
       display:block;
       font-size:13px;
       opacity:.75;
       margin:10px 0 6px;
     }
-    .edit-input, .edit-textarea{
+
+    .edit-input,
+    .edit-textarea{
       width:100%;
       padding:10px 12px;
       border:1px solid rgba(15,23,42,.15);
@@ -88,20 +101,17 @@
       font-family:'Poppins', sans-serif;
       font-size:14px;
     }
+
     .edit-textarea{
       min-height:120px;
       resize:vertical;
     }
+
     .edit-modal-actions{
       display:flex;
       gap:10px;
       justify-content:flex-end;
       margin-top:12px;
-    }
-    .mini-note{
-      font-size:12px;
-      opacity:.7;
-      margin-top:10px;
     }
   </style>
 </head>
@@ -138,7 +148,7 @@
       <label class="floors-label" for="floorSelect">Floors</label>
       <select class="floors-select" id="floorSelect">
         <option value="1F" selected>1F</option>
-        <option value="2F">2F</option>
+        <option value="2F" selected>2F</option>
         <option value="3F">3F</option>
         <option value="4F">4F</option>
       </select>
@@ -157,12 +167,10 @@
           </div>
 
           <div class="card-body">
-
             <div class="description-box" id="roomDescBox">
               <div id="roomDescText">Tap any room box on the map to see its description here.</div>
             </div>
 
-            {{-- admin-only actions --}}
             <div class="admin-actions">
               <button type="button" class="admin-btn" id="btnEditRoom" disabled>Edit Room</button>
 
@@ -184,16 +192,41 @@
           </div>
 
           <div class="legend-rows">
-            <div class="legend-cell"><img class="legend-ico" src="{{ Vite::asset('resources/images/stairs.png') }}"><span class="legend-label">STAIRS</span></div>
-            <div class="legend-cell"><img class="legend-ico" src="{{ Vite::asset('resources/images/GPSblue.png') }}"><span class="legend-label">YOUR LOCATION</span></div>
-            <div class="legend-cell"><img class="legend-ico" src="{{ Vite::asset('resources/images/MenWomen.png') }}"><span class="legend-label">RESTROOM</span></div>
-            <div class="legend-cell"><img class="legend-ico arrow" src="{{ Vite::asset('resources/images/BlueArrow.png') }}"><span class="legend-label">ENTRANCE</span></div>
-            <div class="legend-cell"><img class="legend-ico" src="{{ Vite::asset('resources/images/GPSyellow.png') }}"><span class="legend-label">DESTINATION</span></div>
-            <div class="legend-cell"><img class="legend-ico arrow" src="{{ Vite::asset('resources/images/RedArrow.png') }}"><span class="legend-label">EXIT</span></div>
-            <div class="legend-cell is-empty"></div>
-            <div class="legend-cell"><img class="legend-ico" src="{{ Vite::asset('resources/images/PWD.png') }}"><span class="legend-label">PWD RESTROOM</span></div>
+            <div class="legend-cell">
+              <img class="legend-ico" src="{{ Vite::asset('resources/images/stairs.png') }}">
+              <span class="legend-label">STAIRS</span>
+            </div>
+
+            <div class="legend-cell">
+              <img class="legend-ico" src="{{ Vite::asset('resources/images/GPSblue.png') }}">
+              <span class="legend-label">YOUR LOCATION</span>
+            </div>
+
+            <div class="legend-cell">
+              <img class="legend-ico" src="{{ Vite::asset('resources/images/MenWomen.png') }}">
+              <span class="legend-label">RESTROOM</span>
+            </div>
+
+            <div class="legend-cell">
+              <img class="legend-ico arrow" src="{{ Vite::asset('resources/images/BlueArrow.png') }}">
+              <span class="legend-label">ENTRANCE</span>
+            </div>
+
+            <div class="legend-cell">
+              <img class="legend-ico" src="{{ Vite::asset('resources/images/PWD.png') }}">
+              <span class="legend-label">PWD RESTROOM</span>
+            </div>
+
+            <div class="legend-cell">
+              <img class="legend-ico arrow" src="{{ Vite::asset('resources/images/RedArrow.png') }}">
+              <span class="legend-label">EXIT</span>
+            </div>
           </div>
         </section>
+
+        <div class="admin-chatbot-wrap">
+          @include('components.chat-assistant-card')
+        </div>
 
       </div>
     </aside>
@@ -227,7 +260,6 @@
 <template id="tpl-3F">@includeIf('floors.3f', ['rooms' => $rooms3])</template>
 <template id="tpl-4F">@includeIf('floors.4f', ['rooms' => $rooms4])</template>
 
-{{-- EDIT MODAL (like your screenshot) --}}
 <div class="edit-modal" id="editModal" aria-hidden="true">
   <div class="edit-modal-card">
     <div class="edit-modal-head">
@@ -248,25 +280,23 @@
       <button type="button" class="admin-btn secondary" id="btnCancelEdit2" style="width:auto;">Cancel</button>
       <button type="button" class="admin-btn" id="btnSaveEdit" style="width:auto;">Save</button>
     </div>
-
   </div>
 </div>
 
 <script>
 (function () {
-  const btnEdit   = document.getElementById('btnEditRoom');
-  const hiddenId  = document.getElementById('selectedRoomId');
+  const btnEdit    = document.getElementById('btnEditRoom');
+  const hiddenId   = document.getElementById('selectedRoomId');
 
-  const modal         = document.getElementById('editModal');
-  const editName      = document.getElementById('editName');
-  const editDesc      = document.getElementById('editDesc');
-  const editRoomIdText= document.getElementById('editRoomIdText');
+  const modal          = document.getElementById('editModal');
+  const editName       = document.getElementById('editName');
+  const editDesc       = document.getElementById('editDesc');
+  const editRoomIdText = document.getElementById('editRoomIdText');
 
   const btnCancel  = document.getElementById('btnCancelEdit');
   const btnCancel2 = document.getElementById('btnCancelEdit2');
   const btnSave    = document.getElementById('btnSaveEdit');
 
-  // ✅ description panel elements (so no reload needed)
   const roomDescBox  = document.getElementById('roomDescBox');
   const roomDescText = document.getElementById('roomDescText');
 
@@ -283,37 +313,29 @@
     modal.setAttribute('aria-hidden', 'true');
   }
 
-  // ✅ helper: update the left description panel immediately
   function renderDescFromRoom(roomEl) {
     if (!roomDescText) return;
 
-    const name = roomEl?.getAttribute('data-name') || 'Unknown Room';
     const desc = roomEl?.getAttribute('data-desc') || 'No description yet.';
-
-    // If your CSS expects plain text only:
     roomDescText.textContent = desc;
 
-    // (optional) add a tiny visual cue on box
     if (roomDescBox) roomDescBox.style.outline = 'none';
   }
 
-  // Select room when clicking on map room blocks
   document.addEventListener('click', function (e) {
     const roomEl = e.target.closest('.room');
     if (!roomEl) return;
 
     const rid = roomEl.getAttribute('data-id');
-    if (!rid) return; // IMPORTANT: add data-id to your room divs
+    if (!rid) return;
 
     currentRoomEl = roomEl;
     hiddenId.value = rid;
     btnEdit.disabled = false;
 
-    // ✅ show description instantly when selecting (no reload)
     renderDescFromRoom(roomEl);
   });
 
-  // Open edit modal
   btnEdit.addEventListener('click', function () {
     const rid = hiddenId.value;
     if (!rid || !currentRoomEl) return;
@@ -325,16 +347,13 @@
     openModal();
   });
 
-  // Close modal
   btnCancel.addEventListener('click', closeModal);
   btnCancel2.addEventListener('click', closeModal);
 
-  // Close when clicking outside the card
   modal.addEventListener('click', function(e){
     if (e.target === modal) closeModal();
   });
 
-  // Save to DB
   btnSave.addEventListener('click', async function () {
     const rid = hiddenId.value;
     if (!rid || !currentRoomEl) return;
@@ -364,16 +383,13 @@
         return;
       }
 
-      // ✅ Update UI instantly
       currentRoomEl.setAttribute('data-name', payload.room_name);
       currentRoomEl.setAttribute('data-desc', payload.room_description);
 
       const label = currentRoomEl.querySelector('.room-label');
       if (label) label.textContent = payload.room_name;
 
-      // ✅ Update DESCRIPTION panel instantly (this fixes your reload issue)
       renderDescFromRoom(currentRoomEl);
-
       closeModal();
 
     } catch (err) {
