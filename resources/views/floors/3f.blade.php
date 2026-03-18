@@ -49,7 +49,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 2 / 8; grid-row: 14 / 22; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
 <!-- FEMALE CR -->
  
@@ -93,7 +93,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 5 / 11; grid-row: 22 / 34; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A306 -->
 
@@ -131,7 +131,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 5 / 11; grid-row: 34 / 46; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A305 -->
 
@@ -169,7 +169,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 5 / 11; grid-row: 46 / 58; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A304 -->
 
@@ -207,7 +207,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 5 / 11; grid-row: 58 / 70; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A302/A303 -->
 
@@ -245,7 +245,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 5 / 11; grid-row: 70 / 82; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A301 -->
 
@@ -292,7 +292,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 16 / 25; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; ">{{ $name ?? '' }}</span>
 </div>
  <!-- C301 -->
 
@@ -328,7 +328,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 25 / 34; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- C302 -->
 
@@ -364,7 +364,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 34 / 43; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- C303 -->
 
@@ -400,7 +400,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 43 / 52; grid-row: 19 / 26; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- C304 -->
 
@@ -562,7 +562,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 61 / 70; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-size: 0.58rem;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
 <!-- B304 -->
 
