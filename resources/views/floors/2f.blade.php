@@ -1210,9 +1210,9 @@
      data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="83.5" 
+     data-start-x="60" 
      data-start-y="77.7"  
-     data-start-thrust="0" {{-- Shortened starting tail --}}
+     data-start-thrust="-1" {{-- Shortened starting tail --}}
      data-corridor-y="85.5"
      
      /* BEHAVIOR SETTINGS */
@@ -1286,9 +1286,9 @@
      data-row-end="136.4" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="83.5" 
+     data-start-x="60" 
      data-start-y="77.7"  
-     data-start-thrust="0" {{-- Shortened starting tail --}}
+     data-start-thrust="-1" {{-- Shortened starting tail --}}
      data-corridor-y="85.5"
      
      /* BEHAVIOR SETTINGS */
@@ -1323,9 +1323,9 @@
      data-row-end="182.8" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="83.5" 
+     data-start-x="60" 
      data-start-y="77.7"  
-     data-start-thrust="0" {{-- Shortened starting tail --}}
+     data-start-thrust="-1" {{-- Shortened starting tail --}}
      data-corridor-y="85.5"
      
      /* BEHAVIOR SETTINGS */

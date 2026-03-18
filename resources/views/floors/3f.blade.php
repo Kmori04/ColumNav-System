@@ -9,19 +9,44 @@
 |--------------------------------------------------------------------------
 -->
 <div class="stairs stairs-left" style="grid-column: 2 / 8; grid-row: 8 / 14; margin: 1.5px;"></div>
-
+<svg id="floor-3-svg" viewBox="0 0 100 100" 
+     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; overflow: visible;">
+    <g id="path-group"></g> </svg>
 <!-- FEMALE CR -->
 @php
   $id = 88;
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 2 / 8; grid-row: 14 / 22; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     data-col-start="-27" 
+     data-col-end="-64" 
+     data-row-start="-3" /* up down /*
+     data-row-end="23.5" /* up down /*
+
+      /* PATH GEOMETRY */
+     data-start-x="-18.7" 
+     data-start-y="85.4" 
+     data-start-thrust="3" 
+     data-corridor-y="85.4.4"  
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="0"
+     
+     
+     data-side="right2"
+     data-thrust="-9" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 2 / 8; grid-row: 14 / 22; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
 <!-- FEMALE CR -->
  
@@ -38,12 +63,36 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 5 / 11; grid-row: 22 / 34; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     data-col-start="-27" 
+     data-col-end="-64" 
+     data-row-start="-3" /* up down /*
+     data-row-end="43.5" /* up down /*
+
+      /* PATH GEOMETRY */
+     data-start-x="-18.7" 
+     data-start-y="85.4" 
+     data-start-thrust="3" 
+     data-corridor-y="85.4.4"  
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="0"
+     
+     
+     data-side="right2"
+     data-thrust="-5" 
+   
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 5 / 11; grid-row: 22 / 34; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A306 -->
 
@@ -54,29 +103,72 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 5 / 11; grid-row: 34 / 46; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING (Matched to Room 87 logic) */
+     data-col-start="-27" 
+     data-col-end="-64" 
+     data-row-start="-3" 
+     data-row-end="72"
+
+     /* PATH GEOMETRY */
+     data-start-x="-18.7" 
+     data-start-y="85.4" 
+     data-start-thrust="3" 
+     data-corridor-y="85.4.4" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="0"
+     data-side="right2"
+     data-thrust="-5" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 5 / 11; grid-row: 34 / 46; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A305 -->
 
  <!-- LEFT A304 -->
 {{-- ID 85 --}}
-@php
-  $id = 85;
-  $r  = $rooms[$id] ?? null;
-  $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
-@endphp
-<div class="room"
-     data-id="{{ $id }}"
-     data-name="{{ $name ?? 'Unknown Room' }}"
-     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 5 / 11; grid-row: 46 / 58; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
-</div>
+  @php
+    $id = 85;
+    $r  = $rooms[$id] ?? null;
+    $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
+  @endphp
+
+  <div class="room room-3f-new"
+      data-id="{{ $id }}"
+      data-name="{{ $name ?? 'Unknown Room' }}"
+      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+      
+      /* GRID POSITIONING */
+      data-col-start="-21" 
+      data-col-end="-70" 
+      data-row-start="-3" 
+      {{-- Increased from 72 to 95 to account for the lower grid-row (46/58) --}}
+      data-row-end="98.6" 
+
+      /* PATH GEOMETRY */
+      data-start-x="-18.7" 
+      data-start-y="85.4" 
+      data-start-thrust="3" 
+      data-corridor-y="85.4" 
+      
+      /* BEHAVIOR */
+      data-last-line-offset="-6"
+      data-last-line-size="0"
+      data-side="right2"
+      data-thrust="-5" 
+
+      onclick="drawYellowPath(this)"
+      style="grid-column: 5 / 11; grid-row: 46 / 58; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+    <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  </div>
  <!-- LEFT A304 -->
 
 
@@ -86,12 +178,34 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 5 / 11; grid-row: 58 / 70; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     data-col-start="-27" 
+     data-col-end="-64" 
+     data-row-start="-3" 
+     {{-- Increased to 125 to reach the center of grid-row 58/70 --}}
+     data-row-end="125" 
+
+     /* PATH GEOMETRY */
+      data-start-x="-18.7" 
+      data-start-y="85.4" 
+      data-start-thrust="3" 
+      data-corridor-y="85.4" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="0"
+     data-side="right2"
+     data-thrust="-5" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 5 / 11; grid-row: 58 / 70; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A302/A303 -->
 
@@ -102,12 +216,34 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 5 / 11; grid-row: 70 / 82; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     data-col-start="-27" 
+     data-col-end="-64" 
+     data-row-start="-3" 
+     {{-- Increased to 151 to reach the center of grid-row 70/82 --}}
+     data-row-end="149.5" 
+
+     /* PATH GEOMETRY */
+      data-start-x="-18.7" 
+      data-start-y="85.4" 
+      data-start-thrust="3" 
+      data-corridor-y="85.4" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="0"
+     data-side="right2"
+     data-thrust="-5" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 5 / 11; grid-row: 70 / 82; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A301 -->
 
@@ -128,12 +264,36 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 16 / 25; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     data-col-start="-27" 
+     data-col-end="-64" 
+     data-row-start="-3" 
+     data-row-end="34" 
+
+     /* PATH GEOMETRY */
+     data-start-x="-18.7" 
+     data-start-y="85.4" 
+     data-start-thrust="3" 
+     data-corridor-y="85.4" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     
+     /* UPDATED: Set to a negative value to point the final tail UPWARDS */
+     data-last-line-size="-2" 
+     
+     data-side="right2"
+     data-thrust="7.6" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 16 / 25; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- C301 -->
 
@@ -143,12 +303,36 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 25 / 34; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     data-col-start="-27" 
+     data-col-end="-64" 
+     data-row-start="-3" 
+     data-row-end="34" 
+
+     /* PATH GEOMETRY */
+     data-start-x="-18.7" 
+     data-start-y="85.4" 
+     data-start-thrust="3" 
+     data-corridor-y="85.4" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     
+     /* UPDATED: Set to a negative value to point the final tail UPWARDS */
+     data-last-line-size="-2" 
+     
+     data-side="right2"
+     data-thrust="21.6" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 25 / 34; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- C302 -->
 
@@ -158,12 +342,36 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 34 / 43; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     data-col-start="-27" 
+     data-col-end="-64" 
+     data-row-start="-3" 
+     data-row-end="34" 
+
+     /* PATH GEOMETRY */
+     data-start-x="-18.7" 
+     data-start-y="85.4" 
+     data-start-thrust="3" 
+     data-corridor-y="85.4" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     
+     /* UPDATED: Set to a negative value to point the final tail UPWARDS */
+     data-last-line-size="-2" 
+     
+     data-side="right2"
+     data-thrust="34.2" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 34 / 43; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- C303 -->
 
@@ -173,12 +381,36 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 43 / 52; grid-row: 19 / 26; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     data-col-start="-27" 
+     data-col-end="-64" 
+     data-row-start="-3" 
+     data-row-end="34" 
+
+     /* PATH GEOMETRY */
+     data-start-x="-18.7" 
+     data-start-y="85.4" 
+     data-start-thrust="3" 
+     data-corridor-y="85.4" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     
+     /* UPDATED: Set to a negative value to point the final tail UPWARDS */
+     data-last-line-size="" 
+     
+     data-side="right2"
+     data-thrust="38.2" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 43 / 52; grid-row: 19 / 26; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- C304 -->
 
@@ -195,12 +427,35 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 81 / 87; grid-row: 26 / 38; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     /* Increased to reach far-right columns 81/87 */
+     data-col-start="265" 
+     data-col-end="120" 
+     data-row-start="-3" 
+     /* Increased to 78 to reach the center of grid-row 26/38 */
+     data-row-end="52" 
+
+     /* PATH GEOMETRY */
+     data-start-x="79" 
+     data-start-y="85.5" 
+     data-start-thrust="0" 
+     data-corridor-y="85.5" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="0" {{-- Upward kick at the end --}}
+     data-side="right2"
+     data-thrust="3.2" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 81 / 87; grid-row: 26 / 38; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B301 -->
 
@@ -211,12 +466,35 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 81 / 87; grid-row: 38 / 50; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     /* Increased to reach far-right columns 81/87 */
+     data-col-start="265" 
+     data-col-end="120" 
+     data-row-start="-3" 
+     /* Increased to 78 to reach the center of grid-row 26/38 */
+     data-row-end="81" 
+
+     /* PATH GEOMETRY */
+     data-start-x="79" 
+     data-start-y="85.5" 
+     data-start-thrust="0" 
+     data-corridor-y="85.5" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="0" {{-- Upward kick at the end --}}
+     data-side="right2"
+     data-thrust="3.2" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 81 / 87; grid-row: 38 / 50; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B302 -->
 
@@ -227,12 +505,35 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 81 / 87; grid-row: 50 / 61; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     /* Increased to reach far-right columns 81/87 */
+     data-col-start="265" 
+     data-col-end="120" 
+     data-row-start="4.2" 
+     /* Increased to 78 to reach the center of grid-row 26/38 */
+     data-row-end="100" 
+
+     /* PATH GEOMETRY */
+     data-start-x="79" 
+     data-start-y="85.5" 
+     data-start-thrust="0" 
+     data-corridor-y="85.5" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="0" {{-- Upward kick at the end --}}
+     data-side="right2"
+     data-thrust="3.2"
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 81 / 87; grid-row: 50 / 61; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B303 -->
 
@@ -243,12 +544,35 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 81 / 87; grid-row: 61 / 70; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label" style="font-size: 0.58rem;">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     /* Increased to reach far-right columns 81/87 */
+     data-col-start="265" 
+     data-col-end="120" 
+     data-row-start="26.5" 
+     /* Increased to 78 to reach the center of grid-row 26/38 */
+     data-row-end="100" 
+
+     /* PATH GEOMETRY */
+     data-start-x="79" 
+     data-start-y="85.5" 
+     data-start-thrust="0" 
+     data-corridor-y="85.5" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="0" {{-- Upward kick at the end --}}
+     data-side="right2"
+     data-thrust="3.2" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 81 / 87; grid-row: 61 / 70; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none; font-size: 0.58rem;">{{ $name ?? '' }}</span>
 </div>
 <!-- B304 -->
 
@@ -259,12 +583,34 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 81 / 87; grid-row: 70 / 83; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     data-col-start="265" 
+     data-col-end="120" 
+     data-row-start="51.5" 
+     data-row-end="100" 
+
+     /* PATH GEOMETRY */
+     /* MOVED RIGHT BY 50: -18.7 + 50 = 31.3 */
+     data-start-x="79" 
+     data-start-y="85.5" 
+     data-start-thrust="0" 
+     data-corridor-y="85.5" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="0"
+     data-side="right2"
+     data-thrust="3.2" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 81 / 87; grid-row: 70 / 83; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B305 -->
 
@@ -284,12 +630,35 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 88 / 93; grid-row: 26 / 37; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     /* Increased to reach far-right columns 81/87 */
+     data-col-start="265" 
+     data-col-end="120" 
+     data-row-start="-3" 
+     /* Increased to 78 to reach the center of grid-row 26/38 */
+     data-row-end="32" 
+
+     /* PATH GEOMETRY */
+     data-start-x="79" 
+     data-start-y="85.5" 
+     data-start-thrust="0" 
+     data-corridor-y="85.5" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="3" {{-- Upward kick at the end --}}
+     data-side="right2"
+     data-thrust="19.7" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 88 / 93; grid-row: 26 / 37; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B300 -->
   
@@ -299,12 +668,35 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 88 / 93; grid-row: 78 / 89; margin: 1.5px; border: 1.5px solid #6b93a3; background: white;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     /* Increased to reach far-right columns 81/87 */
+     data-col-start="265" 
+     data-col-end="120" 
+     data-row-start="-3" 
+     /* Increased to 78 to reach the center of grid-row 26/38 */
+     data-row-end="187" 
+
+     /* PATH GEOMETRY */
+     data-start-x="79" 
+     data-start-y="85.5" 
+     data-start-thrust="0" 
+     data-corridor-y="85.5" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="-2.5" {{-- Upward kick at the end --}}
+     data-side="right2"
+     data-thrust="19.7" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 88 / 93; grid-row: 78 / 89; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
 <!-- 3rd floor CR -->
 
@@ -320,12 +712,35 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ?? null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 103 / 115; grid-row: 9 / 20; margin: 1.5px;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     /* GRID POSITIONING */
+     /* Increased to reach far-right columns 81/87 */
+     data-col-start="265" 
+     data-col-end="120" 
+     data-row-start="-3" 
+     /* Increased to 78 to reach the center of grid-row 26/38 */
+     data-row-end="32" 
+
+     /* PATH GEOMETRY */
+     data-start-x="79" 
+     data-start-y="85.5" 
+     data-start-thrust="0" 
+     data-corridor-y="85.5" 
+     
+     /* BEHAVIOR */
+     data-last-line-offset="-6"
+     data-last-line-size="-2" {{-- Upward kick at the end --}}
+     data-side="right2"
+     data-thrust="41.2" 
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 103 / 115; grid-row: 9 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- V307 -->
 
