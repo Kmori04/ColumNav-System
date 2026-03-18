@@ -650,3 +650,7 @@ const makeVirtualRoom = (config) => {
 
   viewport.style.cursor = "grab";
 });
+
+// FULLSCREEN
+
+

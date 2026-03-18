@@ -9,9 +9,14 @@
 |--------------------------------------------------------------------------
 -->
 <div class="stairs stairs-left" style="grid-column: 2 / 8; grid-row: 8 / 14; margin: 1.5px;"></div>
-<svg id="floor-3-svg" viewBox="0 0 100 100" 
+
+<svg id="floor-3-svg" 
+     class="path-guide-overlay" 
+     viewBox="0 0 120 100" 
+     preserveAspectRatio="none" 
      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; overflow: visible;">
-    <g id="path-group"></g> </svg>
+    <g id="path-group"></g>
+</svg>
 <!-- FEMALE CR -->
 @php
   $id = 88;
@@ -24,29 +29,27 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     data-col-start="-27" 
-     data-col-end="-64" 
-     data-row-start="-3" /* up down /*
-     data-row-end="23.5" /* up down /*
+     {{-- GRID POSITIONING --}}
+     data-col-start="29" 
+     data-col-end="43" 
+     data-row-start="10" 
+     data-row-end="23.5" 
 
-      /* PATH GEOMETRY */
-     data-start-x="-18.7" 
-     data-start-y="85.4" 
-     data-start-thrust="3" 
-     data-corridor-y="85.4.4"  
+     {{-- PATH GEOMETRY --}}
+     {{-- start-x set to 10 to move it away from the edge for better visibility --}}
+     data-start-x="10.0" 
+     data-start-y="85.6" 
+     data-corridor-y="85.6" 
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
+     {{-- BEHAVIOR --}}
+     {{-- data-thrust increased to -10 to make the horizontal line much longer/larger --}}
+     data-thrust="-6" 
      data-last-line-size="0"
-     
-     
      data-side="right2"
-     data-thrust="-9" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 2 / 8; grid-row: 14 / 22; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
 <!-- FEMALE CR -->
  
@@ -69,30 +72,28 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     data-col-start="-27" 
-     data-col-end="-64" 
-     data-row-start="-3" /* up down /*
-     data-row-end="43.5" /* up down /*
+     {{-- GRID POSITIONING --}}
+     data-col-start="29" 
+     data-col-end="43" 
+     data-row-start="10" 
+     {{-- Set to 43.5 to center the path within grid-row 22/34 --}}
+     data-row-end="43.5" 
 
-      /* PATH GEOMETRY */
-     data-start-x="-18.7" 
-     data-start-y="85.4" 
-     data-start-thrust="3" 
-     data-corridor-y="85.4.4"  
+     {{-- PATH GEOMETRY --}}
+     {{-- start-x set to 10.0 to stay aligned with the main vertical path line --}}
+     data-start-x="10.0" 
+     data-start-y="85.6" 
+     data-corridor-y="85.6" 
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
+     {{-- BEHAVIOR --}}
+     {{-- data-thrust set to -6 to match your visibility style --}}
+     data-thrust="-3" 
      data-last-line-size="0"
-     
-     
      data-side="right2"
-     data-thrust="-5" 
-   
 
      onclick="drawYellowPath(this)"
      style="grid-column: 5 / 11; grid-row: 22 / 34; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A306 -->
 
@@ -109,66 +110,67 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING (Matched to Room 87 logic) */
-     data-col-start="-27" 
-     data-col-end="-64" 
-     data-row-start="-3" 
-     data-row-end="72"
+     {{-- GRID POSITIONING --}}
+     data-col-start="29" 
+     data-col-end="43" 
+     data-row-start="10" 
+     {{-- Adjusted to center within grid-row 34/46 --}}
+     data-row-end="72.4" 
 
-     /* PATH GEOMETRY */
-     data-start-x="-18.7" 
-     data-start-y="85.4" 
-     data-start-thrust="3" 
-     data-corridor-y="85.4.4" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Using 10.0 to stay visible and aligned with Rooms 87/88 --}}
+     data-start-x="10.0" 
+     data-start-y="85.6" 
+     data-corridor-y="85.6" 
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
+     {{-- BEHAVIOR --}}
+     {{-- data-thrust set to -6 for consistent bold look --}}
+     data-thrust="-3" 
      data-last-line-size="0"
      data-side="right2"
-     data-thrust="-5" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 5 / 11; grid-row: 34 / 46; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A305 -->
 
  <!-- LEFT A304 -->
 {{-- ID 85 --}}
-  @php
-    $id = 85;
-    $r  = $rooms[$id] ?? null;
-    $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
-  @endphp
+@php
+  $id = 85;
+  $r  = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(3\)\s*$/', '', $r->room_name) : null;
+@endphp
 
-  <div class="room room-3f-new"
-      data-id="{{ $id }}"
-      data-name="{{ $name ?? 'Unknown Room' }}"
-      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-      
-      /* GRID POSITIONING */
-      data-col-start="-21" 
-      data-col-end="-70" 
-      data-row-start="-3" 
-      {{-- Increased from 72 to 95 to account for the lower grid-row (46/58) --}}
-      data-row-end="98.6" 
+<div class="room room-3f-new"
+     data-id="{{ $id }}"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     
+     {{-- GRID POSITIONING --}}
+     data-col-start="29" 
+     data-col-end="43" 
+     data-row-start="10" 
+     {{-- Centered for grid-row 46/58 --}}
+     data-row-end="99.0" 
 
-      /* PATH GEOMETRY */
-      data-start-x="-18.7" 
-      data-start-y="85.4" 
-      data-start-thrust="3" 
-      data-corridor-y="85.4" 
-      
-      /* BEHAVIOR */
-      data-last-line-offset="-6"
-      data-last-line-size="0"
-      data-side="right2"
-      data-thrust="-5" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Standardized to 10.0 for visibility on the 0-120 scale --}}
+     data-start-x="10.0" 
+     data-start-y="85.6" 
+     data-corridor-y="85.6"  
+     
+     {{-- BEHAVIOR --}}
+     {{-- Set to -6 for a bold, consistent line length --}}
+     data-thrust="-3" 
+     data-last-line-size="0"
+     data-side="right2"
 
-      onclick="drawYellowPath(this)"
-      style="grid-column: 5 / 11; grid-row: 46 / 58; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-    <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
-  </div>
+     onclick="drawYellowPath(this)"
+     style="grid-column: 5 / 11; grid-row: 46 / 58; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+</div>
  <!-- LEFT A304 -->
 
 
@@ -184,28 +186,28 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     data-col-start="-27" 
-     data-col-end="-64" 
-     data-row-start="-3" 
-     {{-- Increased to 125 to reach the center of grid-row 58/70 --}}
-     data-row-end="125" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="29" 
+     data-col-end="43" 
+     data-row-start="10" 
+     {{-- Centered for grid-row 58/70 --}}
+     data-row-end="125.4" 
 
-     /* PATH GEOMETRY */
-      data-start-x="-18.7" 
-      data-start-y="85.4" 
-      data-start-thrust="3" 
-      data-corridor-y="85.4" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Standardized to 10.0 to stay aligned with the CBA column --}}
+     data-start-x="10.0" 
+      data-start-y="85.6" 
+     data-corridor-y="85.6" 
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
+     {{-- BEHAVIOR --}}
+     {{-- Set to -6 for consistent bold line length --}}
+     data-thrust="-3" 
      data-last-line-size="0"
      data-side="right2"
-     data-thrust="-5" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 5 / 11; grid-row: 58 / 70; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A302/A303 -->
 
@@ -222,28 +224,28 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     data-col-start="-27" 
-     data-col-end="-64" 
-     data-row-start="-3" 
-     {{-- Increased to 151 to reach the center of grid-row 70/82 --}}
-     data-row-end="149.5" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="29" 
+     data-col-end="43" 
+     data-row-start="10" 
+     {{-- Centered for grid-row 70/82 --}}
+     data-row-end="149.6" 
 
-     /* PATH GEOMETRY */
-      data-start-x="-18.7" 
-      data-start-y="85.4" 
-      data-start-thrust="3" 
-      data-corridor-y="85.4" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Using 10.0 to stay aligned with the CBA column logic --}}
+     data-start-x="10.0" 
+     data-start-y="85.6" 
+     data-corridor-y="85.6" 
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
+     {{-- BEHAVIOR --}}
+     {{-- Set to -6 for consistent bold line length --}}
+     data-thrust="-3" 
      data-last-line-size="0"
      data-side="right2"
-     data-thrust="-5" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 5 / 11; grid-row: 70 / 82; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- LEFT A301 -->
 
@@ -270,30 +272,27 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     data-col-start="-27" 
-     data-col-end="-64" 
-     data-row-start="-3" 
-     data-row-end="34" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="29" 
+     data-col-end="43" 
+     data-row-start="10" 
+     data-row-end="34.5" 
 
-     /* PATH GEOMETRY */
-     data-start-x="-18.7" 
-     data-start-y="85.4" 
-     data-start-thrust="3" 
-     data-corridor-y="85.4" 
+     {{-- PATH GEOMETRY --}}
+     {{-- start-x set to 10 to move it away from the edge for better visibility --}}
+     data-start-x="10.0" 
+     data-start-y="85.6" 
+     data-corridor-y="85.6" 
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
-     
-     /* UPDATED: Set to a negative value to point the final tail UPWARDS */
-     data-last-line-size="-2" 
-     
+     {{-- BEHAVIOR --}}
+     {{-- data-thrust increased to -10 to make the horizontal line much longer/larger --}}
+     data-thrust="5.2" 
+     data-last-line-size="-2"
      data-side="right2"
-     data-thrust="7.6" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 16 / 25; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- C301 -->
 
@@ -309,30 +308,27 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     data-col-start="-27" 
-     data-col-end="-64" 
-     data-row-start="-3" 
-     data-row-end="34" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="29" 
+     data-col-end="43" 
+     data-row-start="10" 
+     data-row-end="34.5" 
 
-     /* PATH GEOMETRY */
-     data-start-x="-18.7" 
-     data-start-y="85.4" 
-     data-start-thrust="3" 
-     data-corridor-y="85.4" 
+     {{-- PATH GEOMETRY --}}
+     {{-- start-x set to 10 to move it away from the edge for better visibility --}}
+     data-start-x="10.0" 
+     data-start-y="85.6" 
+     data-corridor-y="85.6" 
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
-     
-     /* UPDATED: Set to a negative value to point the final tail UPWARDS */
-     data-last-line-size="-2" 
-     
+     {{-- BEHAVIOR --}}
+     {{-- data-thrust increased to -10 to make the horizontal line much longer/larger --}}
+     data-thrust="14.7" 
+     data-last-line-size="-2"
      data-side="right2"
-     data-thrust="21.6" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 25 / 34; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- C302 -->
 
@@ -348,30 +344,27 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     data-col-start="-27" 
-     data-col-end="-64" 
-     data-row-start="-3" 
-     data-row-end="34" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="29" 
+     data-col-end="43" 
+     data-row-start="10" 
+     data-row-end="34.5" 
 
-     /* PATH GEOMETRY */
-     data-start-x="-18.7" 
-     data-start-y="85.4" 
-     data-start-thrust="3" 
-     data-corridor-y="85.4" 
+     {{-- PATH GEOMETRY --}}
+     {{-- start-x set to 10 to move it away from the edge for better visibility --}}
+     data-start-x="10.0" 
+     data-start-y="85.6" 
+     data-corridor-y="85.6" 
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
-     
-     /* UPDATED: Set to a negative value to point the final tail UPWARDS */
-     data-last-line-size="-2" 
-     
+     {{-- BEHAVIOR --}}
+     {{-- data-thrust increased to -10 to make the horizontal line much longer/larger --}}
+     data-thrust="23.4" 
+     data-last-line-size="-2"
      data-side="right2"
-     data-thrust="34.2" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 34 / 43; grid-row: 13 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- C303 -->
 
@@ -387,30 +380,27 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     data-col-start="-27" 
-     data-col-end="-64" 
-     data-row-start="-3" 
-     data-row-end="34" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="29" 
+     data-col-end="43" 
+     data-row-start="10" 
+     data-row-end="34.5" 
 
-     /* PATH GEOMETRY */
-     data-start-x="-18.7" 
-     data-start-y="85.4" 
-     data-start-thrust="3" 
-     data-corridor-y="85.4" 
+     {{-- PATH GEOMETRY --}}
+     {{-- start-x set to 10 to move it away from the edge for better visibility --}}
+     data-start-x="10.0" 
+     data-start-y="85.6" 
+     data-corridor-y="85.6" 
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
-     
-     /* UPDATED: Set to a negative value to point the final tail UPWARDS */
-     data-last-line-size="" 
-     
+     {{-- BEHAVIOR --}}
+     {{-- data-thrust increased to -10 to make the horizontal line much longer/larger --}}
+     data-thrust="26.4" 
+     data-last-line-size=""
      data-side="right2"
-     data-thrust="38.2" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 43 / 52; grid-row: 19 / 26; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- C304 -->
 
