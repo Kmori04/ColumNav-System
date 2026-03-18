@@ -115,7 +115,7 @@
     }
   </style>
 </head>
-<body>
+<body class="admin-page">
 
 @php
   use App\Models\Room;
@@ -148,7 +148,7 @@
       <label class="floors-label" for="floorSelect">Floors</label>
       <select class="floors-select" id="floorSelect">
         <option value="1F" selected>1F</option>
-        <option value="2F" selected>2F</option>
+        <option value="2F">2F</option>
         <option value="3F">3F</option>
         <option value="4F">4F</option>
       </select>
@@ -299,6 +299,7 @@
 
   const roomDescBox  = document.getElementById('roomDescBox');
   const roomDescText = document.getElementById('roomDescText');
+  const floorSelect  = document.getElementById('floorSelect');
 
   let currentRoomEl = null;
 
@@ -320,6 +321,45 @@
     roomDescText.textContent = desc;
 
     if (roomDescBox) roomDescBox.style.outline = 'none';
+  }
+
+  function updateRoomElement(roomEl, payload) {
+    if (!roomEl) return;
+
+    roomEl.setAttribute('data-name', payload.room_name);
+    roomEl.setAttribute('data-desc', payload.room_description);
+
+    const label = roomEl.querySelector('.room-label');
+    if (label) label.textContent = payload.room_name;
+  }
+
+  function updateRoomInTemplate(templateId, roomId, payload) {
+    const tpl = document.getElementById(templateId);
+    if (!tpl) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = tpl.innerHTML;
+
+    const roomEl = wrapper.querySelector(`.room[data-id="${roomId}"]`);
+    if (!roomEl) return;
+
+    updateRoomElement(roomEl, payload);
+    tpl.innerHTML = wrapper.innerHTML;
+  }
+
+  function syncRoomEverywhere(roomId, payload) {
+    // current visible map
+    const visibleRoom = document.querySelector(`#mapBuilder .room[data-id="${roomId}"]`);
+    if (visibleRoom) {
+      updateRoomElement(visibleRoom, payload);
+      currentRoomEl = visibleRoom;
+    }
+
+    // all templates
+    updateRoomInTemplate('tpl-1F', roomId, payload);
+    updateRoomInTemplate('tpl-2F', roomId, payload);
+    updateRoomInTemplate('tpl-3F', roomId, payload);
+    updateRoomInTemplate('tpl-4F', roomId, payload);
   }
 
   document.addEventListener('click', function (e) {
@@ -358,9 +398,13 @@
     const rid = hiddenId.value;
     if (!rid || !currentRoomEl) return;
 
+    const currentFloorValue = floorSelect ? floorSelect.value.replace('F', '') : '1';
+
     const payload = {
       room_name: editName.value.trim(),
-      room_description: editDesc.value.trim()
+      room_description: editDesc.value.trim(),
+      floor_number: parseInt(currentFloorValue, 10),
+      is_active: 1
     };
 
     btnSave.disabled = true;
@@ -383,12 +427,7 @@
         return;
       }
 
-      currentRoomEl.setAttribute('data-name', payload.room_name);
-      currentRoomEl.setAttribute('data-desc', payload.room_description);
-
-      const label = currentRoomEl.querySelector('.room-label');
-      if (label) label.textContent = payload.room_name;
-
+      syncRoomEverywhere(rid, payload);
       renderDescFromRoom(currentRoomEl);
       closeModal();
 
