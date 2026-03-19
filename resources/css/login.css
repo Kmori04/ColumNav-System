@@ -92,3 +92,25 @@ body{
   margin:10px 0;
   font-size:13px;
 }
+
+.alert-success{
+  background:#effdf4;
+  border:1px solid rgba(34,197,94,.25);
+  color:#166534;
+}
+
+.forgot-wrap{
+  margin-top:14px;
+  text-align:center;
+}
+
+.forgot-link{
+  color:var(--blue);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:500;
+}
+
+.forgot-link:hover{
+  text-decoration:underline;
+}
