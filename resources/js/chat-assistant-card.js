@@ -5,9 +5,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!input || !suggestionList) return;
 
+    
+    
     const rawRooms = Array.isArray(window.chatAssistantRooms) ? window.chatAssistantRooms : [];
-    const uniqueRooms = [...new Set(rawRooms.map(room => (room || "").trim()).filter(Boolean))];
-    const defaultSuggestions = ["Canteen", "Comfort Room", "B102"];
+
+    const normalizedRooms = rawRooms
+        .map((room, index) => {
+            if (typeof room === "string") {
+                return {
+                    id: index + 1,
+                    name: room.trim()
+                };
+            }
+
+            if (room && typeof room === "object") {
+                return {
+                    id: Number(room.id),
+                    name: String(room.name || "").trim()
+                };
+            }
+
+            return null;
+        })
+        .filter(room => room && room.name);
+
+    const uniqueRoomsMap = new Map();
+    normalizedRooms.forEach(room => {
+        if (!uniqueRoomsMap.has(room.id)) {
+            uniqueRoomsMap.set(room.id, room);
+        }
+    });
+
+    const roomList = Array.from(uniqueRoomsMap.values());
+
+    const defaultSuggestionIds = [25, 22, 50]; // Canteen, Comfort Room, B102
 
     function normalizeText(text) {
         return (text || "")
@@ -37,38 +68,52 @@ document.addEventListener("DOMContentLoaded", () => {
         return score;
     }
 
+    function getRoomById(roomId) {
+        return roomList.find(room => Number(room.id) === Number(roomId)) || null;
+    }
+
+    function getDefaultSuggestions() {
+        const defaults = defaultSuggestionIds
+            .map(id => getRoomById(id))
+            .filter(Boolean);
+
+        if (defaults.length > 0) return defaults;
+
+        return roomList.slice(0, 3);
+    }
+
     function getTopSuggestions(query) {
         const cleanQuery = normalizeText(query);
 
         if (!cleanQuery) {
-            return defaultSuggestions;
+            return getDefaultSuggestions();
         }
 
-        const exactMatch = uniqueRooms.find(room => normalizeText(room) === cleanQuery);
+        const exactMatch = roomList.find(room => normalizeText(room.name) === cleanQuery);
         if (exactMatch) {
             return [exactMatch];
         }
 
-        const startsWithMatches = uniqueRooms.filter(room =>
-            normalizeText(room).startsWith(cleanQuery)
+        const startsWithMatches = roomList.filter(room =>
+            normalizeText(room.name).startsWith(cleanQuery)
         );
 
         if (startsWithMatches.length === 1) {
             return [startsWithMatches[0]];
         }
 
-        const matched = uniqueRooms
+        const matched = roomList
             .map(room => ({
                 room,
-                score: scoreRoom(room, cleanQuery)
+                score: scoreRoom(room.name, cleanQuery)
             }))
             .filter(item => item.score > 0)
-            .sort((a, b) => b.score - a.score || a.room.localeCompare(b.room))
+            .sort((a, b) => b.score - a.score || a.room.name.localeCompare(b.room.name))
             .slice(0, 3)
             .map(item => item.room);
 
         if (matched.length === 0) {
-            return defaultSuggestions;
+            return getDefaultSuggestions();
         }
 
         return matched;
@@ -84,12 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 220);
     }
 
-    function createSuggestionButton(roomName) {
+    function createSuggestionButton(room) {
         const button = document.createElement("button");
         button.type = "button";
         button.className = "chatbot-suggestion";
-        button.dataset.room = roomName;
-        button.textContent = `Take me to the ${roomName}`;
+        button.dataset.roomId = room.id;
+        button.dataset.roomName = room.name;
+        button.textContent = `Take me to the ${room.name}`;
         return button;
     }
 
@@ -106,20 +152,29 @@ document.addEventListener("DOMContentLoaded", () => {
         renderSuggestions(results);
     }
 
-    function findRoomElementByName(roomName) {
-        const allRooms = document.querySelectorAll(".room[data-name]");
-        const target = normalizeText(roomName);
+   
+    function findRoomElementById(roomId, roomName = "") {
+        const allRooms = document.querySelectorAll(".room");
+
+        for (const roomEl of allRooms) {
+            const elRoomId = roomEl.dataset.roomId || roomEl.dataset.id || "";
+            if (String(elRoomId) === String(roomId)) {
+                return roomEl;
+            }
+        }
+
+        const targetName = normalizeText(roomName);
 
         for (const roomEl of allRooms) {
             const mapRoomName = normalizeText(roomEl.dataset.name || "");
-            if (mapRoomName === target) {
+            if (mapRoomName === targetName) {
                 return roomEl;
             }
         }
 
         for (const roomEl of allRooms) {
             const mapRoomName = normalizeText(roomEl.dataset.name || "");
-            if (mapRoomName.includes(target) || target.includes(mapRoomName)) {
+            if (mapRoomName.includes(targetName) || targetName.includes(mapRoomName)) {
                 return roomEl;
             }
         }
@@ -127,8 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return null;
     }
 
-    function findRoomFloor(roomName) {
-        const target = normalizeText(roomName);
+    function findRoomFloor(roomId, roomName = "") {
         const floors = ["1F", "2F", "3F", "4F"];
 
         for (const floor of floors) {
@@ -138,10 +192,30 @@ document.addEventListener("DOMContentLoaded", () => {
             const temp = document.createElement("div");
             temp.innerHTML = tpl.innerHTML;
 
-            const rooms = temp.querySelectorAll(".room[data-name]");
+            const rooms = temp.querySelectorAll(".room");
+
+            for (const roomEl of rooms) {
+                const templateRoomId = roomEl.dataset.roomId || roomEl.dataset.id || "";
+                if (String(templateRoomId) === String(roomId)) {
+                    return floor;
+                }
+            }
+        }
+
+        const targetName = normalizeText(roomName);
+
+        for (const floor of floors) {
+            const tpl = document.getElementById(`tpl-${floor}`);
+            if (!tpl) continue;
+
+            const temp = document.createElement("div");
+            temp.innerHTML = tpl.innerHTML;
+
+            const rooms = temp.querySelectorAll(".room");
+
             for (const roomEl of rooms) {
                 const templateRoomName = normalizeText(roomEl.dataset.name || "");
-                if (templateRoomName === target) {
+                if (templateRoomName === targetName) {
                     return floor;
                 }
             }
@@ -154,10 +228,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const temp = document.createElement("div");
             temp.innerHTML = tpl.innerHTML;
 
-            const rooms = temp.querySelectorAll(".room[data-name]");
+            const rooms = temp.querySelectorAll(".room");
+
             for (const roomEl of rooms) {
                 const templateRoomName = normalizeText(roomEl.dataset.name || "");
-                if (templateRoomName.includes(target) || target.includes(templateRoomName)) {
+                if (templateRoomName.includes(targetName) || targetName.includes(templateRoomName)) {
                     return floor;
                 }
             }
@@ -166,8 +241,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return null;
     }
 
-    function clickRenderedRoom(roomName) {
-        const roomEl = findRoomElementByName(roomName);
+    function clickRenderedRoom(roomId, roomName = "") {
+        const roomEl = findRoomElementById(roomId, roomName);
         if (!roomEl) return;
 
         roomEl.scrollIntoView({
@@ -185,11 +260,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 120);
     }
 
-    function triggerMapRoomClick(roomName) {
-        const targetFloor = findRoomFloor(roomName);
+    function triggerMapRoomClick(roomId, roomName = "") {
+        const targetFloor = findRoomFloor(roomId, roomName);
 
         if (!targetFloor || !floorSelect) {
-            clickRenderedRoom(roomName);
+            clickRenderedRoom(roomId, roomName);
             return;
         }
 
@@ -198,10 +273,10 @@ document.addEventListener("DOMContentLoaded", () => {
             floorSelect.dispatchEvent(new Event("change", { bubbles: true }));
 
             setTimeout(() => {
-                clickRenderedRoom(roomName);
+                clickRenderedRoom(roomId, roomName);
             }, 220);
         } else {
-            clickRenderedRoom(roomName);
+            clickRenderedRoom(roomId, roomName);
         }
     }
 
@@ -211,14 +286,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const button = event.target.closest(".chatbot-suggestion");
         if (!button) return;
 
-        const selectedRoom = button.dataset.room || "";
+        const selectedRoomId = Number(button.dataset.roomId || 0);
+        const selectedRoomName = button.dataset.roomName || "";
+
+        if (!selectedRoomId && !selectedRoomName) return;
 
         animateSuggestionClick(button);
-        input.value = selectedRoom;
+        input.value = selectedRoomName;
 
         setTimeout(() => {
             updateSuggestions();
-            triggerMapRoomClick(selectedRoom);
+            triggerMapRoomClick(selectedRoomId, selectedRoomName);
         }, 120);
     });
 
@@ -230,11 +308,11 @@ document.addEventListener("DOMContentLoaded", () => {
             renderSuggestions(results);
 
             if (results.length > 0) {
-                input.value = results[0];
-                triggerMapRoomClick(results[0]);
+                input.value = results[0].name;
+                triggerMapRoomClick(results[0].id, results[0].name);
             }
         }
     });
 
-    renderSuggestions(defaultSuggestions);
+    renderSuggestions(getDefaultSuggestions());
 });
