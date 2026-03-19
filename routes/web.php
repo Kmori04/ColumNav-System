@@ -6,10 +6,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminRoomController;
 use App\Models\Room;
 
-
 Route::get('/home', function () {
     return view('home');
 })->name('home');
+
 /*
 |--------------------------------------------------------------------------
 | GUEST / PUBLIC (no login required)
@@ -18,7 +18,7 @@ Route::get('/home', function () {
 Route::get('/', function () {
     $rooms = Room::where('is_active', 1)
         ->where('floor_number', 1)
-        ->get(['room_id','room_name','room_description'])
+        ->get(['room_id', 'room_name', 'room_description'])
         ->keyBy('room_id');
 
     return view('home', compact('rooms'));
@@ -37,6 +37,14 @@ Route::get('/floor/4', [RoomController::class, 'floor4'])->name('floor.4');
 Route::get('/login', [LoginController::class, 'show'])->name('login.show');
 Route::post('/login', [LoginController::class, 'login'])->name('login.do');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN FORGOT PASSWORD
+|--------------------------------------------------------------------------
+*/
+Route::get('/forgot-password', [LoginController::class, 'showForgotPassword'])->name('password.forgot');
+Route::post('/forgot-password', [LoginController::class, 'resetPassword'])->name('password.reset');
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +70,5 @@ Route::middleware('auth')->group(function () {
         Route::get('/rooms/{room:room_id}/edit', [AdminRoomController::class, 'edit'])->name('rooms.edit');
 
         Route::put('/rooms/{room:room_id}', [AdminRoomController::class, 'update'])->name('rooms.update');
-
     });
-
 });

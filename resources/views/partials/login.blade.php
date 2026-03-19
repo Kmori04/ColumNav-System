@@ -68,6 +68,10 @@
       <h1 class="title">ColumNav Admin</h1>
       <p class="sub">Sign in to manage the system</p>
 
+      @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+      @endif
+
       @if(session('error'))
         <div class="alert">{{ session('error') }}</div>
       @endif
@@ -91,6 +95,10 @@
 
         <button class="btn" type="submit">Login</button>
       </form>
+
+      <div class="forgot-wrap">
+        <a href="{{ route('password.forgot') }}" class="forgot-link">Forgot Password?</a>
+      </div>
 
     </div>
   </div>
