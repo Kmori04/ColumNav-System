@@ -1210,9 +1210,9 @@
      data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="60" 
+     data-start-x="83.5" 
      data-start-y="77.7"  
-     data-start-thrust="-1" {{-- Shortened starting tail --}}
+     data-start-thrust="0" {{-- Shortened starting tail --}}
      data-corridor-y="85.5"
      
      /* BEHAVIOR SETTINGS */
@@ -1240,21 +1240,19 @@
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
      /* GRID POSITIONING (Shifted right for Room 49) */
-     data-col-start="206.6" 
-     data-col-end="210"
-     data-row-start="9"
-     data-row-end="20" {{-- Matching the shortened drop from Room 48 --}}
+     data-col-start="195.9 " 
+     data-col-end="191.2"
+     data-row-start="-158"
+     data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="59.9" 
-     data-start-y="77.5"  
-     data-start-thrust="-1" {{-- Shortened starting tail --}}
-     data-corridor-y="15.2"
+     data-start-x="83.5" 
+     data-start-y="77.7"  
+     data-start-thrust="0" {{-- Shortened starting tail --}}
+     data-corridor-y="85.5"
      
-     /* SIZE & BEHAVIOR SETTINGS */
-     data-last-line-offset="0"
-     data-last-line-size="0"
-     data-thrust="0"
+     /* BEHAVIOR SETTINGS */
+     data-thrust="4.76"
      data-side="hide"
      
      onclick="drawYellowPath(this)"
