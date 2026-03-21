@@ -415,11 +415,6 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-      data-id="{{ $id }}"
-     data-stair="far_right"
-     data-name="{{ $name ?? 'Unknown Room' }}"
-     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="195.9 " 
      data-col-end="191.2"
