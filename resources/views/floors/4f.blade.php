@@ -145,8 +145,17 @@
 @php
   $id = 124;
   $r  = $rooms[$id] ?? null;
-  // Cleans up (3) or (4) from the room name
-  $name = $r?->room_name ? preg_replace('/\s*\([34]\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(1)", "(2)", and "1st floor"
+  $name = $r?->room_name
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*4th\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
+    : null;
 @endphp
 
 <div class="room room-3f-new"
@@ -181,8 +190,17 @@
 @php
   $id = 125;
   $r  = $rooms[$id] ?? null;
-  // Cleans up (3) or (4) from the room name
-  $name = $r?->room_name ? preg_replace('/\s*\([34]\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(1)", "(2)", and "1st floor"
+  $name = $r?->room_name
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*4th\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
+    : null;
 @endphp
 
 <div class="room room-3f-new"
@@ -260,8 +278,17 @@
 @php
   $id = 121;
   $r  = $rooms[$id] ?? null;
-  // Clean up any (#) suffix from the room name
-  $name = $r?->room_name ? preg_replace('/\s*\(\d+\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(1)", "(2)", and "1st floor"
+  $name = $r?->room_name
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*4th\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
+    : null;
 @endphp
 
 <div class="room room-3f-new"
@@ -299,8 +326,17 @@
 @php
   $id = 122;
   $r  = $rooms[$id] ?? null;
-  // Clean up any (#) suffix from the room name
-  $name = $r?->room_name ? preg_replace('/\s*\(\d+\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(1)", "(2)", and "1st floor"
+  $name = $r?->room_name
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*4th\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
+    : null;
 @endphp
 
 <div class="room room-3f-new"

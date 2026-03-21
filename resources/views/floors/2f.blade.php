@@ -451,7 +451,17 @@
 @php
   $id = 114;
   $r  = $rooms[$id] ?? null;
-  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(1)", "(2)", and "1st floor"
+  $name = $r?->room_name
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*2nd\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
+    : null;
 @endphp
 
 <div class="room room-2f-new"
@@ -787,7 +797,17 @@
 @php
   $id = 115;
   $r  = $rooms[$id] ?? null;
-  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(1)", "(2)", and "1st floor"
+  $name = $r?->room_name
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*2nd\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
+    : null;
 @endphp
 
 <div class="room room-2f-new"
