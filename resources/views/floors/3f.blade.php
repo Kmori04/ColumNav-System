@@ -412,6 +412,7 @@
 -->
  
  <!-- B301 -->
+ <!-- B301 -->
 @php
   $id = 97;
   $r  = $rooms[$id] ?? null;
@@ -423,29 +424,28 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     /* Increased to reach far-right columns 81/87 */
-     data-col-start="265" 
-     data-col-end="120" 
-     data-row-start="-3" 
-     /* Increased to 78 to reach the center of grid-row 26/38 */
-     data-row-end="52" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="316.4"
+     data-row-start="26"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="36.4"
 
-     /* PATH GEOMETRY */
-     data-start-x="79" 
-     data-start-y="85.5" 
-     data-start-thrust="0" 
-     data-corridor-y="85.5" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x="79.0"
+     data-start-y="85.6"
+     data-corridor-y="85.6"
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
-     data-last-line-size="0" {{-- Upward kick at the end --}}
+     {{-- BEHAVIOR --}}
+     {{-- High thrust value to reach the far-right column 81 --}}
+     data-thrust="2.0"
+     data-last-line-size="0"
      data-side="right2"
-     data-thrust="3.2" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 26 / 38; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- B301 -->
 
@@ -462,29 +462,28 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     /* Increased to reach far-right columns 81/87 */
-     data-col-start="265" 
-     data-col-end="120" 
-     data-row-start="-3" 
-     /* Increased to 78 to reach the center of grid-row 26/38 */
-     data-row-end="81" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="316.4"
+     data-row-start="26"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="65.4"
 
-     /* PATH GEOMETRY */
-     data-start-x="79" 
-     data-start-y="85.5" 
-     data-start-thrust="0" 
-     data-corridor-y="85.5" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x="79.0"
+     data-start-y="85.6"
+     data-corridor-y="85.6"
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
-     data-last-line-size="0" {{-- Upward kick at the end --}}
+     {{-- BEHAVIOR --}}
+     {{-- High thrust value to reach the far-right column 81 --}}
+     data-thrust="2.0"
+     data-last-line-size="0"
      data-side="right2"
-     data-thrust="3.2" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 38 / 50; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- B302 -->
 
@@ -501,29 +500,28 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     /* Increased to reach far-right columns 81/87 */
-     data-col-start="265" 
-     data-col-end="120" 
-     data-row-start="4.2" 
-     /* Increased to 78 to reach the center of grid-row 26/38 */
-     data-row-end="100" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="316.4"
+     data-row-start="26"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="91.8"
 
-     /* PATH GEOMETRY */
-     data-start-x="79" 
-     data-start-y="85.5" 
-     data-start-thrust="0" 
-     data-corridor-y="85.5" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x="79.0"
+     data-start-y="85.6"
+     data-corridor-y="85.6"
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
-     data-last-line-size="0" {{-- Upward kick at the end --}}
+     {{-- BEHAVIOR --}}
+     {{-- High thrust value to reach the far-right column 81 --}}
+     data-thrust="2.0"
+     data-last-line-size="0"
      data-side="right2"
-     data-thrust="3.2"
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 50 / 61; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- B303 -->
 
@@ -540,29 +538,28 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     /* Increased to reach far-right columns 81/87 */
-     data-col-start="265" 
-     data-col-end="120" 
-     data-row-start="26.5" 
-     /* Increased to 78 to reach the center of grid-row 26/38 */
-     data-row-end="100" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="316.4"
+     data-row-start="26"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="113.8"
 
-     /* PATH GEOMETRY */
-     data-start-x="79" 
-     data-start-y="85.5" 
-     data-start-thrust="0" 
-     data-corridor-y="85.5" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x="79.0"
+     data-start-y="85.6"
+     data-corridor-y="85.6"
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
-     data-last-line-size="0" {{-- Upward kick at the end --}}
+     {{-- BEHAVIOR --}}
+     {{-- High thrust value to reach the far-right column 81 --}}
+     data-thrust="2.0"
+     data-last-line-size="0"
      data-side="right2"
-     data-thrust="3.2" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 61 / 70; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold; font-size: 0.58rem;">{{ $name ?? '' }}</span>
 </div>
 <!-- B304 -->
 
@@ -579,28 +576,28 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     data-col-start="265" 
-     data-col-end="120" 
-     data-row-start="51.5" 
-     data-row-end="100" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="316.4"
+     data-row-start="26"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="138.2"
 
-     /* PATH GEOMETRY */
-     /* MOVED RIGHT BY 50: -18.7 + 50 = 31.3 */
-     data-start-x="79" 
-     data-start-y="85.5" 
-     data-start-thrust="0" 
-     data-corridor-y="85.5" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x="79.0"
+     data-start-y="85.6"
+     data-corridor-y="85.6"
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
+     {{-- BEHAVIOR --}}
+     {{-- High thrust value to reach the far-right column 81 --}}
+     data-thrust="2.0"
      data-last-line-size="0"
      data-side="right2"
-     data-thrust="3.2" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 70 / 83; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- B305 -->
 
@@ -608,7 +605,7 @@
 <div class="stairs stairs-right" style="grid-column: 82 / 87; grid-row: 83 / 89; margin: 1.5px;"></div>
 
 
-<!-- 
+<!--
 |--------------------------------------------------------------------------
 |  CR CCS
 |--------------------------------------------------------------------------
@@ -628,30 +625,30 @@
      
      /* GRID POSITIONING */
      /* Increased to reach far-right columns 81/87 */
-     data-col-start="265" 
-     data-col-end="120" 
-     data-row-start="-3" 
+     data-col-start="265"
+     data-col-end="132.4"
+     data-row-start="-3"
      /* Increased to 78 to reach the center of grid-row 26/38 */
-     data-row-end="32" 
+     data-row-end="32"
 
      /* PATH GEOMETRY */
-     data-start-x="79" 
-     data-start-y="85.5" 
-     data-start-thrust="0" 
-     data-corridor-y="85.5" 
+     data-start-x="79"
+     data-start-y="85.5"
+     data-start-thrust="0"
+     data-corridor-y="85.5"
      
      /* BEHAVIOR */
      data-last-line-offset="-6"
      data-last-line-size="3" {{-- Upward kick at the end --}}
      data-side="right2"
-     data-thrust="19.7" 
+     data-thrust="13.5"
 
      onclick="drawYellowPath(this)"
      style="grid-column: 88 / 93; grid-row: 26 / 37; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
   <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B300 -->
-  
+ 
 <!-- 3rd floor CR -->
 @php
   $id = 119;
@@ -664,25 +661,24 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     /* Increased to reach far-right columns 81/87 */
-     data-col-start="265" 
-     data-col-end="120" 
-     data-row-start="-3" 
-     /* Increased to 78 to reach the center of grid-row 26/38 */
-     data-row-end="187" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="316.4"
+     data-row-start="26"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="171.2"
 
-     /* PATH GEOMETRY */
-     data-start-x="79" 
-     data-start-y="85.5" 
-     data-start-thrust="0" 
-     data-corridor-y="85.5" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x="79.0"
+     data-start-y="85.6"
+     data-corridor-y="85.6"
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
-     data-last-line-size="-2.5" {{-- Upward kick at the end --}}
+     {{-- BEHAVIOR --}}
+     {{-- High thrust value to reach the far-right column 81 --}}
+     data-thrust="13.5"
+     data-last-line-size="-2.5"
      data-side="right2"
-     data-thrust="19.7" 
 
      onclick="drawYellowPath(this)"
      style="grid-column: 88 / 93; grid-row: 78 / 89; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
@@ -690,7 +686,7 @@
 </div>
 <!-- 3rd floor CR -->
 
-<!-- 
+<!--
 |--------------------------------------------------------------------------
 |  LIKOD NG CCS
 |--------------------------------------------------------------------------
@@ -708,29 +704,30 @@
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING */
-     /* Increased to reach far-right columns 81/87 */
-     data-col-start="265" 
-     data-col-end="120" 
-     data-row-start="-3" 
-     /* Increased to 78 to reach the center of grid-row 26/38 */
-     data-row-end="32" 
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="440 .2"
+     data-row-start="154"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="16.5"
 
-     /* PATH GEOMETRY */
-     data-start-x="79" 
-     data-start-y="85.5" 
-     data-start-thrust="0" 
-     data-corridor-y="85.5" 
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x=100.2"
+     data-start-y="83.6"
+     data-corridor-y="83.6"
      
-     /* BEHAVIOR */
-     data-last-line-offset="-6"
-     data-last-line-size="-2" {{-- Upward kick at the end --}}
-     data-side="right2"
-     data-thrust="41.2" 
+     data-thrust="4.5"
+     
+     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     data-last-line-size="-63.1"
+     
+     {{-- LAST LINE (Left Hook) --}}
+     data-left-hook-size="0"
 
      onclick="drawYellowPath(this)"
      style="grid-column: 103 / 115; grid-row: 9 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
  <!-- V307 -->
 
@@ -741,12 +738,36 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ?? null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 108 / 114; grid-row: 20 / 34; margin: 1.5px;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="440 .2"
+     data-row-start="154"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="16.5"
+
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x=100.2"
+     data-start-y="83.6"
+     data-corridor-y="83.6"
+     
+     data-thrust="4.5"
+     
+     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     data-last-line-size="-53.1"
+     
+     {{-- LAST LINE (Left Hook) --}}
+     data-left-hook-size="-1.5"
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 108 / 114; grid-row: 20 / 34; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
 <!-- V306 -->
 
@@ -757,14 +778,44 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ?? null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 108 / 114; grid-row: 34 / 47; margin: 1.5px;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="440 .2"
+     data-row-start="154"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="16.5"
+
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x=100.2"
+     data-start-y="83.6"
+     data-corridor-y="83.6"
+     
+     data-thrust="4.5"
+     
+     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     data-last-line-size="-40.1"
+     
+     {{-- LAST LINE (Left Hook) --}}
+     data-left-hook-size="-1.5"
+
+     onclick="drawYellowPath(this)"
+     style="grid-column: 108 / 114; grid-row: 34 / 47; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
-<!-- V305 -->
+ <!-- B305 -->
+
+
+<div class="stairs stairs-right" style="grid-column: 82 / 87; grid-row: 83 / 89; margin: 1.5px;"></div>
+
+
+
 
 
 <!-- V304 -->
@@ -773,12 +824,37 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ?? null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 108 / 114; grid-row: 47 / 61; margin: 1.5px;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="440 .2"
+     data-row-start="154"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="16.5"
+
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x=100.2"
+     data-start-y="83.6"
+     data-corridor-y="83.6"
+     
+     data-thrust="4.5"
+     
+     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     data-last-line-size="-26"
+     
+     {{-- LAST LINE (Left Hook) --}}
+     data-left-hook-size="-1.5"
+
+     onclick="drawYellowPath(this)"
+     {{-- Updated grid-row to 47 / 61 --}}
+     style="grid-column: 108 / 114; grid-row: 47 / 61; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
 <!-- V304 -->
 
@@ -789,12 +865,37 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ?? null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 108 / 114; grid-row: 61 / 75; margin: 1.5px;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="440 .2"
+     data-row-start="154"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="16.5"
+
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x=100.2"
+     data-start-y="83.6"
+     data-corridor-y="83.6"
+     
+     data-thrust="4.5"
+     
+     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     data-last-line-size="-12"
+     
+     {{-- LAST LINE (Left Hook) --}}
+     data-left-hook-size="-1.5"
+
+     onclick="drawYellowPath(this)"
+     {{-- Updated grid-row to 61 / 75 --}}
+     style="grid-column: 108 / 114; grid-row: 61 / 75; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
 <!-- V303 -->
 
@@ -805,12 +906,37 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ?? null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 108 / 114; grid-row: 75 / 87; margin: 1.5px;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="440 .2"
+     data-row-start="154"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="16.5"
+
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x=100.2"
+     data-start-y="83.6"
+     data-corridor-y="83.6"  
+     
+     data-thrust="0"
+     
+     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     data-last-line-size="0"
+     
+     {{-- LAST LINE (Left Hook) --}}
+     data-left-hook-size="-6"
+
+     onclick="drawYellowPath(this)"
+     {{-- Updated grid-row to 75 / 87 --}}
+     style="grid-column: 108 / 114; grid-row: 75 / 87; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
 <!-- V302 -->
 
@@ -822,12 +948,37 @@
   $r  = $rooms[$id] ?? null;
   $name = $r?->room_name ?? null;
 @endphp
-<div class="room"
+
+<div class="room room-3f-new"
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
-     style="grid-column: 103 / 110; grid-row: 87 / 94; margin: 1.5px;">
-  <span class="room-label">{{ $name ?? '' }}</span>
+     
+     {{-- GRID POSITIONING --}}
+     data-col-start="81"
+     data-col-end="440 .2"
+     data-row-start="154"
+     {{-- Centered for grid-row 26/38 --}}
+     data-row-end="16.5"
+
+     {{-- PATH GEOMETRY --}}
+     {{-- Main corridor anchor point --}}
+     data-start-x=100.2"
+     data-start-y="83.6"
+     data-corridor-y="83.6"  
+     
+     data-thrust="4.5"
+     
+     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     data-last-line-size="4"
+     
+     {{-- LAST LINE (Left Hook) --}}
+     data-left-hook-size="-0"
+
+     onclick="drawYellowPath(this)"
+     {{-- Updated grid-column to 103 / 110 and grid-row to 87 / 94 --}}
+     style="grid-column: 103 / 110; grid-row: 87 / 94; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
+  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
 </div>
 <!-- V301 -->
 
