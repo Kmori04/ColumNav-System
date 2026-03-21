@@ -26,6 +26,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -69,6 +70,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -107,6 +109,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -145,6 +148,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -183,6 +187,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -221,6 +226,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -577,6 +583,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -712,24 +719,22 @@
      
      {{-- GRID POSITIONING --}}
      data-col-start="81"
-     data-col-end="440 .2"
-     data-row-start="154"
+     data-col-end="446.4"
+     data-row-start="49.5"
      {{-- Centered for grid-row 26/38 --}}
-     data-row-end="16.5"
+     data-row-end="121"
 
      {{-- PATH GEOMETRY --}}
      {{-- Main corridor anchor point --}}
-     data-start-x=100.2"
-     data-start-y="83.6"
-     data-corridor-y="83.6"
+     data-start-x="100.2"
+     data-start-y="83.5"
+     data-corridor-y="79.5"
      
-     data-thrust="4.5"
-     
-     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
-     data-last-line-size="-63.1"
-     
-     {{-- LAST LINE (Left Hook) --}}
-     data-left-hook-size="0"
+     {{-- BEHAVIOR --}}
+     {{-- High thrust value to reach the far-right column 81 --}}
+     data-thrust="3.3"
+     data-last-line-size="-60"
+     data-side="right2"
 
      onclick="drawYellowPath(this)"
      style="grid-column: 103 / 115; grid-row: 9 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
@@ -752,24 +757,20 @@
      
      {{-- GRID POSITIONING --}}
      data-col-start="81"
-     data-col-end="440 .2"
-     data-row-start="154"
-     {{-- Centered for grid-row 26/38 --}}
-     data-row-end="16.5"
+     data-col-end="446.4"
+     data-row-start="49.5"
+     data-row-end="121"
 
      {{-- PATH GEOMETRY --}}
-     {{-- Main corridor anchor point --}}
-     data-start-x=100.2"
-     data-start-y="83.6"
-     data-corridor-y="83.6"
+     data-start-x="100.2"
+     data-start-y="83.5"
+     data-corridor-y="79.5"
      
-     data-thrust="4.5"
-     
-     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
-     data-last-line-size="-53.1"
-     
-     {{-- LAST LINE (Left Hook) --}}
-     data-left-hook-size="-1.5"
+     {{-- BEHAVIOR --}}
+     data-thrust="3.3"
+     data-last-line-size="-53.2"
+     data-left-hook-size="-2" {{-- This creates the line pointing left --}}
+     data-side="left2" {{-- Named left2 as requested --}}
 
      onclick="drawYellowPath(this)"
      style="grid-column: 108 / 114; grid-row: 20 / 34; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
@@ -792,24 +793,20 @@
      
      {{-- GRID POSITIONING --}}
      data-col-start="81"
-     data-col-end="440 .2"
-     data-row-start="154"
-     {{-- Centered for grid-row 26/38 --}}
-     data-row-end="16.5"
+     data-col-end="446.4"
+     data-row-start="49.5"
+     data-row-end="121"
 
      {{-- PATH GEOMETRY --}}
-     {{-- Main corridor anchor point --}}
-     data-start-x=100.2"
-     data-start-y="83.6"
-     data-corridor-y="83.6"
+     data-start-x="100.2"
+     data-start-y="83.5"
+     data-corridor-y="79.5"
      
-     data-thrust="4.5"
-     
-     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     {{-- BEHAVIOR --}}
+     data-thrust="3.3"
      data-last-line-size="-40.1"
-     
-     {{-- LAST LINE (Left Hook) --}}
-     data-left-hook-size="-1.5"
+     data-left-hook-size="-2" {{-- This creates the line pointing left --}}
+     data-side="left2" {{-- Named left2 as requested --}}
 
      onclick="drawYellowPath(this)"
      style="grid-column: 108 / 114; grid-row: 34 / 47; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
@@ -838,24 +835,20 @@
      
      {{-- GRID POSITIONING --}}
      data-col-start="81"
-     data-col-end="440 .2"
-     data-row-start="154"
-     {{-- Centered for grid-row 26/38 --}}
-     data-row-end="16.5"
+     data-col-end="446.4"
+     data-row-start="49.5"
+     data-row-end="121"
 
      {{-- PATH GEOMETRY --}}
-     {{-- Main corridor anchor point --}}
-     data-start-x=100.2"
-     data-start-y="83.6"
-     data-corridor-y="83.6"
+     data-start-x="100.2"
+     data-start-y="83.5"
+     data-corridor-y="79.5"
      
-     data-thrust="4.5"
-     
-     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
-     data-last-line-size="-26"
-     
-     {{-- LAST LINE (Left Hook) --}}
-     data-left-hook-size="-1.5"
+     {{-- BEHAVIOR --}}
+     data-thrust="3.3"
+     data-last-line-size="-26.1"
+     data-left-hook-size="-2" {{-- This creates the line pointing left --}}
+     data-side="left2" {{-- Named left2 as requested --}}
 
      onclick="drawYellowPath(this)"
      {{-- Updated grid-row to 47 / 61 --}}
@@ -879,24 +872,20 @@
      
      {{-- GRID POSITIONING --}}
      data-col-start="81"
-     data-col-end="440 .2"
-     data-row-start="154"
-     {{-- Centered for grid-row 26/38 --}}
-     data-row-end="16.5"
+     data-col-end="446.4"
+     data-row-start="49.5"
+     data-row-end="121"
 
      {{-- PATH GEOMETRY --}}
-     {{-- Main corridor anchor point --}}
-     data-start-x=100.2"
-     data-start-y="83.6"
-     data-corridor-y="83.6"
+     data-start-x="100.2"
+     data-start-y="83.5"
+     data-corridor-y="79.5"
      
-     data-thrust="4.5"
-     
-     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     {{-- BEHAVIOR --}}
+     data-thrust="3.3"
      data-last-line-size="-12"
-     
-     {{-- LAST LINE (Left Hook) --}}
-     data-left-hook-size="-1.5"
+     data-left-hook-size="-2" {{-- This creates the line pointing left --}}
+     data-side="left2" {{-- Named left2 as requested --}}
 
      onclick="drawYellowPath(this)"
      {{-- Updated grid-row to 61 / 75 --}}
@@ -920,24 +909,20 @@
      
      {{-- GRID POSITIONING --}}
      data-col-start="81"
-     data-col-end="440 .2"
-     data-row-start="154"
-     {{-- Centered for grid-row 26/38 --}}
-     data-row-end="16.5"
+     data-col-end="446.4"
+     data-row-start="49.5"
+     data-row-end="121"
 
      {{-- PATH GEOMETRY --}}
-     {{-- Main corridor anchor point --}}
-     data-start-x=100.2"
-     data-start-y="83.6"
-     data-corridor-y="83.6"  
+     data-start-x="100.2"
+     data-start-y="83.5"
+     data-corridor-y="79.5"
      
-     data-thrust="0"
-     
-     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     {{-- BEHAVIOR --}}
+     data-thrust="3.3"
      data-last-line-size="0"
-     
-     {{-- LAST LINE (Left Hook) --}}
-     data-left-hook-size="-6"
+     data-left-hook-size="-2" {{-- This creates the line pointing left --}}
+     data-side="left2" {{-- Named left2 as requested --}}
 
      onclick="drawYellowPath(this)"
      {{-- Updated grid-row to 75 / 87 --}}
@@ -962,24 +947,20 @@
      
      {{-- GRID POSITIONING --}}
      data-col-start="81"
-     data-col-end="440 .2"
-     data-row-start="154"
-     {{-- Centered for grid-row 26/38 --}}
-     data-row-end="16.5"
+     data-col-end="446.4"
+     data-row-start="49.5"
+     data-row-end="121"
 
      {{-- PATH GEOMETRY --}}
-     {{-- Main corridor anchor point --}}
-     data-start-x=100.2"
-     data-start-y="83.6"
-     data-corridor-y="83.6"  
+     data-start-x="100.2"
+     data-start-y="83.5"
+     data-corridor-y="79.5"
      
-     data-thrust="4.5"
-     
-     {{-- SECOND TO LAST LINE (Vertical Kick) --}}
+     {{-- BEHAVIOR --}}
+     data-thrust="3.3"
      data-last-line-size="4"
-     
-     {{-- LAST LINE (Left Hook) --}}
-     data-left-hook-size="-0"
+     data-left-hook-size="0" {{-- This creates the line pointing left --}}
+     data-side="left2" {{-- Named left2 as requested --}}
 
      onclick="drawYellowPath(this)"
      {{-- Updated grid-column to 103 / 110 and grid-row to 87 / 94 --}}
