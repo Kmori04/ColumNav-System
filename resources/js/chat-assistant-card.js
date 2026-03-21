@@ -152,6 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function getDefaultSuggestions() {
         const roomList = getRoomList();
 
+        if (!roomList.length) return [];
+
         const defaults = defaultSuggestionIds
             .map(id => getRoomById(id))
             .filter(Boolean);
@@ -164,6 +166,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function getTopSuggestions(query) {
         const roomList = getRoomList();
         const cleanQuery = normalizeText(query);
+
+        if (!roomList.length) {
+            return [];
+        }
 
         if (!cleanQuery) {
             return getDefaultSuggestions();
@@ -192,8 +198,11 @@ document.addEventListener("DOMContentLoaded", () => {
             .slice(0, 3)
             .map(item => item.room);
 
+        // IMPORTANT:
+        // If the user typed something and nothing matches,
+        // return EMPTY instead of default suggestions
         if (matched.length === 0) {
-            return getDefaultSuggestions();
+            return [];
         }
 
         return matched;
@@ -221,6 +230,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderSuggestions(rooms) {
         suggestionList.innerHTML = "";
+
+        if (!Array.isArray(rooms) || rooms.length === 0) {
+            return;
+        }
+
         rooms.forEach(room => {
             suggestionList.appendChild(createSuggestionButton(room));
         });
