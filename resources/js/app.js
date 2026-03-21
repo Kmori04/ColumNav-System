@@ -201,220 +201,230 @@ document.addEventListener("DOMContentLoaded", () => {
   // -------------------------------------------------
   // STAIR ROUTING CONFIG
   // -------------------------------------------------
-const FLOOR1_STAIR_TARGETS = {
-  left: {
-    name: "Stairs to 2nd Floor (West)",
-    desc: "Go to the left stairs to continue to Floor 2.",
-    colStart: "20",
-    colEnd: "47",
-    rowStart: "89",
-    rowEnd: "84",
-    startX: "53.8",
-    startY: "92",
-    corridorY: "85.7",
-    side: "right2",
-    thrust: "-3",
-    lastLineOffset: "0",
-    lastLineSize: "0",
-  },
-  middle: {
-    name: "Stairs to 2nd Floor (Central)",
-    desc: "Go to the middle stairs to continue to Floor 2.",
-    colStart: "51",
-    colEnd: "16",
-    rowStart: "88",
-    rowEnd: "85",
-    startX: "53.8",
-    startY: "92",
-    corridorY: "85.7",
-    side: "right2",
-    thrust: "-3",
-    lastLineOffset: "0",
-    lastLineSize: "0",
-  },
-  right: {
-    name: "Stairs to 2nd Floor (East)",
-    desc: "Go to the right stairs to continue to Floor 2.",
-    colStart: "216",
-    colEnd: "180",
-    rowStart: "86",
-    rowEnd: "83",
-    startX: "53.8",
-    startY: "92",
-    corridorY: "85.7",
-    side: "right2",
-    thrust: "2",
-    lastLineOffset: "0",
-    lastLineSize: "0",
-  },
-  far_right: {
-    name: "Stairs to 2nd Floor (Far East)",
-    desc: "Use the stairs near the Printing Center to reach the 2nd floor.",
-    colStart: "216",
-    colEnd: "180",
-    rowStart: "86",
-    rowEnd: "83",
-    startX: "53.8",
-    startY: "92",
-    corridorY: "85.7",
-    side: "right2",
-    thrust: "2",
-    lastLineOffset: "0",
-    lastLineSize: "0",
-  },
-  far_bottomright: {
-    name: "Stairs to 2nd Floor (Far Bottom-Right)",
-    desc: "Use the southernmost stairs on the right side to reach the 2nd floor.",
-    colStart: "379",
-    colEnd: "180",
-    rowStart: "105", 
-    rowEnd: "102",
-    startX: "53.8",
-    startY: "92",
-    corridorY: "85.7",
-    side: "right2",
-    thrust: "0",
-    lastLineOffset: "11",
-    lastLineSize: "-2",
-  }
-};
-
-const getRoomVisualCenter = (roomEl) => {
-  const styleAttr = roomEl.getAttribute("style") || "";
-
-  const colMatch = styleAttr.match(/grid-column:\s*([\d.]+)\s*\/\s*([\d.]+)/i);
-  const rowMatch = styleAttr.match(/grid-row:\s*([\d.]+)\s*\/\s*([\d.]+)/i);
-
-  const colStart = colMatch ? parseFloat(colMatch[1]) : 0;
-  const colEnd = colMatch ? parseFloat(colMatch[2]) : 0;
-  const rowStart = rowMatch ? parseFloat(rowMatch[1]) : 0;
-  const rowEnd = rowMatch ? parseFloat(rowMatch[2]) : 0;
-
-  return {
-    x: (colStart + colEnd) / 2,
-    y: (rowStart + rowEnd) / 2,
-  };
-};
-
-const getAssignedStairFor2FRoom = (roomEl) => {
-  const manual = (roomEl.dataset.stair || "").trim().toLowerCase();
-  // Validating against all 5 options now
-  if (["left", "middle", "right", "far_right", "far_bottomright"].includes(manual)) {
-    return manual;
-  }
-
-  const center = getRoomVisualCenter(roomEl);
-
-  // Logic to determine which stair to use based on Grid position
-  if (center.x >= 91 && center.y >= 2) return "far_bottomright"; // South-East quadrant
-  if (center.x >= 45) return "far_right"; 
-  if (center.x >= 55) return "right";     
-  if (center.x <= 25) return "left";      
-  
-  if (center.x < 45 && center.y >= 60) return "left";
-
-  return "middle"; // Default
-};
-
-const makeVirtualRoom = (config) => {
-  return {
-    dataset: {
-      hidePath: "false",
-      colStart: config.colStart,
-      colEnd: config.colEnd,
-      rowStart: config.rowStart,
-      rowEnd: config.rowEnd,
-      startX: config.startX,
-      startY: config.startY,
-      corridorY: config.corridorY,
-      side: config.side,
-      thrust: config.thrust,
-      lastLineOffset: config.lastLineOffset,
-      lastLineSize: config.lastLineSize,
-      name: config.name,
-      desc: config.desc,
+  const FLOOR1_STAIR_TARGETS = {
+    left: {
+      name: "Stairs to Upper Floor (West)",
+      desc: "Go to the left stairs to continue to the selected upper floor.",
+      colStart: "20",
+      colEnd: "47",
+      rowStart: "89",
+      rowEnd: "84",
+      startX: "53.8",
+      startY: "92",
+      corridorY: "85.7",
+      side: "right2",
+      thrust: "-3",
+      lastLineOffset: "0",
+      lastLineSize: "0",
     },
+    middle: {
+      name: "Stairs to Upper Floor (Central)",
+      desc: "Go to the middle stairs to continue to the selected upper floor.",
+      colStart: "51",
+      colEnd: "16",
+      rowStart: "88",
+      rowEnd: "85",
+      startX: "53.8",
+      startY: "92",
+      corridorY: "85.7",
+      side: "right2",
+      thrust: "-3",
+      lastLineOffset: "0",
+      lastLineSize: "0",
+    },
+    right: {
+      name: "Stairs to Upper Floor (East)",
+      desc: "Go to the right stairs to continue to the selected upper floor.",
+      colStart: "216",
+      colEnd: "180",
+      rowStart: "86",
+      rowEnd: "83",
+      startX: "53.8",
+      startY: "92",
+      corridorY: "85.7",
+      side: "right2",
+      thrust: "2",
+      lastLineOffset: "0",
+      lastLineSize: "0",
+    },
+    far_right: {
+      name: "Stairs to Upper Floor (Far East)",
+      desc: "Use the stairs near the Printing Center to continue to the selected upper floor.",
+      colStart: "360",
+      colEnd: "200",
+      rowStart: "86",
+      rowEnd: "93",
+      startX: "53.8",
+      startY: "92",
+      corridorY: "85.7",
+      side: "right2",
+      thrust: "0",
+      lastLineOffset: "0",
+      lastLineSize: "0",
+}
   };
-};
+
+  const getRoomVisualCenter = (roomEl) => {
+    const styleAttr = roomEl.getAttribute("style") || "";
+
+    const colMatch = styleAttr.match(/grid-column:\s*([\d.]+)\s*\/\s*([\d.]+)/i);
+    const rowMatch = styleAttr.match(/grid-row:\s*([\d.]+)\s*\/\s*([\d.]+)/i);
+
+    const colStart = colMatch ? parseFloat(colMatch[1]) : 0;
+    const colEnd = colMatch ? parseFloat(colMatch[2]) : 0;
+    const rowStart = rowMatch ? parseFloat(rowMatch[1]) : 0;
+    const rowEnd = rowMatch ? parseFloat(rowMatch[2]) : 0;
+
+    return {
+      x: (colStart + colEnd) / 2,
+      y: (rowStart + rowEnd) / 2,
+    };
+  };
+
+  const getAssignedStairForUpperFloorRoom = (roomEl) => {
+    const manual = (roomEl.dataset.stair || "").trim().toLowerCase();
+
+    if (["left", "middle", "right", "far_right"].includes(manual)) {
+      return manual;
+    }
+
+    const center = getRoomVisualCenter(roomEl);
+
+    // Fixed order so far_right can actually be reached
+    if (center.x >= 55) return "far_right";
+    if (center.x >= 45) return "right";
+    if (center.x <= 25) return "left";
+    if (center.x < 45 && center.y >= 60) return "left";
+
+    return "middle";
+  };
+
+  const makeVirtualRoom = (config) => {
+    return {
+      dataset: {
+        hidePath: "false",
+        colStart: config.colStart,
+        colEnd: config.colEnd,
+        rowStart: config.rowStart,
+        rowEnd: config.rowEnd,
+        startX: config.startX,
+        startY: config.startY,
+        corridorY: config.corridorY,
+        side: config.side,
+        thrust: config.thrust,
+        lastLineOffset: config.lastLineOffset,
+        lastLineSize: config.lastLineSize,
+        name: config.name,
+        desc: config.desc,
+      },
+    };
+  };
 
   // -----------------------------
   // YELLOW PATH
   // -----------------------------
-function drawYellowPath(roomEl) {
-  const pathGroup = document.getElementById("path-group");
-  if (!pathGroup || !roomEl || !roomEl.dataset) return;
+  function drawYellowPath(roomEl) {
+    const pathGroup = document.getElementById("path-group");
+    if (!pathGroup || !roomEl || !roomEl.dataset) return;
 
-  pathGroup.innerHTML = "";
-  if (roomEl.dataset.hidePath === "true") return;
+    pathGroup.innerHTML = "";
 
-  const cStart = parseFloat(roomEl.dataset.colStart);
-  const cEnd = parseFloat(roomEl.dataset.colEnd);
-  const rStart = parseFloat(roomEl.dataset.rowStart);
-  const rEnd = parseFloat(roomEl.dataset.rowEnd);
+    if (roomEl.dataset.hidePath === "true") return;
 
-  if ([cStart, cEnd, rStart, rEnd].some((v) => Number.isNaN(v))) return;
+    const cStart = parseFloat(roomEl.dataset.colStart);
+    const cEnd = parseFloat(roomEl.dataset.colEnd);
+    const rStart = parseFloat(roomEl.dataset.rowStart);
+    const rEnd = parseFloat(roomEl.dataset.rowEnd);
 
-  const startX = parseFloat(roomEl.dataset.startX) || 53.8;
-  const startY = parseFloat(roomEl.dataset.startY) || 92;
-  const mainCorridorY = parseFloat(roomEl.dataset.corridorY) || 85.7;
-  const startThrust = parseFloat(roomEl.dataset.startThrust) || 0;
-  const initialPointX = startX - startThrust;
+    if ([cStart, cEnd, rStart, rEnd].some((v) => Number.isNaN(v))) return;
 
-  const side = roomEl.dataset.side || "right2"; // Defaulting to right2
-  const customThrust = roomEl.dataset.thrust ? parseFloat(roomEl.dataset.thrust) : null;
- 
-  // Size for the Vertical kick (right2)
-  const verticalKick = parseFloat(roomEl.dataset.lastLineSize) || 0;
-  // Size for the Final Left Hook (left2)
-  const leftHook = parseFloat(roomEl.dataset.leftHookSize) || 0;
+    const startX = parseFloat(roomEl.dataset.startX) || 53.8;
+    const startY = parseFloat(roomEl.dataset.startY) || 92;
+    const mainCorridorY = parseFloat(roomEl.dataset.corridorY) || 85.7;
 
-  const roomX = (cStart + cEnd) / 5.2;
-  const lastLineOffset = parseFloat(roomEl.dataset.lastLineOffset) || 0;
-  const roomY = ((rStart + rEnd) / 2.2) + 2 - lastLineOffset;
+    const startThrust = parseFloat(roomEl.dataset.startThrust) || 0;
+    const initialPointX = startX - startThrust;
 
-  let entryX = roomX;
-  let thrust = (customThrust !== null && !Number.isNaN(customThrust)) ? customThrust : 0;
-  let endX = roomX + thrust;
+    const side = roomEl.dataset.side || "left";
+    const customThrust = roomEl.dataset.thrust ? parseFloat(roomEl.dataset.thrust) : null;
 
-  let points = [
-    { x: initialPointX, y: startY },
-    { x: startX, y: startY },
-    { x: startX, y: mainCorridorY },
-    { x: entryX, y: mainCorridorY },
-    { x: entryX, y: roomY },
-    { x: roomX, y: roomY },
-    { x: endX, y: roomY }
-  ];
+    const roomX = (cStart + cEnd) / 5.2;
+    const lastLineOffset = parseFloat(roomEl.dataset.lastLineOffset) || 0;
+    const roomY = ((rStart + rEnd) / 2.2) + 2 - lastLineOffset;
 
-  // SECOND TO LAST LINE: The Vertical Kick (right2 behavior)
-  if (verticalKick !== 0) {
-    points.push({ x: endX, y: roomY + verticalKick });
+    let entryX;
+    if (side === "right2" || side === "hide") {
+      entryX = roomX;
+    } else if (customThrust !== null && customThrust < 0) {
+      entryX = roomX + 1;
+    } else {
+      entryX = side.includes("right") ? (roomX - 5) : (roomX + 6);
+    }
+
+    const lastLineSize = parseFloat(roomEl.dataset.lastLineSize) || 0;
+
+    let thrust = 0;
+    if (customThrust !== null && !Number.isNaN(customThrust)) {
+      thrust = customThrust;
+    } else if (side === "right" || side === "upright") {
+      thrust = 4;
+    } else if (side === "right2") {
+      thrust = 0;
+    }
+
+    const leftDotOffset = 1.6;
+
+    let endX = roomX + thrust;
+    if (side === "left") {
+      endX = roomX - leftDotOffset;
+    }
+
+    const upwardLength = side === "upright" ? 3 : 0;
+    const endY = roomY - upwardLength;
+
+    let points = [
+      { x: initialPointX, y: startY },
+      { x: startX, y: startY },
+      { x: startX, y: mainCorridorY },
+      { x: entryX, y: mainCorridorY },
+      { x: entryX, y: roomY },
+      { x: roomX, y: roomY }
+    ];
+
+    if (side === "left") {
+      points.push({ x: endX, y: roomY });
+    } else {
+      points.push({ x: endX, y: roomY });
+
+      if (lastLineSize !== 0) {
+        points.push({ x: endX, y: roomY + lastLineSize });
+      } else if (side !== "hide" && side !== "right2" && side !== "left") {
+        points.push({ x: endX, y: endY });
+      }
+    }
+
+    const d = points.map((p, i) => (i === 0 ? "M" : "L") + ` ${p.x} ${p.y}`).join(" ");
+    const lastPoint = points[points.length - 1];
+
+    pathGroup.innerHTML = `
+      <path d="${d}"
+            stroke="#fbbf24"
+            stroke-width="0.4"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-dasharray="200"
+            stroke-dashoffset="200"
+            style="animation: drawPath 6.6s forwards, pulsePath 2.6s infinite 0.6s" />
+
+      <circle cx="${lastPoint.x}"
+              cy="${lastPoint.y}"
+              r="1.6"
+              fill="#ef4444">
+        <animate attributeName="r" values="0.6;0.8;0.6" dur="2.5s" repeatCount="indefinite" />
+      </circle>
+    `;
   }
-
-  // LAST LINE: The Left Hook (left2 behavior)
-  if (leftHook !== 0) {
-    const currentY = verticalKick !== 0 ? roomY + verticalKick : roomY;
-    points.push({ x: endX - leftHook, y: currentY });
-  }
-
-  const d = points.map((p, i) => (i === 0 ? "M" : "L") + ` ${p.x} ${p.y}`).join(" ");
-  const lastPoint = points[points.length - 1];
-
-  pathGroup.innerHTML = `
-    <path d="${d}"
-          stroke="#fbbf24"
-          stroke-width="0.4"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-dasharray="200"
-          stroke-dashoffset="200"
-          style="animation: drawPath 6.6s forwards, pulsePath 2.6s infinite 0.6s" />
-    <circle cx="${lastPoint.x}" cy="${lastPoint.y}" r="1.6" fill="#ef4444">
-      <animate attributeName="r" values="0.6;0.8;0.6" dur="2.5s" repeatCount="indefinite" />
-    </circle>
-  `;
-}
 
   window.drawYellowPath = drawYellowPath;
 
@@ -483,10 +493,9 @@ function drawYellowPath(roomEl) {
     saveRoomRoute(currentFloor, roomEl);
   };
 
-  const start2FCrossFloorRoute = (targetRoomEl) => {
+  const startCrossFloorRoute = (targetRoomEl, targetFloor) => {
     cancelCrossFloorRoute();
 
-    // clear old routes first because another room was clicked
     floorRoutes["1F"] = null;
     floorRoutes["2F"] = null;
     floorRoutes["3F"] = null;
@@ -495,10 +504,10 @@ function drawYellowPath(roomEl) {
     const targetId = targetRoomEl.dataset.id;
     const targetName = (targetRoomEl.dataset.name || "").trim();
     const targetDesc = (targetRoomEl.dataset.desc || "").trim();
-    const stairKey = getAssignedStairFor2FRoom(targetRoomEl);
+
+    const stairKey = getAssignedStairForUpperFloorRoom(targetRoomEl);
     const stairConfig = FLOOR1_STAIR_TARGETS[stairKey] || FLOOR1_STAIR_TARGETS.middle;
 
-    // SAVE 1F ROUTE
     saveVirtualRoute(
       "1F",
       stairConfig,
@@ -506,22 +515,19 @@ function drawYellowPath(roomEl) {
       `Step 1: ${stairConfig.desc}`
     );
 
-    // SAVE 2F ROUTE
-    floorRoutes["2F"] = {
+    floorRoutes[targetFloor] = {
       type: "room",
       roomId: targetId,
       name: targetName,
       desc: targetDesc,
     };
 
-    // SHOW 1F FIRST
     if (floorSelect) floorSelect.value = "1F";
     renderFloor("1F");
 
-    // AUTO SWITCH TO 2F
     crossFloorTimer = setTimeout(() => {
-      if (floorSelect) floorSelect.value = "2F";
-      renderFloor("2F");
+      if (floorSelect) floorSelect.value = targetFloor;
+      renderFloor(targetFloor);
       cancelCrossFloorRoute();
     }, 1800);
   };
@@ -555,13 +561,17 @@ function drawYellowPath(roomEl) {
     }
 
     if (currentFloor === "2F") {
-      start2FCrossFloorRoute(roomEl);
+      startCrossFloorRoute(roomEl, "2F");
+      return;
+    }
+
+    if (currentFloor === "3F") {
+      startCrossFloorRoute(roomEl, "3F");
       return;
     }
 
     cancelCrossFloorRoute();
 
-    // keep only the current floor route, remove routes from other floors
     clearOtherFloorRoutes(currentFloor);
     floorRoutes[currentFloor] = null;
 
@@ -639,6 +649,5 @@ function drawYellowPath(roomEl) {
   viewport.style.cursor = "grab";
 });
 
+
 // FULLSCREEN
-
-
