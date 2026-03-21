@@ -2,11 +2,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("roomSearchInput");
     const suggestionList = document.getElementById("roomSuggestionList");
     const floorSelect = document.getElementById("floorSelect");
+    const chatCard = document.getElementById("chatAssistantCard");
 
     if (!input || !suggestionList) return;
 
-    
-    
+    let greetingTimeout = null;
+
+    function showAssistantReply(message) {
+        if (!chatCard) return;
+
+        let bubble = document.querySelector(".chatbot-floating-greeting");
+
+        if (!bubble) {
+            bubble = document.createElement("div");
+            bubble.className = "chatbot-floating-greeting";
+            document.body.appendChild(bubble);
+        }
+
+        bubble.textContent = message;
+
+        const cardRect = chatCard.getBoundingClientRect();
+        const top = window.scrollY + cardRect.top + 12;
+        const left = window.scrollX + cardRect.right - 60;
+
+        bubble.style.top = `${top}px`;
+        bubble.style.left = `${left}px`;
+
+        bubble.classList.remove("hide");
+        bubble.classList.remove("show");
+        void bubble.offsetWidth;
+        bubble.classList.add("show");
+
+        clearTimeout(greetingTimeout);
+        greetingTimeout = setTimeout(() => {
+            bubble.classList.remove("show");
+            bubble.classList.add("hide");
+        }, 3000);
+    }
+
     const rawRooms = Array.isArray(window.chatAssistantRooms) ? window.chatAssistantRooms : [];
 
     const normalizedRooms = rawRooms
@@ -38,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const roomList = Array.from(uniqueRoomsMap.values());
 
-    const defaultSuggestionIds = [25, 22, 50]; // Canteen, Comfort Room, B102
+    const defaultSuggestionIds = [25, 22, 50];
 
     function normalizeText(text) {
         return (text || "")
@@ -152,7 +185,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderSuggestions(results);
     }
 
-   
     function findRoomElementById(roomId, roomName = "") {
         const allRooms = document.querySelectorAll(".room");
 
@@ -294,6 +326,8 @@ document.addEventListener("DOMContentLoaded", () => {
         animateSuggestionClick(button);
         input.value = selectedRoomName;
 
+        showAssistantReply(`Going to ${selectedRoomName}`);
+
         setTimeout(() => {
             updateSuggestions();
             triggerMapRoomClick(selectedRoomId, selectedRoomName);
@@ -309,6 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (results.length > 0) {
                 input.value = results[0].name;
+                showAssistantReply(`Going to ${results[0].name}`);
                 triggerMapRoomClick(results[0].id, results[0].name);
             }
         }
