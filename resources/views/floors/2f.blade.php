@@ -260,6 +260,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -296,6 +297,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -332,6 +334,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -371,6 +374,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -407,25 +411,29 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="far_right"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
+     
+      data-id="{{ $id }}"
+     data-stair="far_right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
      /* GRID POSITIONING (Shifted right for Room 49) */
-     data-col-start="206.6" 
-     data-col-end="197"
-     data-row-start="1"
-     data-row-end="20" {{-- Matching the shortened drop from Room 48 --}}
+     data-col-start="195.9 " 
+     data-col-end="191.2"
+     data-row-start="-158"
+     data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="59.9" 
-     data-start-y="77.5"  
-     data-start-thrust="-1" {{-- Shortened starting tail --}}
-     data-corridor-y="15.2"
+     data-start-x="83.5" 
+     data-start-y="77.7"  
+     data-start-thrust="0" {{-- Shortened starting tail --}}
+     data-corridor-y="85.5"
      
-     /* SIZE & BEHAVIOR SETTINGS */
-     data-last-line-offset="0"
-     data-last-line-size="0"
-     data-thrust="0"
+     /* BEHAVIOR SETTINGS */
+     data-thrust="3"
      data-side="hide"
      
      onclick="drawYellowPath(this)"
@@ -1029,6 +1037,7 @@
 
 <div class="room room-2f-new" 
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -1064,6 +1073,7 @@
 
 <div class="room room-2f-new" 
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}" 
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -1098,6 +1108,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}" 
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -1132,6 +1143,7 @@
 <div class="room room-2f-new" 
      data-id="{{ $id }}"
      data-name="{{ $name ?? 'Unknown Room' }}"
+     data-stair="right"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
      /* GRID POSITIONING (Shifted right for Room 49) */
@@ -1165,6 +1177,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -1236,6 +1249,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="far_right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -1265,7 +1279,7 @@
     <div class="room" style="grid-column: 92 / 106; grid-row: 24 / 51; border: 1.5px solid #6b93a3; background: white; pointer-events: none;"></div>
 
   
-<!-- ID office -->
+<!-- ID SERVICE -->
 @php
   $id = 62;
   $r  = $rooms[$id] ?? null;
@@ -1279,18 +1293,18 @@
      
      /* GRID POSITIONING (Shifted right for Room 49) */
      data-col-start="195.9 " 
-     data-col-end="191.5"
-     data-row-start="1"
-     data-row-end="136.4" {{-- Matching the shortened drop from Room 48 --}}
+     data-col-end="191.2"
+     data-row-start="-50"
+     data-row-end="187" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="60" 
+     data-start-x="83.5" 
      data-start-y="77.7"  
-     data-start-thrust="-1" {{-- Shortened starting tail --}}
+     data-start-thrust="0" {{-- Shortened starting tail --}}
      data-corridor-y="85.5"
      
      /* BEHAVIOR SETTINGS */
-     data-thrust="2"
+     data-thrust="1.2"
      data-side="hide"
      
      onclick="drawYellowPath(this)"
@@ -1311,24 +1325,27 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="far_right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
-     /* GRID POSITIONING (Shifted right for Room 49) */
-     data-col-start="195.9 " 
-     data-col-end="259.5"
+    /* GRID POSITIONING (Shifted right for Room 49) */
+     data-col-start="212 " 
+     data-col-end="240"
      data-row-start="1"
-     data-row-end="182.8" {{-- Matching the shortened drop from Room 48 --}}
+     data-row-end="183" {{-- Matching the shortened drop from Room 48 --}}
      
      /* PATH GEOMETRY */
-     data-start-x="60" 
+     data-start-x="83.5" 
      data-start-y="77.7"  
-     data-start-thrust="-1" {{-- Shortened starting tail --}}
+     data-start-thrust="0" {{-- Shortened starting tail --}}
      data-corridor-y="85.5"
      
      /* BEHAVIOR SETTINGS */
      data-thrust="0"
      data-side="hide"
+     
+     onclick="drawYellowPath(this)"
      
      onclick="drawYellowPath(this)"
      style="grid-column: 106 / 118; grid-row: 24 / 94; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
@@ -1351,6 +1368,7 @@
 
 <div class="room room-2f-new" 
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -1387,6 +1405,7 @@
 
 <div class="room room-2f-new" 
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}" 
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -1423,6 +1442,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -1458,6 +1478,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -1498,6 +1519,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $forcedName }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -1535,6 +1557,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $forcedName }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      

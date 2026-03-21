@@ -397,7 +397,7 @@
      data-thrust="26.4" 
      data-last-line-size=""
      data-side="right2"
-
+     data-stair="left"
      onclick="drawYellowPath(this)"
      style="grid-column: 43 / 52; grid-row: 19 / 26; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
   <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
@@ -411,7 +411,7 @@
 |--------------------------------------------------------------------------
 -->
  
- <!-- B301 -->
+ 
  <!-- B301 -->
 @php
   $id = 97;
@@ -421,6 +421,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -445,7 +446,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 26 / 38; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B301 -->
 
@@ -459,6 +460,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -483,7 +485,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 38 / 50; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B302 -->
 
@@ -497,6 +499,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -521,7 +524,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 50 / 61; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B303 -->
 
@@ -535,6 +538,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -559,7 +563,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 61 / 70; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold; font-size: 0.58rem;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none; font-size: 0.58rem;">{{ $name ?? '' }}</span>
 </div>
 <!-- B304 -->
 
@@ -597,7 +601,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 81 / 87; grid-row: 70 / 83; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B305 -->
 
@@ -620,6 +624,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -658,6 +663,7 @@
 
 <div class="room room-3f-new"
      data-id="{{ $id }}"
+     data-stair="right"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -727,7 +733,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 103 / 115; grid-row: 9 / 20; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- V307 -->
 
@@ -767,7 +773,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 108 / 114; grid-row: 20 / 34; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
 <!-- V306 -->
 
@@ -807,7 +813,7 @@
 
      onclick="drawYellowPath(this)"
      style="grid-column: 108 / 114; grid-row: 34 / 47; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
  <!-- B305 -->
 
@@ -854,7 +860,7 @@
      onclick="drawYellowPath(this)"
      {{-- Updated grid-row to 47 / 61 --}}
      style="grid-column: 108 / 114; grid-row: 47 / 61; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
 <!-- V304 -->
 
@@ -895,7 +901,7 @@
      onclick="drawYellowPath(this)"
      {{-- Updated grid-row to 61 / 75 --}}
      style="grid-column: 108 / 114; grid-row: 61 / 75; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
 <!-- V303 -->
 
@@ -936,7 +942,7 @@
      onclick="drawYellowPath(this)"
      {{-- Updated grid-row to 75 / 87 --}}
      style="grid-column: 108 / 114; grid-row: 75 / 87; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
 <!-- V302 -->
 
@@ -978,7 +984,7 @@
      onclick="drawYellowPath(this)"
      {{-- Updated grid-column to 103 / 110 and grid-row to 87 / 94 --}}
      style="grid-column: 103 / 110; grid-row: 87 / 94; margin: 1.5px; border: 1.5px solid #6b93a3; background: white; cursor: pointer; position: relative; z-index: 5;">
-  <span class="room-label" style="pointer-events: none; font-weight: bold;">{{ $name ?? '' }}</span>
+  <span class="room-label" style="pointer-events: none;">{{ $name ?? '' }}</span>
 </div>
 <!-- V301 -->
 
