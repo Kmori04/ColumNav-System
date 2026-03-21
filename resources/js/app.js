@@ -445,7 +445,7 @@ function drawYellowPath(roomEl) {
             stroke-linejoin="round"
             stroke-dasharray="200"
             stroke-dashoffset="200"
-            style="animation: drawPath 5.6s forwards, pulsePath 2.6s infinite 0.6s" />
+            style="animation: drawPath 5s forwards, pulsePath 2.6s infinite 0.6s" />
 
       <circle cx="${lastPoint.x}"
               cy="${lastPoint.y}"

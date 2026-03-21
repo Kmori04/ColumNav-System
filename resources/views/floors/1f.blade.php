@@ -41,7 +41,7 @@
 <!-- MAINTENANCE OFFICE -->
 
 
-<!-- CR ROOM TOP LEFT -->
+<!-- CR ROOM TOP LEFT MEN -->
 @php
   $id = 14;
   $r  = $rooms[$id] ?? null;
@@ -68,7 +68,7 @@
        src="{{ Vite::asset('resources/images/men.png') }}"
        alt="Men">
 </div>
-<!-- CR ROOM TOP LEFT -->
+<!-- CR ROOM TOP LEFT MEN -->
 
 
 <!-- Physical Plant & Facilities -->
