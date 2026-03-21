@@ -380,15 +380,15 @@
 
 <!-- C102 Faculty Lounge -->
 @php
-  $id28 = 28;
-  $r28 = $rooms[$id28] ?? null;
-  $name28 = $r28?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r28->room_name) : null;
+  $id = 28;
+  $r = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
 
 <div class="room"
      data-id="{{ $id }}"
-     data-name="{{ $name28 ?? 'Unknown Room' }}"
-     data-desc="{{ $r28?->room_description ?? 'No description yet.' }}"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="38" 
      data-col-end="54" 
      data-row-start="30" 
@@ -396,22 +396,22 @@
      data-side="upright" 
      data-thrust="8.6" 
      style="grid-column: 24 / 32; grid-row: 15 / 24; margin: 1.5px;">
-  <span class="room-label">{{ $name28 ?? '' }}</span>
+  <span class="room-label">{{ $name ?? '' }}</span>
 </div>
 <!-- C102 Faculty Lounge -->
 
 
 <!-- CANTEEN -->
 @php
-  $id27 = 27;
-  $r27 = $rooms[$id27] ?? null;
-  $name27 = $r27?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r27->room_name) : null;
+  $id = 27;
+  $r = $rooms[$id] ?? null;
+  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
 @endphp
 
 <div class="room"
      data-id="{{ $id }}"
-     data-name="{{ $name27 ?? 'Unknown Room' }}"
-     data-desc="{{ $r27?->room_description ?? 'No description yet.' }}"
+     data-name="{{ $name ?? 'Unknown Room' }}"
+     data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      data-col-start="32" 
      data-col-end="60" 
      data-row-start="29" 
@@ -419,7 +419,7 @@
      data-side="upright"
      data-thrust="23.5" 
      style="grid-column: 32 / 52; grid-row: 15 / 24; margin: 1.5px;">
-  <span class="room-label">{{ $name27 ?? '' }}</span>
+  <span class="room-label">{{ $name ?? '' }}</span>
 </div>
 <!-- CANTEEN -->
 

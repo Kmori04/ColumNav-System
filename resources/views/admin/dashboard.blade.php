@@ -113,6 +113,76 @@
       justify-content:flex-end;
       margin-top:12px;
     }
+
+    /* SUCCESS TOAST */
+    .success-toast{
+      position:fixed;
+      top:15%;
+      right:40%;
+      min-width:280px;
+      max-width:360px;
+      background:linear-gradient(135deg, #0c3b66, #14508a);
+      color:#fff;
+      border-radius:16px;
+      box-shadow:0 18px 40px rgba(0,0,0,.22);
+      padding:16px 18px;
+      z-index:10000;
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      transform:translateY(-20px);
+      opacity:0;
+      pointer-events:none;
+      transition:all .28s ease;
+    }
+
+    .success-toast.show{
+      transform:translateY(0);
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .success-toast-icon{
+      width:38px;
+      height:38px;
+      min-width:38px;
+      border-radius:50%;
+      background:rgba(255,255,255,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:20px;
+      font-weight:700;
+    }
+
+    .success-toast-text{
+      flex:1;
+    }
+
+    .success-toast-title{
+      margin:0 0 2px;
+      font-size:15px;
+      font-weight:700;
+      line-height:1.2;
+    }
+
+    .success-toast-sub{
+      margin:0;
+      font-size:12px;
+      opacity:.92;
+      line-height:1.4;
+    }
+
+    .success-toast-close{
+      background:transparent;
+      border:none;
+      color:#fff;
+      font-size:18px;
+      cursor:pointer;
+      padding:0;
+      line-height:1;
+      opacity:.9;
+    }
   </style>
 </head>
 <body class="admin-page">
@@ -283,6 +353,16 @@
   </div>
 </div>
 
+<!-- SUCCESS TOAST -->
+<div class="success-toast" id="successToast" aria-hidden="true">
+  <div class="success-toast-icon">✓</div>
+  <div class="success-toast-text">
+    <p class="success-toast-title">Room updated successfully</p>
+    <p class="success-toast-sub" id="successToastMessage">The room details were saved.</p>
+  </div>
+  <button type="button" class="success-toast-close" id="successToastClose">&times;</button>
+</div>
+
 <script>
 (function () {
   const btnEdit    = document.getElementById('btnEditRoom');
@@ -301,7 +381,12 @@
   const roomDescText = document.getElementById('roomDescText');
   const floorSelect  = document.getElementById('floorSelect');
 
+  const successToast       = document.getElementById('successToast');
+  const successToastClose  = document.getElementById('successToastClose');
+  const successToastMessage = document.getElementById('successToastMessage');
+
   let currentRoomEl = null;
+  let toastTimer = null;
 
   function openModal() {
     modal.style.display = 'block';
@@ -312,6 +397,25 @@
   function closeModal() {
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
+  }
+
+  function showSuccessToast(message) {
+    if (!successToast) return;
+
+    successToastMessage.textContent = message || 'Saved successfully.';
+    successToast.classList.add('show');
+    successToast.setAttribute('aria-hidden', 'false');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      hideSuccessToast();
+    }, 2600);
+  }
+
+  function hideSuccessToast() {
+    if (!successToast) return;
+    successToast.classList.remove('show');
+    successToast.setAttribute('aria-hidden', 'true');
   }
 
   function renderDescFromRoom(roomEl) {
@@ -348,14 +452,12 @@
   }
 
   function syncRoomEverywhere(roomId, payload) {
-    // current visible map
     const visibleRoom = document.querySelector(`#mapBuilder .room[data-id="${roomId}"]`);
     if (visibleRoom) {
       updateRoomElement(visibleRoom, payload);
       currentRoomEl = visibleRoom;
     }
 
-    // all templates
     updateRoomInTemplate('tpl-1F', roomId, payload);
     updateRoomInTemplate('tpl-2F', roomId, payload);
     updateRoomInTemplate('tpl-3F', roomId, payload);
@@ -389,6 +491,10 @@
 
   btnCancel.addEventListener('click', closeModal);
   btnCancel2.addEventListener('click', closeModal);
+
+  if (successToastClose) {
+    successToastClose.addEventListener('click', hideSuccessToast);
+  }
 
   modal.addEventListener('click', function(e){
     if (e.target === modal) closeModal();
@@ -430,6 +536,7 @@
       syncRoomEverywhere(rid, payload);
       renderDescFromRoom(currentRoomEl);
       closeModal();
+      showSuccessToast(`Room ID ${rid} was updated successfully.`);
 
     } catch (err) {
       alert('Save failed. Network or server error.');
@@ -438,7 +545,6 @@
       btnSave.textContent = 'Save';
     }
   });
-
 })();
 </script>
 
