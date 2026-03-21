@@ -381,8 +381,8 @@
   const roomDescText = document.getElementById('roomDescText');
   const floorSelect  = document.getElementById('floorSelect');
 
-  const successToast       = document.getElementById('successToast');
-  const successToastClose  = document.getElementById('successToastClose');
+  const successToast        = document.getElementById('successToast');
+  const successToastClose   = document.getElementById('successToastClose');
   const successToastMessage = document.getElementById('successToastMessage');
 
   let currentRoomEl = null;
@@ -451,6 +451,30 @@
     tpl.innerHTML = wrapper.innerHTML;
   }
 
+  function updateChatAssistantLive(roomId, payload) {
+    if (!payload || !payload.room_name) return;
+
+    if (typeof window.updateChatAssistantRoom === 'function') {
+      window.updateChatAssistantRoom(Number(roomId), payload.room_name);
+    }
+
+    window.dispatchEvent(new CustomEvent('chat-assistant-room-updated', {
+      detail: {
+        id: Number(roomId),
+        name: payload.room_name
+      }
+    }));
+
+    const suggestionButtons = document.querySelectorAll('#roomSuggestionList .chatbot-suggestion');
+    suggestionButtons.forEach((btn) => {
+      const btnRoomId = Number(btn.dataset.roomId || 0);
+      if (btnRoomId === Number(roomId)) {
+        btn.dataset.roomName = payload.room_name;
+        btn.textContent = `Take me to the ${payload.room_name}`;
+      }
+    });
+  }
+
   function syncRoomEverywhere(roomId, payload) {
     const visibleRoom = document.querySelector(`#mapBuilder .room[data-id="${roomId}"]`);
     if (visibleRoom) {
@@ -462,6 +486,8 @@
     updateRoomInTemplate('tpl-2F', roomId, payload);
     updateRoomInTemplate('tpl-3F', roomId, payload);
     updateRoomInTemplate('tpl-4F', roomId, payload);
+
+    updateChatAssistantLive(roomId, payload);
   }
 
   document.addEventListener('click', function (e) {
@@ -533,7 +559,27 @@
         return;
       }
 
-      syncRoomEverywhere(rid, payload);
+      let savedRoom = null;
+
+      try {
+        const data = await res.json();
+        if (data && data.room) {
+          savedRoom = data.room;
+        } else if (data && data.data) {
+          savedRoom = data.data;
+        }
+      } catch (jsonError) {
+        savedRoom = null;
+      }
+
+      const finalPayload = {
+        room_name: savedRoom?.room_name ?? payload.room_name,
+        room_description: savedRoom?.room_description ?? payload.room_description,
+        floor_number: savedRoom?.floor_number ?? payload.floor_number,
+        is_active: savedRoom?.is_active ?? payload.is_active
+      };
+
+      syncRoomEverywhere(rid, finalPayload);
       renderDescFromRoom(currentRoomEl);
       closeModal();
       showSuccessToast(`Room ID ${rid} was updated successfully.`);

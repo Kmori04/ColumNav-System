@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!input || !suggestionList) return;
 
     let greetingTimeout = null;
+    const defaultSuggestionIds = [25, 22, 50];
 
     function showAssistantReply(message) {
         if (!chatCard) return;
@@ -40,45 +41,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
     }
 
-    const rawRooms = Array.isArray(window.chatAssistantRooms) ? window.chatAssistantRooms : [];
-
-    const normalizedRooms = rawRooms
-        .map((room, index) => {
-            if (typeof room === "string") {
-                return {
-                    id: index + 1,
-                    name: room.trim()
-                };
-            }
-
-            if (room && typeof room === "object") {
-                return {
-                    id: Number(room.id),
-                    name: String(room.name || "").trim()
-                };
-            }
-
-            return null;
-        })
-        .filter(room => room && room.name);
-
-    const uniqueRoomsMap = new Map();
-    normalizedRooms.forEach(room => {
-        if (!uniqueRoomsMap.has(room.id)) {
-            uniqueRoomsMap.set(room.id, room);
-        }
-    });
-
-    const roomList = Array.from(uniqueRoomsMap.values());
-
-    const defaultSuggestionIds = [25, 22, 50];
-
     function normalizeText(text) {
         return (text || "")
             .toLowerCase()
             .replace(/[\(\)\-\/]/g, " ")
             .replace(/\s+/g, " ")
             .trim();
+    }
+
+    function normalizeRoomNameForDisplay(name) {
+        let cleaned = String(name || "").trim();
+
+        cleaned = cleaned.replace(/\s+/g, " ").trim();
+
+        const lower = cleaned.toLowerCase();
+
+        if (
+            lower === "male restroom" ||
+            lower === "female restroom" ||
+            lower === "comfort room" ||
+            lower === "cr" ||
+            lower === "cr male" ||
+            lower === "cr female" ||
+            lower === "cr - male" ||
+            lower === "cr - female" ||
+            lower === "cr - men" ||
+            lower === "cr - women"
+        ) {
+            const floor = inferFloorFromRoomId(null, cleaned);
+            if (floor) {
+                return `${cleaned} ${floor}`;
+            }
+        }
+
+        return cleaned;
     }
 
     function scoreRoom(roomName, query) {
@@ -101,11 +97,63 @@ document.addEventListener("DOMContentLoaded", () => {
         return score;
     }
 
+    function buildRoomList() {
+        const rawRooms = Array.isArray(window.chatAssistantRooms) ? window.chatAssistantRooms : [];
+
+        const normalizedRooms = rawRooms
+            .map((room, index) => {
+                if (typeof room === "string") {
+                    const name = normalizeRoomNameForDisplay(room);
+                    return {
+                        id: index + 1,
+                        name
+                    };
+                }
+
+                if (room && typeof room === "object") {
+                    const id = Number(room.id);
+                    const originalName = String(room.name || "").trim();
+                    const name = normalizeRoomNameForDisplay(originalName);
+
+                    return {
+                        id,
+                        name
+                    };
+                }
+
+                return null;
+            })
+            .filter(room => room && room.name);
+
+        const uniqueRoomsMap = new Map();
+
+        normalizedRooms.forEach(room => {
+            if (!uniqueRoomsMap.has(room.id)) {
+                uniqueRoomsMap.set(room.id, room);
+            } else {
+                const existing = uniqueRoomsMap.get(room.id);
+                if ((!existing.name || existing.name.length < room.name.length) && room.name) {
+                    uniqueRoomsMap.set(room.id, room);
+                }
+            }
+        });
+
+        return Array.from(uniqueRoomsMap.values());
+    }
+
+    function getRoomList() {
+        return buildRoomList();
+    }
+
     function getRoomById(roomId) {
-        return roomList.find(room => Number(room.id) === Number(roomId)) || null;
+        return getRoomList().find(room => Number(room.id) === Number(roomId)) || null;
     }
 
     function getDefaultSuggestions() {
+        const roomList = getRoomList();
+
+        if (!roomList.length) return [];
+
         const defaults = defaultSuggestionIds
             .map(id => getRoomById(id))
             .filter(Boolean);
@@ -116,7 +164,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function getTopSuggestions(query) {
+        const roomList = getRoomList();
         const cleanQuery = normalizeText(query);
+
+        if (!roomList.length) {
+            return [];
+        }
 
         if (!cleanQuery) {
             return getDefaultSuggestions();
@@ -145,8 +198,11 @@ document.addEventListener("DOMContentLoaded", () => {
             .slice(0, 3)
             .map(item => item.room);
 
+        // IMPORTANT:
+        // If the user typed something and nothing matches,
+        // return EMPTY instead of default suggestions
         if (matched.length === 0) {
-            return getDefaultSuggestions();
+            return [];
         }
 
         return matched;
@@ -174,6 +230,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderSuggestions(rooms) {
         suggestionList.innerHTML = "";
+
+        if (!Array.isArray(rooms) || rooms.length === 0) {
+            return;
+        }
+
         rooms.forEach(room => {
             suggestionList.appendChild(createSuggestionButton(room));
         });
@@ -214,7 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return null;
     }
 
-    function findRoomFloor(roomId, roomName = "") {
+    function inferFloorFromRoomId(roomId, roomName = "") {
         const floors = ["1F", "2F", "3F", "4F"];
 
         for (const floor of floors) {
@@ -228,8 +289,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             for (const roomEl of rooms) {
                 const templateRoomId = roomEl.dataset.roomId || roomEl.dataset.id || "";
-                if (String(templateRoomId) === String(roomId)) {
-                    return floor;
+                if (roomId !== null && roomId !== undefined && String(templateRoomId) === String(roomId)) {
+                    if (floor === "1F") return "1st Floor";
+                    if (floor === "2F") return "2nd Floor";
+                    if (floor === "3F") return "3rd Floor";
+                    if (floor === "4F") return "4th Floor";
                 }
             }
         }
@@ -248,10 +312,28 @@ document.addEventListener("DOMContentLoaded", () => {
             for (const roomEl of rooms) {
                 const templateRoomName = normalizeText(roomEl.dataset.name || "");
                 if (templateRoomName === targetName) {
-                    return floor;
+                    if (floor === "1F") return "1st Floor";
+                    if (floor === "2F") return "2nd Floor";
+                    if (floor === "3F") return "3rd Floor";
+                    if (floor === "4F") return "4th Floor";
                 }
             }
         }
+
+        return "";
+    }
+
+    function findRoomFloor(roomId, roomName = "") {
+        const floorLabel = inferFloorFromRoomId(roomId, roomName);
+
+        if (floorLabel === "1st Floor") return "1F";
+        if (floorLabel === "2nd Floor") return "2F";
+        if (floorLabel === "3rd Floor") return "3F";
+        if (floorLabel === "4th Floor") return "4F";
+
+        const floors = ["1F", "2F", "3F", "4F"];
+
+        const targetName = normalizeText(roomName);
 
         for (const floor of floors) {
             const tpl = document.getElementById(`tpl-${floor}`);
@@ -312,7 +394,65 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    input.addEventListener("input", updateSuggestions);
+    function upsertChatAssistantRoom(roomId, roomName) {
+        if (!roomId) return;
+
+        if (!Array.isArray(window.chatAssistantRooms)) {
+            window.chatAssistantRooms = [];
+        }
+
+        const normalizedName = normalizeRoomNameForDisplay(roomName);
+        const numericId = Number(roomId);
+
+        const existingIndex = window.chatAssistantRooms.findIndex(room => Number(room.id) === numericId);
+
+        if (existingIndex >= 0) {
+            window.chatAssistantRooms[existingIndex] = {
+                ...window.chatAssistantRooms[existingIndex],
+                id: numericId,
+                name: normalizedName
+            };
+        } else {
+            window.chatAssistantRooms.push({
+                id: numericId,
+                name: normalizedName
+            });
+        }
+
+        const defaultButtons = suggestionList.querySelectorAll(".chatbot-suggestion");
+
+        defaultButtons.forEach(btn => {
+            const btnId = Number(btn.dataset.roomId || 0);
+            if (btnId === numericId) {
+                btn.dataset.roomName = normalizedName;
+                btn.textContent = `Take me to the ${normalizedName}`;
+            }
+        });
+
+        if (input.value && Number(input.dataset.selectedRoomId || 0) === numericId) {
+            input.value = normalizedName;
+        }
+
+        updateSuggestions();
+    }
+
+    window.updateChatAssistantRoom = function (roomId, roomName) {
+        upsertChatAssistantRoom(roomId, roomName);
+    };
+
+    window.refreshChatAssistantSuggestions = function () {
+        updateSuggestions();
+    };
+
+    window.addEventListener("chat-assistant-room-updated", (event) => {
+        const detail = event.detail || {};
+        upsertChatAssistantRoom(detail.id, detail.name);
+    });
+
+    input.addEventListener("input", () => {
+        input.dataset.selectedRoomId = "";
+        updateSuggestions();
+    });
 
     suggestionList.addEventListener("click", (event) => {
         const button = event.target.closest(".chatbot-suggestion");
@@ -325,6 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         animateSuggestionClick(button);
         input.value = selectedRoomName;
+        input.dataset.selectedRoomId = selectedRoomId;
 
         showAssistantReply(`Going to ${selectedRoomName}`);
 
@@ -343,6 +484,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (results.length > 0) {
                 input.value = results[0].name;
+                input.dataset.selectedRoomId = results[0].id;
                 showAssistantReply(`Going to ${results[0].name}`);
                 triggerMapRoomClick(results[0].id, results[0].name);
             }

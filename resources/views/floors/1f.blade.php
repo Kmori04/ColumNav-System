@@ -45,7 +45,17 @@
 @php
   $id = 14;
   $r  = $rooms[$id] ?? null;
-  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(1)", "(2)", and "1st floor"
+  $name = $r?->room_name
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*1st\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
+    : null;
 @endphp
 
 <div class="room room-leftlabel room-menimg"
@@ -356,7 +366,17 @@
 @php
   $id = 15;
   $r  = $rooms[$id] ?? null;
-  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(1)", "(2)", and "1st floor"
+  $name = $r?->room_name
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*1st\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
+    : null;
 @endphp
 
 <div class="room room-crwomen-up room-womenimg"
@@ -864,9 +884,15 @@
   $id = 12;
   $r  = $rooms[$id] ?? null;
 
-  // remove "(PWD)" only
+  // remove "(PWD)", "(1)", "1st floor"
   $name = $r?->room_name
-    ? preg_replace('/\s*\(PWD\)\s*/i', '', $r->room_name)
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(PWD\\)\\s*/i', '/\\s*\\(1\\)\\s*$/i', '/\\s*1st\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
     : null;
 @endphp
 
@@ -894,12 +920,21 @@
 <!-- PWD MEN CR -->
 
 
-
 <!-- CR MEN CCS -->
 @php
   $id = 13;
   $r  = $rooms[$id] ?? null;
-  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(1)", "(2)", "1st floor"
+  $name = $r?->room_name
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*1st\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
+    : null;
 @endphp
 
 <div class="room"
@@ -925,9 +960,15 @@
   $id = 11;
   $r  = $rooms[$id] ?? null;
 
-  // remove "(2)" and remove "(PWD)" only
+  // remove "(PWD)", "(1)", "(2)", "1st floor"
   $name = $r?->room_name
-    ? preg_replace('/\s*\(PWD\)\s*/i', '', preg_replace('/\s*\(2\)\s*$/', '', $r->room_name))
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(PWD\\)\\s*/i', '/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*1st\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
     : null;
 @endphp
 
@@ -956,7 +997,17 @@
 @php
   $id = 10;
   $r  = $rooms[$id] ?? null;
-  $name = $r?->room_name ? preg_replace('/\s*\(2\)\s*$/', '', $r->room_name) : null;
+
+  // remove "(1)", "(2)", "1st floor"
+  $name = $r?->room_name
+    ? trim(
+        preg_replace(
+          ['/\\s*\\(1\\)\\s*$/i', '/\\s*\\(2\\)\\s*$/i', '/\\s*1st\\s*floor\\s*/i'],
+          '',
+          $r->room_name
+        )
+      )
+    : null;
 @endphp
 
 <div class="room"
