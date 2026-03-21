@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         greetingTimeout = setTimeout(() => {
             bubble.classList.remove("show");
             bubble.classList.add("hide");
-        }, 1800);
+        }, 3000);
     }
 
     const rawRooms = Array.isArray(window.chatAssistantRooms) ? window.chatAssistantRooms : [];
