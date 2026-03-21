@@ -432,8 +432,10 @@
      data-start-thrust="0" {{-- Shortened starting tail --}}
      data-corridor-y="85.5"
      
-     /* BEHAVIOR SETTINGS */
-     data-thrust="3"
+     /* SIZE & BEHAVIOR SETTINGS */
+     data-last-line-offset="0"
+     data-last-line-size="-3.4"
+     data-thrust="3.1"
      data-side="hide"
      
      onclick="drawYellowPath(this)"
@@ -459,6 +461,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -495,6 +498,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -530,6 +534,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $forcedName }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -568,6 +573,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $forcedName }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -604,6 +610,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -640,6 +647,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -676,6 +684,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      
@@ -712,6 +721,7 @@
 
 <div class="room room-2f-new"
      data-id="{{ $id }}"
+     data-stair="left"
      data-name="{{ $name ?? 'Unknown Room' }}"
      data-desc="{{ $r?->room_description ?? 'No description yet.' }}"
      

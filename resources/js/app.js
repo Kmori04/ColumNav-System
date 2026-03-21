@@ -201,7 +201,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // -------------------------------------------------
   // STAIR ROUTING CONFIG
   // -------------------------------------------------
-  const FLOOR1_STAIR_TARGETS = {
+const FLOOR1_STAIR_TARGETS = {
+    top_left: {
+      name: "Stairs to Upper Floor (North West)",
+      desc: "Use the stairs at the top-left corridor to continue to the selected upper floor.",
+      colStart: "42",
+      colEnd: "25",
+      rowStart: "-9",
+      rowEnd: "18",
+      startX: "53.8",
+      startY: "92",
+      corridorY: "85.7",
+      side: "right2",
+      thrust: "-3",
+      lastLineOffset: "0",
+      lastLineSize: "0",
+    },
     left: {
       name: "Stairs to Upper Floor (West)",
       desc: "Go to the left stairs to continue to the selected upper floor.",
@@ -261,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
       thrust: "0",
       lastLineOffset: "0",
       lastLineSize: "0",
-}
+    }
   };
 
   const getRoomVisualCenter = (roomEl) => {
@@ -284,18 +299,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const getAssignedStairForUpperFloorRoom = (roomEl) => {
     const manual = (roomEl.dataset.stair || "").trim().toLowerCase();
 
-    if (["left", "middle", "right", "far_right"].includes(manual)) {
+    // Check manual override first (includes top_left)
+    if (["left", "middle", "right", "far_right", "top_left"].includes(manual)) {
       return manual;
     }
 
     const center = getRoomVisualCenter(roomEl);
 
-    // Fixed order so far_right can actually be reached
+    // AUTO-DETECTION LOGIC
+    // 1. Identify Top Left (Far left and upper half)
+    if (center.x <= 9 && center.y <= 65) return "top_left";
+
+    // 2. Identify East sides
     if (center.x >= 55) return "far_right";
     if (center.x >= 45) return "right";
+    
+    // 3. Identify Bottom Left / West
     if (center.x <= 25) return "left";
     if (center.x < 45 && center.y >= 60) return "left";
 
+    // 4. Default to Central
     return "middle";
   };
 
@@ -323,7 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // -----------------------------
   // YELLOW PATH
   // -----------------------------
-  function drawYellowPath(roomEl) {
+function drawYellowPath(roomEl) {
     const pathGroup = document.getElementById("path-group");
     if (!pathGroup || !roomEl || !roomEl.dataset) return;
 
@@ -353,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const roomY = ((rStart + rEnd) / 2.2) + 2 - lastLineOffset;
 
     let entryX;
-    if (side === "right2" || side === "hide") {
+    if (side === "right2" || side === "hide" || side === "left2") { // Added left2 here
       entryX = roomX;
     } else if (customThrust !== null && customThrust < 0) {
       entryX = roomX + 1;
@@ -362,13 +385,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const lastLineSize = parseFloat(roomEl.dataset.lastLineSize) || 0;
+    const leftHook = parseFloat(roomEl.dataset.leftHookSize) || 0; // New: Hook size
 
     let thrust = 0;
     if (customThrust !== null && !Number.isNaN(customThrust)) {
       thrust = customThrust;
     } else if (side === "right" || side === "upright") {
       thrust = 4;
-    } else if (side === "right2") {
+    } else if (side === "right2" || side === "left2") { // Added left2 here
       thrust = 0;
     }
 
@@ -398,9 +422,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (lastLineSize !== 0) {
         points.push({ x: endX, y: roomY + lastLineSize });
-      } else if (side !== "hide" && side !== "right2" && side !== "left") {
+      } else if (side !== "hide" && side !== "right2" && side !== "left" && side !== "left2") {
         points.push({ x: endX, y: endY });
       }
+    }
+
+    // NEW: Add the Left Hook at the very end
+    if (leftHook !== 0) {
+      const currentPoint = points[points.length - 1];
+      points.push({ x: currentPoint.x - leftHook, y: currentPoint.y });
     }
 
     const d = points.map((p, i) => (i === 0 ? "M" : "L") + ` ${p.x} ${p.y}`).join(" ");
@@ -415,7 +445,7 @@ document.addEventListener("DOMContentLoaded", () => {
             stroke-linejoin="round"
             stroke-dasharray="200"
             stroke-dashoffset="200"
-            style="animation: drawPath 6.6s forwards, pulsePath 2.6s infinite 0.6s" />
+            style="animation: drawPath 5.6s forwards, pulsePath 2.6s infinite 0.6s" />
 
       <circle cx="${lastPoint.x}"
               cy="${lastPoint.y}"
@@ -529,7 +559,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (floorSelect) floorSelect.value = targetFloor;
       renderFloor(targetFloor);
       cancelCrossFloorRoute();
-    }, 1800);
+    }, 2400);
   };
 
   if (floorSelect) {
@@ -567,6 +597,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (currentFloor === "3F") {
       startCrossFloorRoute(roomEl, "3F");
+      return;
+    }
+
+    if (currentFloor === "4F") {
+  startCrossFloorRoute(roomEl, "4F");
       return;
     }
 
